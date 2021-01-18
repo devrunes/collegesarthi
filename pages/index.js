@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import NavStream from "../components/NavStream/NavStream";
 import HomeSearch from "../components/HomeSearch/HomeSearch";
+import Explore from "../components/Explore/Explore";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <main className={styles.main}>
         <NavStream />
         <HomeSearch />
+        <Explore />
       </main>
     </div>
   );
