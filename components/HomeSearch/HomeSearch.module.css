@@ -4,14 +4,16 @@
   background-size: 100% 100%;
 }
 .hs_text {
-  padding: 2em 3.2vw 1em;
+  padding: 2em 6.2vw 1em;
   font-size: 3.2em;
+  font-weight: 600;
 }
 .hs_cont > input {
-  margin: 0.2em 3.2vw;
+  margin: 0.2em 6.2vw;
   font-size: 1.2em;
   padding: 0.8em 2em;
   width: 30vw;
   border-radius: 10px;
   border: none;
+  font-weight: 500;
 }
