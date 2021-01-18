@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import NavStream from "../components/NavStream/NavStream";
 import HomeSearch from "../components/HomeSearch/HomeSearch";
 import Explore from "../components/Explore/Explore";
+import MissUpdate from "../components/MissUpdate/MissUpdate";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <NavStream />
         <HomeSearch />
         <Explore />
+        <MissUpdate />
       </main>
     </div>
   );

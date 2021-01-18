@@ -1,0 +1,43 @@
+.missUpdateSection{
+     background: #4A788D;
+     color: white;
+     text-align: center;
+     padding: 3em 0 1em 0;
+}
+.missHeading{
+    font-size: 3em;
+}
+.MissUpdateHeading{
+    display: flex;
+    justify-content: center;
+}
+.MissUpdateHeadingText{
+    text-align: left;
+    padding-left: 2em;
+}
+.MissUpdateForm{
+    display: flex;
+    justify-content: space-around;
+    padding: 1em 0 1em 0;
+    margin: 1em 0em;
+}
+.MissUpdateForm div>p{
+    font-size: 1.5em;
+    padding-bottom: .5em ;
+}
+.MissUpdateForm div{
+    text-align: left;
+}
+.MissUpdateForm div>input{
+    font-size: 1.5em;
+    padding: 10px;
+}
+.MissUpdateButton{
+    background: transparent;
+    font-size: 1.7em;
+    color: white;
+    padding: 1em 3em;
+    border-radius: 50px;
+    border: 1px solid white;
+    margin: 2em;
+}
