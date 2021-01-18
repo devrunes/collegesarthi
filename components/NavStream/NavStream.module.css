@@ -1,0 +1,8 @@
+.navSt_cont {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #4a788d;
+  padding: 0.8em 2.5em;
+  color: #ffffff;
+  font-size: 1.2em;
+}

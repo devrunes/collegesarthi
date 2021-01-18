@@ -1,0 +1,10 @@
+.hs_cont {
+  background: url("../../assets/bg4.png");
+  height: 80vh;
+  background-size: 100% 100%;
+}
+.hs_text {
+  margin: 1em 3.2em;
+  font-size: 2.2em;
+  padding: 0.8em;
+}
