@@ -4,6 +4,7 @@ import NavStream from "../components/NavStream/NavStream";
 import HomeSearch from "../components/HomeSearch/HomeSearch";
 import Explore from "../components/Explore/Explore";
 import MissUpdate from "../components/MissUpdate/MissUpdate";
+import HomeExams from "../components/HomeExams/HomeExams";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <HomeSearch />
         <Explore />
         <MissUpdate />
+        <HomeExams />
       </main>
     </div>
   );

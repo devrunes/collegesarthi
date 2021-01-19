@@ -1,0 +1,53 @@
+.homeExamsSection{
+    padding: 5%;
+}
+.homeExamsHeading {
+    border-left: 5px solid #4a788d;
+    padding-left: 1%;
+}
+
+.homeExamsHeading > h2 {
+    margin: 0;
+    color: #4a788d;
+    font-size: 2.5em;
+}
+
+.homeExamsHeading > p {
+    margin-top: 8px;
+}
+
+.homeExamsCard{
+    border-radius: 12px;
+    width: 40%;
+    border: 1px solid #f2f2f2;
+}
+
+.topBar{
+    display: flex;
+    justify-content: space-between;
+    padding: 3%;
+}
+
+.topBar > h3 {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.topBar > button {
+    background-color:#4a788d;
+    border: none;
+    border-radius: 4px;
+    padding: 2% 3%;
+    color: #fff;
+    font-size: 12px;
+}
+.middle{
+    padding: 5% 3% 8%;
+    font-size: 14px;
+}
+
+.footer{
+    background-color: #F2F2F2;
+    height: 45px;
+    border-radius:0 0 12px 12px;
+}
