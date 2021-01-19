@@ -17,7 +17,7 @@ export default function Home() {
         <NavStream />
         <HomeSearch />
         <Explore />
-        <MissUpdate />
+        {/* <MissUpdate /> */}
       </main>
     </div>
   );

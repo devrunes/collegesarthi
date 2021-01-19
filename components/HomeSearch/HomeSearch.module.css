@@ -1,19 +1,40 @@
 .hs_cont {
   background: url("../../assets/bg4.png");
-  height: 80vh;
+  height: 40vh;
   background-size: 100% 100%;
 }
 .hs_text {
   padding: 2em 6.2vw 1em;
-  font-size: 3.2em;
+  font-size: 6.2vw;
   font-weight: 600;
 }
 .hs_cont > input {
   margin: 0.2em 6.2vw;
-  font-size: 1.2em;
-  padding: 0.8em 2em;
-  width: 30vw;
+  font-size: 4.2vw;
+  padding: 0.5em 2em;
+  width: 80vw;
   border-radius: 10px;
   border: none;
   font-weight: 500;
+}
+@media only screen and (min-width: 768px) {
+  .hs_cont {
+    background: url("../../assets/bg4.png");
+    height: 80vh;
+    background-size: 100% 100%;
+  }
+  .hs_text {
+    padding: 2em 6.2vw 1em;
+    font-size: 3.2vw;
+    font-weight: 600;
+  }
+  .hs_cont > input {
+    margin: 0.2em 6.2vw;
+    font-size: 1.2em;
+    padding: 0.8em 2em;
+    width: 30vw;
+    border-radius: 10px;
+    border: none;
+    font-weight: 500;
+  }
 }
