@@ -28,7 +28,7 @@ export default function Navbar() {
       authButRef.current.style.display = "none";
       hamMenuRef.current.style.display = "none";
     }
-    if (window.innerWidth >= 768) {
+    if (window.innerWidth >= 769) {
       authButRef.current.style.display = "block";
     }
     console.log(window.innerWidth);
