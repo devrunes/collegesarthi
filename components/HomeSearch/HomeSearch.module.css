@@ -40,8 +40,6 @@
 }
 @media only screen and (min-width: 1024px) {
   .hs_cont {
-    background: url("../../assets/bg4.png");
     height: 60vh;
-    background-size: 100% 100%;
   }
 }
