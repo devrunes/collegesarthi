@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./MissUpdate.module.css";
 
-export default function MissUpdate() {
+export default function MissUpdate(props) {
+  const {themeColor, heading , headingSup} = props;
+  const backColor = themeColor
   return (
-    <section className={styles.missUpdateSection}>
+    <section className={styles.missUpdateSection} style={{background:backColor}}>
       <div className={styles.MissUpdateHeading}>
         <svg
           width="94"
@@ -19,8 +21,8 @@ export default function MissUpdate() {
           />
         </svg>
         <div className={styles.MissUpdateHeadingText}>
-          <h2 className={styles.missHeading}>Never miss an Update!</h2>
-          <h3> You focus on your studies , we take care of rest</h3>
+          <h2 className={styles.missHeading}>{heading}</h2>
+          <h3>{headingSup}</h3>
         </div>
       </div>
       <div className={styles.MissUpdateForm}>

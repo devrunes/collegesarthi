@@ -1,6 +1,5 @@
 
 .missUpdateSection {
-  background: #4a788d;
   color: white;
   text-align: center;
   padding: 2em;
@@ -56,6 +55,7 @@
     .MissUpdateHeading {
       display: flex;
       justify-content: center;
+      margin: 1em;
     }
     .MissUpdateHeadingText {
       text-align: left;
@@ -63,11 +63,12 @@
     }
     .MissUpdateHeadingText h3 {
         font-weight: 250;
+        font-size: 1.3em;
     }
     .MissUpdateForm {
       display: flex;
       justify-content: space-around;
-      padding: 1em;
+      padding: 3% 5%;
       margin: 1em 0em;
     }
     .MissUpdateForm div > p {
