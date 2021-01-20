@@ -1,8 +1,7 @@
-
 .missUpdateSection {
   color: white;
   text-align: center;
-  padding: 2em;
+  padding: 5%;
 }
 .MissUpdateSVG {
   width: 50px;
@@ -43,62 +42,62 @@
   border: 1px solid white;
 }
 @media only screen and (min-width: 768px) {
-    .missUpdateSection {
-      background: #4a788d;
-      color: white;
-      text-align: center;
-      padding: 2em 0 1em 0;
-    }
-    .missHeading {
-      font-size: 2em;
-    }
-    .MissUpdateHeading {
-      display: flex;
-      justify-content: center;
-      margin: 1em;
-    }
-    .MissUpdateHeadingText {
-      text-align: left;
-      font-size: 1.4em;
-    }
-    .MissUpdateHeadingText h3 {
-        font-weight: 250;
-        font-size: 1.3em;
-    }
-    .MissUpdateForm {
-      display: flex;
-      justify-content: space-around;
-      padding: 3% 5%;
-      margin: 1em 0em;
-    }
-    .MissUpdateForm div > p {
-      padding-bottom: 0.5em;
-      font-size: 1em;
-    }
-    .MissUpdateForm div {
-      text-align: left;
-      font-size: 1em;
-      margin: 0em;
-    }
-    .MissUpdateForm div > input {
-      font-size: 1.4em;
-      padding: 7px;
-      width: 17em;
-      margin: 0em;
-    }
-    .MissUpdateButton {
-      background: transparent;
-      font-size: 1.7em;
-      color: white;
-      padding: .5em 3em;
-      border-radius: 50px;
-      border: 1px solid white;
-      margin: 1em ;
-    }
-    .MissUpdateSVG {
-      margin-right: 2em;
-      margin-top: .5em;
-      height: 70px;
-      width: 70px;
-    }
+  .missUpdateSection {
+    background: #4a788d;
+    color: white;
+    text-align: center;
+    padding: 2em 0 1em 0;
   }
+  .missHeading {
+    font-size: 2em;
+  }
+  .MissUpdateHeading {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+  }
+  .MissUpdateHeadingText {
+    text-align: left;
+    font-size: 1.4em;
+  }
+  .MissUpdateHeadingText h3 {
+    font-weight: 250;
+    font-size: 1.3em;
+  }
+  .MissUpdateForm {
+    display: flex;
+    justify-content: space-around;
+    padding: 3% 5%;
+    margin: 1em 0em;
+  }
+  .MissUpdateForm div > p {
+    padding-bottom: 0.5em;
+    font-size: 1em;
+  }
+  .MissUpdateForm div {
+    text-align: left;
+    font-size: 1em;
+    margin: 0em;
+  }
+  .MissUpdateForm div > input {
+    font-size: 1.4em;
+    padding: 7px;
+    width: 17em;
+    margin: 0em;
+  }
+  .MissUpdateButton {
+    background: transparent;
+    font-size: 1.7em;
+    color: white;
+    padding: 0.5em 3em;
+    border-radius: 50px;
+    border: 1px solid white;
+    margin: 1em;
+  }
+  .MissUpdateSVG {
+    margin-right: 2em;
+    margin-top: 0.5em;
+    height: 70px;
+    width: 70px;
+  }
+}
