@@ -4,7 +4,11 @@ import NavStream from "../components/NavStream/NavStream";
 import HomeSearch from "../components/HomeSearch/HomeSearch";
 import Explore from "../components/Explore/Explore";
 import MissUpdate from "../components/MissUpdate/MissUpdate";
-import HomeExams from "../components/HomeExams/HomeExams";
+// import HomeExams from "../components/HomeExams/HomeExams";
+import dynamic from "next/dynamic";
+const HomeExams = dynamic(() => import("../components/HomeExams/HomeExams"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
