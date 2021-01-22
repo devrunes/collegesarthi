@@ -40,6 +40,7 @@
   padding: 0.5em 1em;
   border-radius: 50px;
   border: 1px solid white;
+  outline: none;
 }
 @media only screen and (min-width: 768px) {
   .missUpdateSection {
@@ -82,7 +83,7 @@
   .MissUpdateForm div > input {
     font-size: 1.4em;
     padding: 7px;
-    width: 17em;
+    width: 19vw;
     margin: 0em;
   }
   .MissUpdateButton {

@@ -11,3 +11,31 @@
   margin: 0.4em 0;
   border-radius: 25px;
 }
+.Footer_row{
+  display: inline;
+  color: white;
+}
+.Footer_row div>h3{
+  text-decoration:underline white;
+  font-size: 1.6em;
+  padding: .4em 0em;
+}
+.Footer_col_emo{
+  display: flex;
+}
+.Footer_row div>p{
+  line-height: 1.3vw;
+}
+@media only screen and (min-width: 768px){
+  .Footer_row{
+    display: flex;
+    justify-content: space-between;
+  }
+  .Footer_col_emo{
+    text-align: center;
+    display: inline;
+  }
+  .Footer_col_emo ul{
+    padding: 10px;
+  }
+}
