@@ -1,0 +1,62 @@
+.login_cont {
+  padding: 2vw 3vw;
+  background-color: #4a788d;
+  height: 100%;
+  width: 100%;
+  color: white;
+}
+.login_head {
+  padding: 0.7em 0em 2em;
+}
+.login_head > p {
+  font-size: 0.7em;
+  /* color: #4f4f4f; */
+  padding-top: 0.4em;
+}
+.login_imgsec {
+  display: flex;
+  align-items: center;
+}
+.login_imgsec > p {
+  font-size: 0.8em;
+  padding: 0.8em 0.5em;
+}
+.login_img {
+  position: relative;
+  height: 27px;
+  width: 27px;
+}
+.login_form_sec {
+  padding: 0.6em 0em;
+}
+.login_form_sec > input {
+  width: 50%;
+  font-size: 0.7em;
+  padding: 0.8em 1em;
+  border: none;
+  background-color: white;
+}
+.login_button_cont {
+  margin: 5em 0em 2em;
+  width: 80%;
+}
+.login_button {
+  padding: 0.7em 2em;
+  font-size: 1em;
+  width: 100%;
+  border: none;
+  background-color: white;
+  border-radius: 8px;
+  color: #4a788d;
+}
+.linkSup {
+  font-size: 0.7em;
+  text-align: right;
+  padding-top: 0.5em;
+  cursor: pointer;
+}
+.auth_crossButton {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}

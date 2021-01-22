@@ -3,20 +3,26 @@ import { useAuth } from "../../lib/auth";
 import styles from "./Navbar.module.css";
 import { Squash as Hamburger } from "hamburger-react";
 import Image from "next/image";
+// import Login from "../Auth/Login/Login";
+import Auth from "../Auth/Auth";
 
 export default function Navbar() {
   const { auth, signOut, signInWithGoogle } = useAuth();
   const [isOpen, setOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   let hamMenuRef = useRef(null);
   let inputRef = useRef(null);
   let logoRef = useRef(null);
   let authButRef = useRef(null);
+  // let testRef = useRef(null);
 
-  // const handleHamClick = () => {
+  const handleAuthClick = () => {
+    setAuthOpen(!authOpen);
+  };
 
-  // };
   useEffect(() => {
-    console.log(hamMenuRef);
+    // console.log(hamMenuRef);
+    // console.log(testRef);
     if (isOpen) {
       hamMenuRef.current.style.display = "block";
       inputRef.current.style.display = "none";
@@ -64,6 +70,7 @@ export default function Navbar() {
           </div>
         ) : (
           <button
+            onClick={handleAuthClick}
             ref={authButRef}
             className={styles.nav_authButon}
             // onClick={() => signInWithGoogle()}
@@ -166,6 +173,8 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+      {authOpen ? <Auth handleCross={handleAuthClick} /> : ""}
+      {/* <Auth/> */}
     </div>
   );
 }
