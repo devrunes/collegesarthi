@@ -32,11 +32,11 @@ export default function MissUpdate(props) {
         </div>
         <div>
           <p>Mobile</p>
-          <input type="text" name="Mobile" id="Mobile" />
+          <input type="number" name="Mobile" id="Mobile" />
         </div>
         <div>
           <p>Email</p>
-          <input type="text" name="Email" id="Email" />
+          <input type="email" name="Email" id="Email" />
         </div>
         <div>
           <p>Course</p>
