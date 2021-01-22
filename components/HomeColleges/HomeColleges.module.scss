@@ -1,0 +1,62 @@
+@import "../../styles/vars.scss";
+
+.homeCollegesSection {
+  padding: 5%;
+  /* background-color: #f2f2f2; */
+}
+.homeCollegesHeading {
+  border-left: 5px solid #4a788d;
+  padding-left: 1%;
+}
+
+.homeCollegesHeading > h2 {
+  margin: 0;
+  color: #4a788d;
+  font-size: 2.5em;
+}
+
+.homeCollegesHeading > p {
+  margin-top: 8px;
+}
+
+.homeCollegesCardsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2% 5%;
+}
+
+.homeCardWrapper {
+  width: 45%;
+}
+
+.homeCollegesBtnWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.homeCollegesBtnWrapper > button {
+  background-color: $primary-color;
+  padding: 0.8% 2%;
+  border-radius: 8px;
+  border: none;
+  margin-top: 2%;
+  color: #fff;
+}
+
+@media only screen and (max-width: 1200px) {
+  .homeCollegesHeading > h2 {
+    font-size: 2em;
+  }
+
+  .homeCollegesHeading > p {
+    margin-top: 8px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .homeCardWrapper {
+    width: 100%;
+  }
+}

@@ -1,3 +1,5 @@
+@import "../../styles/vars.scss";
+
 .homeExamsSection {
   padding: 5%;
   /* background-color: #f2f2f2; */
@@ -26,6 +28,21 @@
 
 .homeCardWrapper {
   width: 45%;
+}
+
+.homeExamsBtnWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.homeExamsBtnWrapper > button {
+  background-color: $primary-color;
+  padding: 0.8% 2%;
+  border-radius: 8px;
+  border: none;
+  margin-top: 2%;
+  color: #fff;
 }
 
 @media only screen and (max-width: 1200px) {

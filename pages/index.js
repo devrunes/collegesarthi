@@ -10,6 +10,13 @@ const HomeExams = dynamic(() => import("../components/HomeExams/HomeExams"), {
   ssr: false,
 });
 
+const HomeColleges = dynamic(
+  () => import("../components/HomeColleges/HomeColleges"),
+  {
+    ssr: false,
+  }
+);
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -33,6 +40,7 @@ export default function Home() {
           heading="Get complete study material!"
           headingSup="Previous Year Question Papers, Preparation Kit and much more!"
         />
+        <HomeColleges />
         <Footer />
       </main>
     </div>
