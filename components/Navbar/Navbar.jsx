@@ -28,11 +28,13 @@ export default function Navbar() {
       inputRef.current.style.display = "none";
       logoRef.current.style.display = "none";
       authButRef.current.style.display = "block";
+      document.body.style.overflow = "hidden";
     } else {
       inputRef.current.style.display = "block";
       logoRef.current.style.display = "block";
       authButRef.current.style.display = "none";
       hamMenuRef.current.style.display = "none";
+      document.body.style.overflow = "scroll";
     }
     if (window.innerWidth >= 769) {
       authButRef.current.style.display = "block";
@@ -57,7 +59,7 @@ export default function Navbar() {
         <div>College</div>
         <div>Write a review</div>
       </div>
-      <div>
+      <div ref={authButRef} className={styles.nav_authButon}>
         {auth ? (
           <div>
             {/* <Link href="/">
@@ -71,8 +73,7 @@ export default function Navbar() {
         ) : (
           <button
             onClick={handleAuthClick}
-            ref={authButRef}
-            className={styles.nav_authButon}
+
             // onClick={() => signInWithGoogle()}
           >
             Login/Signup

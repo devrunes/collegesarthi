@@ -37,6 +37,19 @@ const Auth = ({ handleCross }) => {
       onClick={handleBackDropClick}
     >
       <div className={styles.auth_cont}>
+        <div className={styles.auth_cont_p2}>
+          {current === 0 ? (
+            <Login
+              screenSwitchHandler={handleCurChange}
+              handleCrossClick={handleCross}
+            />
+          ) : (
+            <Signup
+              screenSwitchHandler={handleCurChange}
+              handleCrossClick={handleCross}
+            />
+          )}
+        </div>
         <div ref={p1Ref} className={styles.auth_cont_p1}>
           <h2>why Join Us?</h2>
           <div className={styles.auth_cont_items}>
@@ -62,19 +75,6 @@ const Auth = ({ handleCross }) => {
             </div>
             <p>Stay Care Free</p>
           </div>
-        </div>
-        <div className={styles.auth_cont_p2}>
-          {current === 0 ? (
-            <Login
-              screenSwitchHandler={handleCurChange}
-              handleCrossClick={handleCross}
-            />
-          ) : (
-            <Signup
-              screenSwitchHandler={handleCurChange}
-              handleCrossClick={handleCross}
-            />
-          )}
         </div>
       </div>
     </div>

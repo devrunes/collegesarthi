@@ -1,0 +1,13 @@
+.ecc_topNav {
+  padding: 1em;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+}
+.ecc_nav_link {
+  padding: 1vw 5vw;
+}
+.ecc_active {
+  border-bottom: 5px solid black;
+}
