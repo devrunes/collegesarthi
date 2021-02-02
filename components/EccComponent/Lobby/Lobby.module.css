@@ -1,0 +1,12 @@
+.lobbyWrapper {
+  padding: 5%;
+}
+.lobbyCardComp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2% 5%;
+}
+.lobbyCardComp > div {
+  width: 45%;
+}
