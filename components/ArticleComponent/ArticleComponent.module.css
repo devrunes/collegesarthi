@@ -1,0 +1,29 @@
+.ExamHeading{
+    max-width:  75%;
+    padding: 3vw 0px 3vw 5vw;
+    font-weight: 500;
+    font-size: 1.5vw;
+}
+.ExamGetUpdateButton{
+    background: #F2F2F2;
+    color: #4A788D;
+    position: absolute;
+    right: 0;
+    margin: 3vw 2vw 3vw 0px;
+    font-size: 1.2vw;
+    font-weight: 400;
+    padding: .8vw 3vw;
+    border: none;
+    border-radius: 10px;
+}
+.ExamHeadingContainer{
+    display: flex;
+    border-bottom: 3px solid #F2F2F2;
+}
+.ExamContentContainer{
+    display: flex;
+    justify-content: space-around;
+}
+/* .ExamContentHeadings{
+    
+} */
