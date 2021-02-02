@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
 import styles from "./EccComponent.module.css";
+import Lobby from "./Lobby/Lobby";
 
 const EccComponent = () => {
   const router = useRouter();
@@ -41,6 +42,7 @@ const EccComponent = () => {
         </Link>
       </div>
       <div>{query.type}</div>
+      <Lobby type={query.type} />
     </div>
   );
 };
