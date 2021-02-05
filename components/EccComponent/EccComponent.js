@@ -41,7 +41,7 @@ const EccComponent = () => {
           <a className={styles.ecc_nav_link}>Courses</a>
         </Link>
       </div>
-      <div>{query.type}</div>
+      {/* <div>{query.type}</div> */}
       <Lobby type={query.type} />
     </div>
   );
