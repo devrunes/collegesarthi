@@ -1,0 +1,51 @@
+.OverViewCont {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0vw 0vw 1vw 0vw;
+}
+.OverView {
+  font-size: 2em;
+  color: #4a788d;
+  font-weight: 500;
+}
+.Share {
+  position: relative;
+}
+.ContentPara {
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 1.4em;
+}
+.ContentHeadings {
+  font-size: 2em;
+  padding: 1em 0em;
+}
+.ContentH2B {
+  color: #4a788d;
+  font-weight: 400;
+  font-size: 1.5em;
+  padding: 0.8em 0em;
+}
+.ContentTableData {
+    font-size: 1.5em;
+    font-weight: 300;
+    line-height: 1.4em;
+    background: #E0E0E0;
+    padding: 1em;
+    text-align: left;
+}
+.ContentTableHeading {
+  background-color: #4a788d;
+  color: white;
+  font-size: 1.5em;
+  padding: 1em;
+}
+.ContentListContainer{
+    background: #F2F2F2;
+    padding: 2.5em;
+    margin: 1em 0em;
+    font-size: 1.5em;
+    font-weight: 300;
+    line-height: 1.8em;
+    border-radius: 25px;
+}

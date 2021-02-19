@@ -1,0 +1,26 @@
+.AskQuestion{
+    background: #1C8549;
+    color: white;
+    /* position: absolute; */
+    right: 0;
+    /* margin: 3vw 2vw 3vw 0px; */
+    font-size: 1.2vw;
+    font-weight: 400;
+    padding: .8vw 5vw;
+    border: none;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+.SamplePapers{
+    background: #1C8549;
+    color: white;
+    /* position: absolute; */
+    right: 0;
+    margin: 1vw 0vw 1vw 0vw;
+    font-size: 1.2vw;
+    font-weight: 400;
+    padding: .8vw 5vw;
+    border: none;
+    border-radius: 10px;
+    white-space: nowrap;
+}
