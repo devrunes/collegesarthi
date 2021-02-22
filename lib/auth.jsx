@@ -1,13 +1,12 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import firebase from './firebase';
-import { createUser } from './db';
-
+import { createContext, useContext, useState, useEffect } from "react";
+import firebase from "./firebase";
+// import { createUser } from "./db";
 
 const authContext = createContext({
   auth: null,
   loading: true,
   signInWithTwitter: async () => {},
-  signOut: async () => {}
+  signOut: async () => {},
 });
 
 const formatAuthState = (user) => ({
@@ -15,7 +14,7 @@ const formatAuthState = (user) => ({
   email: user.email,
   name: user.displayName,
   photoUrl: user.photoURL,
-  token: null
+  token: null,
 });
 
 function useProvideAuth() {
@@ -49,13 +48,13 @@ function useProvideAuth() {
    */
   const signedIn = async (response) => {
     if (!response.user) {
-      throw new Error('No User');
+      throw new Error("No User");
     }
 
     // Format user into my required state.
     const authedUser = formatAuthState(response.user);
     // firestore database function
-    createUser(authedUser.uid, authedUser);
+    // createUser(authedUser.uid, authedUser);
   };
 
   /**
@@ -71,9 +70,17 @@ function useProvideAuth() {
    * Triggers firebase Oauth for twitter and calls signIn when successful.
    * sets loading to true.
    */
-  const signInWithGoogle = () => {
+  // const signInWithGoogle = () => {
+  //   setLoading(true);
+  //   return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(signedIn);
+  // };
+
+  const signInWithEmailAndPassword = (email, password) => {
     setLoading(true);
-    return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(signedIn);
+    return firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(signedIn);
   };
 
   /**
@@ -96,8 +103,9 @@ function useProvideAuth() {
   return {
     auth,
     loading,
-    signInWithGoogle,
-    signOut
+    signInWithEmailAndPassword,
+    // signInWithGoogle,
+    signOut,
   };
 }
 

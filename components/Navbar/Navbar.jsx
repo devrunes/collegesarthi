@@ -1,15 +1,25 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { AuthOpenContext } from "../../lib/authContext";
 import { useAuth } from "../../lib/auth";
 import styles from "./Navbar.module.css";
-import { Squash as Hamburger } from "hamburger-react";
+// import { Squash as Hamburger } from "hamburger-react";
 import Image from "next/image";
 // import Login from "../Auth/Login/Login";
-import Auth from "../Auth/Auth";
+// import Auth from "../Auth/Auth";
+import dynamic from "next/dynamic";
+
+const Auth = dynamic(() => import("../Auth/Auth"));
+// const useAuth = dynamic(() =>
+//   import("../../lib/auth").then((mod) => mod.useAuth)
+// );
+const Hamburger = dynamic(() =>
+  import("hamburger-react").then((mod) => mod.Squash)
+);
 
 export default function Navbar() {
   const { auth, signOut, signInWithGoogle } = useAuth();
   const [isOpen, setOpen] = useState(false);
-  const [authOpen, setAuthOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
   let hamMenuRef = useRef(null);
   let inputRef = useRef(null);
   let logoRef = useRef(null);
