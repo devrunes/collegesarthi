@@ -1,0 +1,97 @@
+@import "./vars.scss";
+
+.reviewHeader {
+  background-color: $primary-color;
+  padding: 2%;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10%;
+  width: 100%;
+}
+
+.formRow {
+  padding: 4% 5%;
+}
+
+.formRow > label {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.formSelectInput {
+  padding: 3%;
+  width: 100%;
+  margin-top: 2%;
+  font-size: 16px;
+  border-radius: 4px;
+  background-color: #f2f2f2;
+  border: 0;
+}
+
+.actionBtnWrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+}
+
+.backBtn {
+  width: 50vw;
+  padding: 3%;
+  border: 0;
+}
+
+.saveBtn {
+  width: 50vw;
+  background-color: $primary-color;
+  color: #fff;
+  padding: 3%;
+  border: 0;
+}
+
+.formWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 600px) {
+  .reviewHeader {
+    margin-bottom: 5%;
+  }
+
+  .formWrapper > form {
+    width: 50vw;
+  }
+
+  .formRow {
+    padding: 2% 5%;
+    width: 100%;
+  }
+
+  .formRow > label {
+    width: 100%;
+  }
+
+  .actionBtnWrapper {
+    position: static;
+    // width: 50%;
+    justify-content: center;
+    margin-top: 2%;
+  }
+
+  .backBtn {
+    width: 42%;
+    border: 1px solid #333;
+    margin: 2%;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+
+  .saveBtn {
+    width: 42%;
+    margin: 2%;
+    border-radius: 4px;
+  }
+}
