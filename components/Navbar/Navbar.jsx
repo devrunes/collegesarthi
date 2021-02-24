@@ -7,7 +7,7 @@ import Image from "next/image";
 // import Login from "../Auth/Login/Login";
 // import Auth from "../Auth/Auth";
 import dynamic from "next/dynamic";
-
+import Link from "next/Link";
 const Auth = dynamic(() => import("../Auth/Auth"));
 // const useAuth = dynamic(() =>
 //   import("../../lib/auth").then((mod) => mod.useAuth)
@@ -67,7 +67,9 @@ export default function Navbar() {
       <div className={styles.nav_links}>
         <div>Exam</div>
         <div>College</div>
-        <div>Write a review</div>
+        <Link href="/write-a-review">
+          <a>Write a review</a>
+        </Link>
       </div>
       <div ref={authButRef} className={styles.nav_authButon}>
         {auth ? (
