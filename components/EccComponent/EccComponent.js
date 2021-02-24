@@ -3,14 +3,15 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
 import styles from "./EccComponent.module.css";
+import Lobby from "./Lobby/Lobby";
 
-const EccComponent = () => {
+const EccComponent = ({data}) => {
   const router = useRouter();
   const query = router.query;
-  //   console.log(query);
+  console.log(data);
   const links = ["exams", "colleges", "courses"];
   useEffect(() => {
-    // console.log(query);
+    console.log(query);
     if (query.type) {
       let idx = links.indexOf(query.type);
       let navLinks = document.getElementsByClassName(styles.ecc_nav_link);
@@ -30,17 +31,18 @@ const EccComponent = () => {
         </title>
       </Head>
       <div className={styles.ecc_topNav}>
-        <Link href="/exams">
+        <Link href="/explore/exams">
           <a className={styles.ecc_nav_link}>Exams</a>
         </Link>
-        <Link href="/colleges">
+        <Link href="/explore/colleges">
           <a className={styles.ecc_nav_link}>Colleges</a>
         </Link>
-        <Link href="/courses">
+        <Link href="/explore/courses">
           <a className={styles.ecc_nav_link}>Courses</a>
         </Link>
       </div>
-      <div>{query.type}</div>
+      {/* <div>{query.type}</div> */}
+      <Lobby query={query} />
     </div>
   );
 };

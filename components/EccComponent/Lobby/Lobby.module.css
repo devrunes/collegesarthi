@@ -1,0 +1,189 @@
+.lobbyWrapper {
+  display: flex;
+  padding: 1% 1%;
+  background-color: #f2f2f2;
+  font-size: 1em;
+}
+.lobbyCardComp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1% 1%;
+}
+.lobbyCard {
+  margin: 1%;
+  width: 90%;
+}
+.lobbyCard > div {
+  width: 100%;
+}
+.lobbyCard > div > div {
+  background-color: #fff;
+}
+
+.lobbyFilterWrapper {
+  display: none;
+  background: #fff;
+  padding: 1em;
+}
+.lobbyFilTop {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 0em 1em;
+  background-color: #fff;
+}
+.lobbyFilTopMob {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 1em 1em;
+  background-color: #fff;
+  border-bottom: 0.5px solid #e6e6e6;
+}
+.lobbyFilTop > div:nth-child(2),
+.lobbyFilTopMob > div:nth-child(2) {
+  color: red;
+}
+
+.lobbyDropdownType {
+  display: flex;
+  padding: 1em;
+  align-items: center;
+}
+.lobbyFilArr {
+  position: relative;
+  height: 13px;
+  width: 13px;
+  padding: 0em 1em;
+  margin-top: 2%;
+  transition-duration: 0.2s;
+}
+.lobbyFilItem {
+  padding: 0.15em 0.2em;
+  display: flex;
+  align-items: center;
+}
+.lobbyFilItem > span {
+  padding: 0em 0.5em 0em 1em;
+  margin: 1%;
+}
+.lobbyDrpItemContHidden {
+  height: 0;
+  overflow: hidden;
+  transition-duration: 0.2s;
+}
+.lobbyDrpItemContShow {
+  overflow: auto;
+  height: 300px;
+  transition-duration: 0.2s;
+}
+.lobbyFilArrOpen {
+  transform: rotate(90deg);
+  transition-duration: 0.2s;
+}
+.lobbyMobileFilter {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+.lobbyMobFilterCont {
+  background-color: #fff;
+  height: 100%;
+  display: flex;
+}
+.lobbyMobFilTypeCont {
+  background-color: #f2f2f2;
+  width: 35%;
+}
+.lobbyMobFilTypeCont > div {
+  border-bottom: 0.5px solid #e6e6e6;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+.lobbyOpenFilterButtons {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+}
+.lobbyClosedFilterButtons {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  padding: 0.5em 1em;
+  background-color: #4a788d;
+  width: 100%;
+  color: white;
+  cursor: pointer;
+}
+.lobbyOpenFilterButtons > div {
+  width: 50%;
+  padding: 0.5em 1em;
+  text-align: center;
+  background-color: #fff;
+}
+.lobbyOpenFilterButtons > div:nth-child(2) {
+  background-color: #4a788d;
+  color: white;
+}
+.lobbyMobFilItemCont {
+  padding: 0.5em;
+}
+.lobbyMobFilItemCont > div {
+  padding: 0.5em;
+  /* margin: .5em; */
+}
+.lobbyMobFilItemCont > div > svg {
+  padding: 0.1em;
+  margin-right: 0.5em;
+  /* margin-top: 2%; */
+}
+@media only screen and (min-width: 584px) {
+  .lobbyFilterWrapper {
+    display: block;
+  }
+  .lobbyMobileFilter {
+    display: none;
+  }
+  .lobbyCard {
+    margin: 1%;
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 696px) {
+  .lobbyFilterWrapper {
+    display: block;
+  }
+  .lobbyCard {
+    margin: 1%;
+    width: 80%;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .lobbyCardComp {
+    justify-content: space-between;
+  }
+  .lobbyCard {
+    width: 48%;
+    /* min-width: 400px; */
+  }
+}
+@media only screen and (min-width: 1100px) {
+  .lobbyFilterWrapper {
+    padding: 1em;
+  }
+  .lobbyWrapper {
+    font-size: 1.2em;
+    padding: 1% 3%;
+  }
+  .lobbyCardComp {
+    justify-content: space-between;
+  }
+  .lobbyCard {
+    width: 45%;
+    /* min-width: 400px; */
+  }
+}

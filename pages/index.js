@@ -1,11 +1,16 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import NavStream from "../components/NavStream/NavStream";
-import HomeSearch from "../components/HomeSearch/HomeSearch";
-import Explore from "../components/Explore/Explore";
-import MissUpdate from "../components/MissUpdate/MissUpdate";
-import Footer from "../components/Footer/Footer";
 import dynamic from "next/dynamic";
+import styles from "../styles/Home.module.css";
+// import NavStream from "../components/NavStream/NavStream";
+// import HomeSearch from "../components/HomeSearch/HomeSearch";
+// import Explore from "../components/Explore/Explore";
+// import MissUpdate from "../components/MissUpdate/MissUpdate";
+// import Footer from "../components/Footer/Footer";
+const NavStream = dynamic(() => import("../components/NavStream/NavStream"));
+const Explore = dynamic(() => import("../components/Explore/Explore"));
+const HomeSearch = dynamic(() => import("../components/HomeSearch/HomeSearch"));
+const MissUpdate = dynamic(() => import("../components/MissUpdate/MissUpdate"));
+const Footer = dynamic(() => import("../components/Footer/Footer"));
 const HomeExams = dynamic(() => import("../components/HomeExams/HomeExams"), {
   ssr: false,
 });
