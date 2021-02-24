@@ -78,7 +78,55 @@ export default function Review() {
         />
       )}
       {currentStep === 3 && (
-        <ReviewComponent ques="Why did you choose to attend this college?" />
+        <ReviewComponent
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          ques="Why did you choose to attend this college?"
+        />
+      )}
+      {currentStep === 4 && (
+        <ReviewComponent
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          ques="How is the course and faculty members?"
+        />
+      )}
+      {currentStep === 5 && (
+        <ReviewComponent
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          ques="Why did you choose to attend this college?"
+        />
+      )}
+      {currentStep === 6 && (
+        <ReviewComponent
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          ques="How is your college infrastructure?"
+        />
+      )}
+
+      {currentStep === 7 && (
+        <ReviewComponent
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          ques="What is the quality of mess and hostel?"
+        />
+      )}
+
+      {currentStep === 8 && (
+        <ReviewComponent
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          ques="What is the Quality of placement in your college and how is the internship provided?"
+        />
+      )}
+      {currentStep === 9 && (
+        <ReviewComponent
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          ques="How are the extra curricular activities in your college?"
+        />
       )}
     </div>
   );

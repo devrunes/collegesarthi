@@ -53,7 +53,12 @@ export default function Step0({
         />
       </div>
       <div className={styles.actionBtnWrapper}>
-        <button onClick={handleBackBtn} className={styles.backBtn}>
+        <button
+          type="button"
+          onClick={handleBackBtn}
+          className={styles.backBtn}
+          disabled={true}
+        >
           Back
         </button>
         <input

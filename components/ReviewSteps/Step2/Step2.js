@@ -27,7 +27,11 @@ export default function Step2({
         </select>
       </div>
       <div className={styles.actionBtnWrapper}>
-        <button onClick={handleBackBtn} className={styles.backBtn}>
+        <button
+          type="button"
+          onClick={handleBackBtn}
+          className={styles.backBtn}
+        >
           Back
         </button>
         <input

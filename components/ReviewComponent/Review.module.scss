@@ -49,10 +49,123 @@
 .rating {
   border-radius: 50%;
   border: 1px solid #333;
-  width: 25px;
-  height: 25px;
+  width: 7vw;
+  height: 7vw;
   text-align: center;
   margin: 1%;
-  font-size: 14px;
+  font-size: 4vw;
   margin-top: 4%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main > label,
+.ratingsSection > label {
+  font-weight: bold;
+}
+
+.actionBtnWrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+}
+
+.backBtn {
+  width: 50vw;
+  padding: 3%;
+  border: 0;
+}
+
+.saveBtn {
+  width: 50vw;
+  background-color: $primary-color;
+  color: #fff;
+  padding: 3%;
+  border: 0;
+}
+
+.formWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .reviewWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 2%;
+    margin-top: -3%;
+  }
+  .nav {
+    flex-direction: column;
+    width: 30%;
+    overflow-x: hidden;
+    margin-bottom: 0;
+    max-width: 350px;
+  }
+  .main {
+    width: 65%;
+    padding: 0;
+    padding-top: 2%;
+    padding-right: 5%;
+  }
+  .nav > div {
+    margin-top: 5%;
+    padding: 4%;
+  }
+
+  .textarea {
+    height: 220px;
+    font-size: 20px;
+    padding: 2%;
+  }
+
+  .ratingsSection {
+    margin-top: 5%;
+  }
+
+  .ratingWrapper {
+    display: flex;
+  }
+
+  .rating {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    margin-top: 3%;
+  }
+
+  .main > label,
+  .ratingsSection > label {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .actionBtnWrapper {
+    position: static;
+    justify-content: flex-end;
+    margin-top: 7%;
+  }
+
+  .backBtn {
+    width: 40%;
+    border: 1px solid #333;
+    margin: 2%;
+    background-color: #fff;
+    border-radius: 4px;
+    max-width: 200px;
+    padding: 2% 3%;
+  }
+
+  .saveBtn {
+    width: 40%;
+    margin: 2%;
+    border-radius: 4px;
+    max-width: 200px;
+    padding: 2% 3%;
+  }
 }

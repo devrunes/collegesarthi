@@ -103,7 +103,11 @@ export default function Step1({
         </div>
       )}
       <div className={styles.actionBtnWrapper}>
-        <button onClick={handleBackBtn} className={styles.backBtn}>
+        <button
+          type="button"
+          onClick={handleBackBtn}
+          className={styles.backBtn}
+        >
           Back
         </button>
         <input

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Review.module.scss";
 
-export default function ReviewComponent({ ques }) {
+export default function ReviewComponent({ ques, currentStep, setCurrentStep }) {
   const [ans, setAns] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const navElements = [
@@ -16,14 +16,15 @@ export default function ReviewComponent({ ques }) {
   ];
   const [rating, setRating] = useState(-1);
   const ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  console.log(ans);
   return (
     <div className={styles.reviewWrapper}>
       <nav className={styles.nav}>
         {navElements.map((ele, index) => (
           <div
             key={index}
-            className={index === selectedIndex ? styles.selected : ""}
-            onClick={() => setSelectedIndex(index)}
+            className={index === currentStep - 3 ? styles.selected : ""}
+            onClick={() => setCurrentStep(index + 3)}
           >
             {ele}
           </div>
@@ -33,7 +34,7 @@ export default function ReviewComponent({ ques }) {
         <label>{ques}</label>
         <textarea
           value={ans}
-          onChange={() => setAns(ans)}
+          onChange={(e) => setAns(e.target.value)}
           className={styles.textarea}
         />
         <div className={styles.ratingsSection}>
@@ -51,6 +52,21 @@ export default function ReviewComponent({ ques }) {
               </div>
             ))}
           </div>
+        </div>
+        <div className={styles.actionBtnWrapper}>
+          <button
+            className={styles.backBtn}
+            onClick={() => setCurrentStep((currentStep) => currentStep - 1)}
+          >
+            Back
+          </button>
+          <input
+            type="submit"
+            onClick={() => setCurrentStep((currentStep) => currentStep + 1)}
+            // onClick={handleSaveBtn}
+            className={styles.saveBtn}
+            value="Save and next"
+          />
         </div>
       </div>
     </div>
