@@ -1,5 +1,12 @@
-.ListItem{
+.ListItem {
+  padding: 1.2vw;
+  color: #4f4f4f;
+  font-size: 1.1em;
+}
+@media only screen and (min-width: 548px) {
+  .ListItem {
     padding: 1.2vw;
-    color: #4F4F4F;
-    font-size:1.1em;
+    color: #4f4f4f;
+    font-size: 1.1em;
+  }
 }

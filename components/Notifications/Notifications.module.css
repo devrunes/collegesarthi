@@ -1,26 +1,39 @@
-.AskQuestion{
-    background: #1C8549;
-    color: white;
-    /* position: absolute; */
-    right: 0;
-    /* margin: 3vw 2vw 3vw 0px; */
-    font-size: 1.2vw;
-    font-weight: 400;
-    padding: .8vw 5vw;
-    border: none;
-    border-radius: 10px;
-    white-space: nowrap;
+.notify_buttons {
+  background: #1c8549;
+  color: white;
+  white-space: nowrap;
+  display: flex;
+  font-size: 1.3em;
+  padding: 0.5em 2em;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: .5em 0em 1em;
 }
-.SamplePapers{
-    background: #1C8549;
-    color: white;
-    /* position: absolute; */
-    right: 0;
-    margin: 1vw 0vw 1vw 0vw;
-    font-size: 1.2vw;
-    font-weight: 400;
-    padding: .8vw 5vw;
-    border: none;
-    border-radius: 10px;
-    white-space: nowrap;
+/* .SamplePapers {
+  background: #1c8549;
+  color: white;
+  white-space: nowrap;
+  display: flex;
+  font-size: 1.3em;
+  padding: 0.5em 2em;
+  border: none;
+  border-radius: 10px;
+  margin: 1em 0em;
+  width: 100%;
+} */
+.NotificationListHeading {
+  background-color: #4a788d;
+  color: white;
+  padding: 0.8em 0.5em;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+.NotificationListData {
+  font-size: 1.2em;
+  font-weight: 300;
+  line-height: 2em;
 }

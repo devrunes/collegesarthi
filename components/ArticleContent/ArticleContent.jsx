@@ -1,17 +1,34 @@
 import React from "react";
 import styles from "./ArticleContent.module.css";
+import JsxParser from "react-jsx-parser";
+import Link from "next/link";
+import NotificationButton from "../NotificationButtons/NotificationButton"
 
 export default function ArticleContent(props) {
   const { data } = props;
-
+  console.log(data);
+  let doc =
+    '<ul><li><Link href="#who-conducts-the-jee-main-exam"><a>hello</a></Link></li><li><Link href="#who-conducts-the-jee-main-exam"><a>hello</a></Link></li></ul><div>yoyooy</div>';
   return (
     <div>
-      <div className={styles.OverViewCont}>
+      <JsxParser
+        bindings={{
+          ContentHeadings: styles.ContentHeadings,
+          ContentPara: styles.ContentPara,
+          ContentH2B: styles.ContentH2B,
+          ContentTableHeading: styles.ContentTableHeading,
+          ContentTableData: styles.ContentTableData,
+          ContentListContainer: styles.ContentListContainer,
+          ContentListLink: styles.ContentListLink
+        }}
+        components={{ Link, NotificationButton }}
+        jsx={data}
+      />
+      {/* <div className={styles.OverViewCont}>
         <div className={styles.OverView}>Overview</div>
         <div className={styles.Share}>share</div>
       </div>
       <div className={styles.ContentPara}>{data}</div>
-      <div className={styles.ContentHeadings}>JEE Mains Exam Dates 2021</div>
       <div className={styles.ContentH2B}>
         The table below highlights some of the important JEE Main Dates of 2021:{" "}
       </div>
@@ -67,7 +84,10 @@ export default function ArticleContent(props) {
           </li>
         </ul>
       </div>
-      <div className={styles.ContentPara}> oyoyoy</div>
+      <div className={styles.ContentPara}> oyoyoy</div> */}
     </div>
   );
+}
+{
+  /*       */
 }

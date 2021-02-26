@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./Notifications.module.css";
+import styles from "./NotificationButton.module.css";
 
-export default function Notifications() {
+export default function NotificationButton() {
   return (
-    <div>
-      <button className={styles.notify_buttons}>
-        <div style={{ paddingRight: "10px" }}>
+    <div className={styles.ButtonContainer}>
+      <button className={styles.ButtonG}>
+        <div className={styles.SVG}>
           <svg
             width="25"
             height="25"
@@ -21,9 +21,29 @@ export default function Notifications() {
         </div>
         Ask a Question
       </button>
-      <button className={styles.notify_buttons}>
-        {" "}
-        <div style={{ paddingRight: "10px", float: "left" }}>
+      <button className={styles.ButtonB}>
+        <div className={styles.SVG}>
+          <svg
+            width="25"
+            height="25"
+            viewBox="0 0 25 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15.9425 16.5L11.75 12.3075V5.25H13.25V11.685L17 15.4425L15.9425 16.5Z"
+              fill="white"
+            />
+            <path
+              d="M12.5 1.5C11.1012 1.5002 9.71669 1.78108 8.42842 2.32602C7.14015 2.87096 5.97433 3.66887 5 4.6725V1.5H3.5V7.5H9.5V6H5.81C7.21702 4.43647 9.12724 3.41515 11.2089 3.1134C13.2905 2.81166 15.4121 3.24856 17.2052 4.34823C18.9983 5.4479 20.3495 7.14086 21.0243 9.1331C21.6991 11.1253 21.6547 13.291 20.899 15.2539C20.1433 17.2169 18.7239 18.8531 16.8873 19.8785C15.0507 20.9039 12.9131 21.2536 10.8455 20.8669C8.77793 20.4803 6.91111 19.3816 5.56925 17.7618C4.22739 16.142 3.49525 14.1034 3.5 12H2C2 14.0767 2.61581 16.1068 3.76957 17.8335C4.92332 19.5602 6.5632 20.906 8.48182 21.7007C10.4004 22.4955 12.5116 22.7034 14.5484 22.2982C16.5852 21.8931 18.4562 20.8931 19.9246 19.4246C21.3931 17.9562 22.3931 16.0852 22.7982 14.0484C23.2034 12.0116 22.9955 9.90045 22.2007 7.98182C21.406 6.0632 20.0602 4.42332 18.3335 3.26957C16.6068 2.11581 14.5767 1.5 12.5 1.5Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+        Get Updates
+      </button>
+      <button className={styles.ButtonG}>
+        <div className={styles.SVG}>
           <svg
             width="25"
             height="25"
@@ -41,34 +61,6 @@ export default function Notifications() {
         </div>
         Sample Papers
       </button>
-      <div>
-        <div className={styles.NotificationListHeading}>
-          Notifications
-          <div style={{ float: "right", paddingRight: "10px" }}>
-            <svg
-              width="25"
-              height="25"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10.108 5.43967L8.20134 3.53301C5.00134 5.97301 2.89467 9.73301 2.70801 13.9997H5.37468C5.46912 12.3088 5.94378 10.6609 6.7633 9.17886C7.58282 7.69679 8.7261 6.41868 10.108 5.43967ZM26.628 13.9997H29.2947C29.0947 9.73301 26.988 5.97301 23.8013 3.53301L21.908 5.43967C23.284 6.4235 24.4222 7.70302 25.239 9.18429C26.0557 10.6656 26.5304 12.311 26.628 13.9997ZM24.0013 14.6663C24.0013 10.573 21.8147 7.14634 18.0013 6.23967V5.33301C18.0013 4.22634 17.108 3.33301 16.0013 3.33301C14.8947 3.33301 14.0013 4.22634 14.0013 5.33301V6.23967C10.1747 7.14634 8.00134 10.5597 8.00134 14.6663V21.333L5.33467 23.9997V25.333H26.668V23.9997L24.0013 21.333V14.6663ZM16.0013 29.333C16.188 29.333 16.3613 29.3197 16.5347 29.2797C17.4013 29.093 18.108 28.5063 18.4547 27.7063C18.588 27.3863 18.6547 27.0397 18.6547 26.6663H13.3213C13.3347 28.133 14.5213 29.333 16.0013 29.333Z"
-                fill="white"
-              />
-            </svg>
-          </div>
-        </div>
-        <div className={styles.NotificationListData}>
-          <ol>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          </ol>
-        </div>
-      </div>
     </div>
   );
 }

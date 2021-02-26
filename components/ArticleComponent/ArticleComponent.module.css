@@ -1,47 +1,106 @@
-.ExamHeading{
-    max-width:  75%;
-    padding: 3vw 0px 3vw 5vw;
-    font-weight: 500;
-    font-size: 1.5vw;
+.NavDisplay {
+  display: none;
 }
-.ExamGetUpdateButton{
-    background: #F2F2F2;
-    color: #4A788D;
-    position: absolute;
-    right: 0;
-    margin: 3vw 2vw 3vw 0px;
-    font-size: 1.2vw;
+.ExamGetUpdateButton {
+  display: none;
+}
+.ExamHeading {
+  width: 100%;
+  font-weight: 800;
+  font-size: 2em;
+  /* float: left; */
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  background-color: #4a788d;
+  color: white;
+  padding: 0.5em;
+}
+.ExamContentContainer {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  padding: 4em 0em 0em 0em;
+  /* line-height: 4px; */
+}
+.Notifications {
+  display: none;
+}
+.ExamSubHeadings {
+  display: none;
+}
+@media only screen and (min-width: 548px) {
+  .ArticleContent {
+    padding: 0vw 2.5vw;
+    width: 67%;
+    /* float: left; */
+  }
+}
+@media only screen and (min-width :998px) {
+  .ExamSubHeadings {
+    width: 15%;
+    font-size: 0.7em;
+    /* float: left; */
+    display: inline;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  .NavDisplay {
+    display: block;
+  }
+  .ExamHeading {
+    width: 81%;
+    text-align: left;
+    color: black;
+    background-color: white;
+  }
+  .ExamGetUpdateButton {
+    background: #f2f2f2;
+    color: #4a788d;
+    /* position: absolute; */
+    /* right: 0; */
+    /* margin: 3em 1.3em 3em 1.3em; */
+    font-size: 1.5em;
     font-weight: 400;
-    padding: .8vw 5vw;
+    padding: 0.8em 5em;
     border: none;
     border-radius: 10px;
-}
-.ExamHeadingContainer{
+    float: right;
+    width: 15%;
     display: flex;
-    border-bottom: 3px solid #F2F2F2;
-}
-.ExamContentContainer{
+    white-space: nowrap;
+    justify-content: center;
+  }
+  .ExamHeadingContainer {
+    display: flex;
+    border-bottom: 3px solid #f2f2f2;
+    padding: 3em 2em 3em 11em;
+  }
+  .ExamContentContainer {
     display: flex;
     /* flex-wrap: wrap; */
     justify-content: left;
     padding: 4em 0em 0em 0em;
-}
-.ExamSubHeadings{
-    width: 30%;
-    border-right: 3px solid #F2F2F2;
-    border-bottom: 3px solid #F2F2F2;
+    /* line-height: 4px; */
+  }
+  .ExamSubHeadings {
+    width: 15%;
+    border-right: 3px solid #f2f2f2;
+    border-bottom: 3px solid #f2f2f2;
     padding: 1em 0em;
-}
-.ArticleContent{
+    /* float: left; */
+    display: inline;
+  }
+  .ArticleContent {
     padding: 0vw 2.5vw;
-    width:140%
-}
-.Notifications{
-    /* display: grid; */
+    width: 67%;
+    /* float: left; */
+  }
+  .Notifications {
     margin: 0vw 2vw 0vw 0vw;
-    /* white-space: nowrap; */
     align-content: center;
+    width: 15%;
+    /* float: left; */
+    display: block;
+  }
 }
-/* .ExamContentHeadings{
-    
-} */
