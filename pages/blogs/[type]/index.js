@@ -1,5 +1,5 @@
 import React from "react";
-import EccComponent from "../../components/EccComponent/EccComponent";
+import EccComponent from "../../../components/EccComponent/EccComponent";
 const TypeWrapper = () => {
   return (
     <div>
