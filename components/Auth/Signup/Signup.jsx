@@ -1,8 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Signup.module.css";
 import Image from "next/image";
+import * as yup from "yup";
+import { useAuth } from "../../../lib/auth";
 
 const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
+  const { signupWithEmailAndPassword } = useAuth();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("0");
+  const [course, setCourse] = useState("");
+  const [city, setCity] = useState("");
+
+  const [error, setError] = useState("");
+
+  const validationSignupInput = async () => {
+    let errors = {};
+    let schema = yup.object().shape({
+      name: yup.string().required(),
+      number: yup.number().required().positive().integer(),
+      email: yup.string().email().required(),
+      password: yup.string().required(),
+      course: yup.string().required(),
+      city: yup.string().required(),
+    });
+
+    let intNumber = parseInt(number);
+    try {
+      const validationResult = await schema.validate(
+        { name, number: intNumber, email, password, course, city },
+        { abortEarly: false }
+      );
+      return {
+        isValid: true,
+        errors: {},
+      };
+      console.log(validationResult);
+    } catch (err) {
+      // console.log(err.inner, err.path, "err");
+      err.inner.forEach((error) => {
+        errors[error.path] = error.message;
+      });
+
+      return {
+        isValid: false,
+        errors,
+      };
+    }
+  };
+
+  const handleSignup = async () => {
+    try {
+      const { errors, isValid } = await validationSignupInput();
+
+      if (!isValid) {
+        console.log(errors);
+        setError(errors);
+      } else {
+        const result = await signupWithEmailAndPassword(
+          email,
+          password,
+          name,
+          course,
+          city,
+          number
+        );
+      }
+    } catch (err) {
+      setError({ auth: error.message });
+    }
+  };
+
   return (
     <div className={styles.signup_cont}>
       <div className={styles.signup_head}>
@@ -18,7 +88,13 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               </div>
               <p>Full Name</p>
             </div>
-            <input type="email" name="email" id="email" />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
@@ -27,7 +103,13 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               </div>
               <p>Email</p>
             </div>
-            <input type="email" name="email" id="email" />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
@@ -36,7 +118,20 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               </div>
               <p>Course</p>
             </div>
-            <input type="email" name="email" id="email" />
+            {/* <input type="course" name="course" id="course" /> */}
+            <select
+              name="course"
+              // ref={register}
+              className={styles.formSelectInput}
+              value={course}
+              onChange={(e) => setCourse(e.target.value)}
+            >
+              <option value="BTech">BTech</option>
+              <option value="MBA">MBA</option>
+              <option value="BSc">BSc</option>
+              <option value="BBA">BBA</option>
+              <option value="MSc">MSc</option>
+            </select>
           </div>
         </div>
         <div className={styles.signup_form_right}>
@@ -47,7 +142,13 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               </div>
               <p>Mobile Number</p>
             </div>
-            <input type="email" name="email" id="email" />
+            <input
+              type="text"
+              name="number"
+              id="number"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+            />
           </div>
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
@@ -56,7 +157,13 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               </div>
               <p>Password</p>
             </div>
-            <input type="email" name="email" id="email" />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
@@ -65,30 +172,20 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               </div>
               <p>City</p>
             </div>
-            <input type="email" name="email" id="email" />
+            <input
+              type="city"
+              name="city"
+              id="city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
           </div>
         </div>
-        {/* <div className={styles.signup_form_sec}>
-          <div className={styles.signup_imgsec}>
-            <div className={styles.signup_img}>
-              <Image src="/mail.svg" alt="em" layout="fill" />
-            </div>
-            <p>Email</p>
-          </div>
-          <input type="email" name="email" id="email" />
-        </div>
-        <div className={styles.signup_form_sec}>
-          <div className={styles.signup_imgsec}>
-            <div className={styles.signup_img}>
-              <Image src="/user.svg" alt="em" layout="fill" />
-            </div>
-            <p>Password</p>
-          </div>
-          <input type="password" name="password" id="password" />
-        </div> */}
       </div>
       <div className={styles.signup_button_cont}>
-        <button className={styles.signup_button}>Signup</button>
+        <button className={styles.signup_button} onClick={handleSignup}>
+          Signup
+        </button>
         <p onClick={screenSwitchHandler} className={styles.linkSup}>
           Already Registered? Click Here to Login!
         </p>

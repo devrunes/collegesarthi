@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import firebase from "./firebase";
+import axios from "axios";
 // import { createUser } from "./db";
 
 const authContext = createContext({
@@ -12,9 +13,8 @@ const authContext = createContext({
 const formatAuthState = (user) => ({
   uid: user.uid,
   email: user.email,
-  name: user.displayName,
-  photoUrl: user.photoURL,
   token: null,
+  isLogin: false,
 });
 
 function useProvideAuth() {
@@ -35,6 +35,7 @@ function useProvideAuth() {
     const formattedAuth = formatAuthState(authState);
     // Fetch firebase auth ID Token.
     formattedAuth.token = await authState.getIdToken();
+    formattedAuth.isLogin = true;
     // Stores auth into state.
     setAuth(formattedAuth);
     // Sets loading state to false.
@@ -46,16 +47,16 @@ function useProvideAuth() {
    * Store user object returned in firestore.
    * @param firebase User Credential
    */
-  const signedIn = async (response) => {
-    if (!response.user) {
-      throw new Error("No User");
-    }
+  // const signedIn = async (response) => {
+  //   if (!response.user) {
+  //     throw new Error("No User");
+  //   }
 
-    // Format user into my required state.
-    const authedUser = formatAuthState(response.user);
-    // firestore database function
-    // createUser(authedUser.uid, authedUser);
-  };
+  //   // Format user into my required state.
+  //   const authedUser = formatAuthState(response.user);
+  //   // firestore database function
+  //   // createUser(authedUser.uid, authedUser);
+  // };
 
   /**
    * Callback for when firebase signOut.
@@ -66,21 +67,46 @@ function useProvideAuth() {
     setLoading(true);
   };
 
-  /**
-   * Triggers firebase Oauth for twitter and calls signIn when successful.
-   * sets loading to true.
-   */
-  // const signInWithGoogle = () => {
-  //   setLoading(true);
-  //   return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(signedIn);
-  // };
-
-  const signInWithEmailAndPassword = (email, password) => {
+  const signupWithEmailAndPassword = async (
+    email,
+    password,
+    name,
+    course,
+    city,
+    number
+  ) => {
     setLoading(true);
-    return firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(signedIn);
+    try {
+      const userCreds = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password);
+
+      const createUser = await axios.post("/api/createUser", {
+        email,
+        name,
+        city,
+        userId: userCreds.user.uid,
+        course,
+        number,
+      });
+      // console.log(userCreds.user.uid);
+
+      return {
+        data: userCreds.user,
+        isError: false,
+      };
+    } catch (err) {
+      console.log(err);
+      return {
+        data: err,
+        isError: true,
+      };
+    }
+  };
+
+  const signInWithEmailAndPassword = async (email, password) => {
+    setLoading(true);
+    return firebase.auth().signInWithEmailAndPassword(email, password);
   };
 
   /**
@@ -104,6 +130,7 @@ function useProvideAuth() {
     auth,
     loading,
     signInWithEmailAndPassword,
+    signupWithEmailAndPassword,
     // signInWithGoogle,
     signOut,
   };

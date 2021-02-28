@@ -14,6 +14,7 @@ const Footer = dynamic(() => import("../components/Footer/Footer"));
 const HomeExams = dynamic(() => import("../components/HomeExams/HomeExams"), {
   ssr: false,
 });
+import { useAuth } from "../lib/auth";
 
 const HomeColleges = dynamic(
   () => import("../components/HomeColleges/HomeColleges"),
@@ -23,6 +24,9 @@ const HomeColleges = dynamic(
 );
 
 export default function Home() {
+  const { auth } = useAuth();
+  console.log(auth, "auth data");
+
   return (
     <div className={styles.container}>
       <Head>

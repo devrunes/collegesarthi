@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Login.module.css";
 import Image from "next/image";
+import { useAuth } from "../../../lib/auth";
 
 const Login = ({ screenSwitchHandler, handleCrossClick }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { signInWithEmailAndPassword } = useAuth();
+  const [error, setError] = useState({});
+
+  const handleLogin = async () => {
+    setError({});
+    let errors = {};
+    if (email === "") {
+      errors.email = "Required field";
+    }
+    if (password === "") {
+      errors.password = "Required field";
+    }
+    if (Object.keys(errors).length > 0) {
+      setError(errors);
+    } else {
+      try {
+        await signInWithEmailAndPassword(email, password);
+      } catch (err) {
+        setError({
+          ...error,
+          auth: err.message,
+        });
+        // console.log(err);
+      }
+    }
+  };
+
   return (
     <div className={styles.login_cont}>
       <div className={styles.login_head}>
@@ -17,7 +47,19 @@ const Login = ({ screenSwitchHandler, handleCrossClick }) => {
             </div>
             <p>Email</p>
           </div>
-          <input type="email" name="email" id="email" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={email}
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {error.email && error.email !== "" ? (
+            <p className={styles.authError}>{error.email}</p>
+          ) : (
+            <></>
+          )}
         </div>
         <div className={styles.login_form_sec}>
           <div className={styles.login_imgsec}>
@@ -26,15 +68,34 @@ const Login = ({ screenSwitchHandler, handleCrossClick }) => {
             </div>
             <p>Password</p>
           </div>
-          <input type="password" name="password" id="password" />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={password}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {error.password && error.password !== "" ? (
+            <p className={styles.authError}>{error.password}</p>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div className={styles.login_button_cont}>
-        <button className={styles.login_button}>Login</button>
+        <button className={styles.login_button} onClick={handleLogin}>
+          Login
+        </button>
         <p onClick={screenSwitchHandler} className={styles.linkSup}>
           New User? Click Here to Register!
         </p>
       </div>
+      {error.auth && error.auth !== "" ? (
+        <p className={styles.authError}>{error.auth}</p>
+      ) : (
+        <></>
+      )}
       <div className={styles.auth_crossButton} onClick={handleCrossClick}>
         <svg
           id="auth_crossButton"
