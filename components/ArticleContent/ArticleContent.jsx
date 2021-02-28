@@ -19,7 +19,8 @@ export default function ArticleContent(props) {
           ContentTableHeading: styles.ContentTableHeading,
           ContentTableData: styles.ContentTableData,
           ContentListContainer: styles.ContentListContainer,
-          ContentListLink: styles.ContentListLink
+          ContentListLink: styles.ContentListLink,
+          TableContainer:styles.TableContainer
         }}
         components={{ Link, NotificationButton }}
         jsx={data}
