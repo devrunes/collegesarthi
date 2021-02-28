@@ -14,15 +14,8 @@ const ArticleComponent = (props) => {
     if (doc) {
       setLoading(false);
       setData(doc);
-      // console.log(data);
     }
   }, [props.doc]);
-  // let docs = "<div className={ExamHeading}> CSS Modules are fun. </div>"
-  // useEffect(() => {
-  //   if(Ref.current !==null){
-  //     let docs = "<div className=${styles.ExamHeading}> CSS Modules are fun. </div>"
-  //     Ref.current.innerHTML = docs
-  // }})
   console.log(Ref.current, "hadiaslkjm");
   return (
     <div>
