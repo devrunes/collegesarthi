@@ -7,7 +7,7 @@ import Image from "next/image";
 // import Login from "../Auth/Login/Login";
 // import Auth from "../Auth/Auth";
 import dynamic from "next/dynamic";
-import Link from "next/Link";
+import Link from "next/link";
 const Auth = dynamic(() => import("../Auth/Auth"));
 // const useAuth = dynamic(() =>
 //   import("../../lib/auth").then((mod) => mod.useAuth)
