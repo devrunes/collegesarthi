@@ -30,7 +30,7 @@
 .nav_authButon {
   display: hidden;
 }
-.nav_authButon > button {
+.nav_authButton_button {
   background: none;
   padding: 0.5em 2.4em;
   border: 1px solid black;
@@ -96,7 +96,7 @@
   .nav_authButon {
     display: block;
   }
-  .nav_authButon > button {
+  .nav_authButton_button {
     background: none;
     padding: 0.5em 2.4em;
     margin: 0em 2em;

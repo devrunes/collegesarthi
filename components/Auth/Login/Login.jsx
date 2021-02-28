@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styles from "./Login.module.css";
 import Image from "next/image";
 import { useAuth } from "../../../lib/auth";
+import { AuthOpenContext } from "../../../lib/authContext";
 
 const Login = ({ screenSwitchHandler, handleCrossClick }) => {
   const [email, setEmail] = useState("");
@@ -9,20 +10,27 @@ const Login = ({ screenSwitchHandler, handleCrossClick }) => {
   const { signInWithEmailAndPassword } = useAuth();
   const [error, setError] = useState({});
 
+  const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
+
   const handleLogin = async () => {
     setError({});
+
     let errors = {};
+
     if (email === "") {
       errors.email = "Required field";
     }
+
     if (password === "") {
       errors.password = "Required field";
     }
+
     if (Object.keys(errors).length > 0) {
       setError(errors);
     } else {
       try {
         await signInWithEmailAndPassword(email, password);
+        setAuthOpen(!authOpen);
       } catch (err) {
         setError({
           ...error,

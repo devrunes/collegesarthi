@@ -1,0 +1,62 @@
+.ButtonG {
+  background: #1c8549;
+  color: white;
+  right: 0;
+  margin: 3vw 2vw 3vw 0px;
+  font-size: 0.8em;
+  font-weight: 400;
+  padding: 2vw 7vw;
+  border: none;
+  align-items: center;
+  /* border-radius: 10px; */
+  white-space: nowrap;
+  display: flex;
+}
+.ButtonB {
+  display: none;
+}
+.ButtonContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.SVG {
+  display: none;
+}
+@media only screen and (min-width: 809px) {
+  .ButtonG {
+    background: #1c8549;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 400;
+    padding: 1vw 2.5vw;
+    border: none;
+    border-radius: 10px;
+    float: right;
+    /* width: 15%; */
+    display: flex;
+    white-space: nowrap;
+    justify-content: center;
+    height: max-content;
+  }
+  .ButtonB {
+    margin: 3vw 2vw 3vw 0px;
+    background: #4a788d;
+    color: white;
+    font-size: 1.2em;
+    padding: 1vw 3vw;
+    font-weight: 400;
+    border: none;
+    border-radius: 10px;
+    float: right;
+    /* width: 15%; */
+    display: flex;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+  }
+  .SVG {
+    display: block;
+    padding-right: 10px;
+  }
+}

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./Signup.module.css";
 import Image from "next/image";
 import * as yup from "yup";
 import { useAuth } from "../../../lib/auth";
+import { AuthOpenContext } from "../../../lib/authContext";
 
 const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
   const { signupWithEmailAndPassword } = useAuth();
+  const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,6 +69,7 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
           city,
           number
         );
+        setAuthOpen(!authOpen);
       }
     } catch (err) {
       setError({ auth: error.message });
