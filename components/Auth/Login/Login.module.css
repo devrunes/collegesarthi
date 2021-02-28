@@ -52,6 +52,7 @@
   border: none;
   background-color: white;
 }
+
 .login_button_cont {
   margin: 5em 0em 2em;
   width: 100%;
@@ -80,6 +81,11 @@
 .auth_crossButton > svg {
   width: 20px;
   height: 20px;
+}
+.authError {
+  text-align: center;
+  color: rgb(103, 6, 6);
+  padding: 1vw;
 }
 @media only screen and (min-width: 540px) {
   .login_head {
