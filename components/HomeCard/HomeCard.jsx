@@ -15,7 +15,7 @@ export default function HomeCard({ title }) {
             dolor in repieres amet
           </p>
         </div>
-        <div className={styles.footer}></div>
+        <div className={styles.footer}>asb,sojsdnkcnbccflcakjiusukcv vb </div>
       </div>
     </div>
   );

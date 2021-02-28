@@ -24,7 +24,7 @@
 .lobbyFilterWrapper {
   display: none;
   background: #fff;
-  padding: 1em;
+  padding: 2em;
 }
 .lobbyFilTop {
   display: flex;
@@ -48,6 +48,7 @@
   display: flex;
   padding: 1em;
   align-items: center;
+  font-size: 1.3vw;
 }
 .lobbyFilArr {
   position: relative;
