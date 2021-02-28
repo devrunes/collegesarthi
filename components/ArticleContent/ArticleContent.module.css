@@ -1,0 +1,134 @@
+.OverViewCont {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0vw 0vw 1vw 0vw;
+}
+.OverView {
+  font-size: 2em;
+  color: #4a788d;
+  font-weight: 500;
+}
+.Share {
+  position: relative;
+}
+.ContentPara {
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.2em;
+  text-align: justify;
+}
+.ContentHeadings {
+  font-size: 1.5em;
+  padding: 1em 0em;
+}
+.ContentH2B {
+  color: #4a788d;
+  font-weight: 400;
+  font-size: 1.2em;
+  padding: 0.8em 0em;
+}
+.ContentTableData {
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1em;
+  background: #e0e0e0;
+  padding: 0.5em;
+  text-align: left;
+}
+.ContentTableHeading {
+  background-color: #4a788d;
+  color: white;
+  font-size: 1em;
+  padding: 0.5em;
+}
+.ContentListContainer {
+  background: #f2f2f2;
+  padding: 1em 1em 1em 0em;
+  /* padding:0px; */
+  margin: 1em 0em;
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.2em;
+  border-radius: 25px;
+  text-align: justify;
+}
+.ContentListLink {
+  background: #f2f2f2;
+  padding: 1.5em;
+  margin: 1em 0em;
+  font-size: 1.2em;
+  font-weight: 300;
+  line-height: 1.5em;
+  border-radius: 25px;
+}
+.TableContainer > table {
+  min-width: 500px;
+}
+.TableContainer {
+  display: block;
+  overflow-x: auto;
+}
+@media only screen and (min-width: 548px) {
+}
+@media only screen and (min-width: 1366px) {
+  .OverViewCont {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0vw 0vw 1vw 0vw;
+  }
+  .OverView {
+    font-size: 2em;
+    color: #4a788d;
+    font-weight: 500;
+  }
+  .Share {
+    position: relative;
+  }
+  .ContentPara {
+    font-size: 1.3em;
+    font-weight: 300;
+    line-height: 1.7em;
+  }
+  .ContentHeadings {
+    font-size: 2em;
+    padding: 1em 0em;
+  }
+  .ContentH2B {
+    color: #4a788d;
+    font-weight: 400;
+    font-size: 1.5em;
+    padding: 0.8em 0em;
+  }
+  .ContentTableData {
+    font-size: 1.3em;
+    font-weight: 300;
+    line-height: 1.4em;
+    background: #e0e0e0;
+    padding: 1em;
+    text-align: left;
+  }
+  .ContentTableHeading {
+    background-color: #4a788d;
+    color: white;
+    font-size: 1.5em;
+    padding: 1em;
+  }
+  .ContentListContainer {
+    background: #f2f2f2;
+    padding: 2.5em;
+    margin: 1em 0em;
+    font-size: 1.5em;
+    font-weight: 300;
+    line-height: 1.8em;
+    border-radius: 25px;
+  }
+  .ContentListLink {
+    background: #f2f2f2;
+    padding: 1.5em;
+    margin: 1em 0em;
+    font-size: 1.2em;
+    font-weight: 300;
+    line-height: 1.5em;
+    border-radius: 25px;
+  }
+}

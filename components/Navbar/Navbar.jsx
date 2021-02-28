@@ -17,9 +17,10 @@ const Hamburger = dynamic(() =>
 );
 
 export default function Navbar() {
-  const { auth, signOut, signInWithGoogle } = useAuth();
+  const { auth, signOut } = useAuth();
   const [isOpen, setOpen] = useState(false);
   const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
+
   let hamMenuRef = useRef(null);
   let inputRef = useRef(null);
   let logoRef = useRef(null);
@@ -72,18 +73,24 @@ export default function Navbar() {
         </Link>
       </div>
       <div ref={authButRef} className={styles.nav_authButon}>
-        {auth ? (
+        {auth && auth.isLogin ? (
           <div>
             {/* <Link href="/">
             <a>Dashboard link.</a>
           </Link>
            */}
             <div>
-              <button onClick={() => signOut()}>Sign Out</button>
+              <button
+                className={styles.nav_authButton_button}
+                onClick={() => signOut()}
+              >
+                Sign Out
+              </button>
             </div>
           </div>
         ) : (
           <button
+            className={styles.nav_authButton_button}
             onClick={handleAuthClick}
 
             // onClick={() => signInWithGoogle()}
