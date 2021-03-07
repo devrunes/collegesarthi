@@ -152,9 +152,9 @@ const FilterItem = ({ queryParent, type, filters, value }) => {
   );
 };
 
-const Lobby = ({ query }) => {
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
+const Lobby = ({ query, data }) => {
+  // const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  
   const filtersType = [
     {
       type: "stream",
@@ -544,7 +544,7 @@ const Lobby = ({ query }) => {
       <div className={styles.lobbyCardComp}>
         {data.map((card) => (
           <div className={styles.lobbyCard}>
-            <HomeCard title="Jee Mains" />
+            <HomeCard card={card} />
           </div>
         ))}
       </div>

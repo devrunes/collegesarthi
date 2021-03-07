@@ -1,5 +1,7 @@
 import React from "react";
 import EccComponent from "../../../components/EccComponent/EccComponent";
+import { db } from "../../../lib/firebase-admin";
+
 // import { useRouter } from "next/router";
 
 // export async function getStaticPaths() {
@@ -33,11 +35,53 @@ import EccComponent from "../../../components/EccComponent/EccComponent";
 //   };
 // }
 
-const TypeWrapper = () => {
-  // console.log(data, "b");
+export async function getServerSideProps(context) {
+  const { query, params } = context;
+
+  // console.log(filters, "here");
+  // console.log(params.type, "awdaw");
+
+  let ECCRef = db.collection(params.type);
+
+  // const queryList = Object.keys(filters);
+  // queryList.forEach((item) => {
+  //   // console.log(filters[item])
+  //   if (filters[item] !== "")
+  //     ECCRef = ECCRef.where(
+  //       `filters.${filters[item].toLowerCase()}`,
+  //       "==",
+  //       true
+  //     );
+  //   // console.log(ECCRef)
+  // });
+
+  var snapshot = await ECCRef.get();
+  var data = [];
+  console.log(snapshot, "askjbdakjssbdkajsbdakjsbdakjsbd");
+  if (snapshot.empty) {
+    return {
+      props: { data },
+      // data: [],
+    };
+  }
+
+  // console.log(data, "asd");
+
+  snapshot.forEach((doc) => {
+    // console.log(doc.data(),"whdbawbd")
+    data.push(doc.data());
+  });
+  // console.log(data, "piyush");
+  return {
+    props: { data, query: context.params }, // will be passed to the page component as props
+  };
+}
+
+const TypeWrapper = ({ data, query }) => {
+  console.log(data, "b");
   return (
     <div>
-      <EccComponent />
+      <EccComponent data={data} query={query} />
     </div>
   );
 };
