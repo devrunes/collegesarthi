@@ -3,7 +3,7 @@ import ArticleComponent from "../../../../components/ArticleComponent/ArticleCom
 import { db } from "../../../../lib/firebase-admin";
 export default function index(props) {
   const { doc } = props;
-  console.log(props,"jajskjdh")
+  // console.log(props,"jajskjdh")
   return (
     <div>
       <ArticleComponent doc={doc} />
@@ -14,9 +14,9 @@ export default function index(props) {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: {type: "exams", article: "jee-main" } },
-      { params: {type: "exams", article: "nda" } },
-      { params: {type: "exams", article: "nift" } },
+      { params: { type: "exams", article: "jee-main" } },
+      { params: { type: "exams", article: "nda" } },
+      // { params: {type: "exams", article: "nift" } },
     ],
     fallback: false,
   };

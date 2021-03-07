@@ -105,10 +105,7 @@ const FilterItem = ({ queryParent, type, filters, value }) => {
       streamUrl = "";
       cityUrl = "";
     }
-    // if (filters.stream==="all-stream" && filters.course === "all-courses" && filters.state === "all-India") {
-    //   courseUrl = "";
-    //   stateUrl = "";
-    // }
+
     return `${url}${streamUrl !== "" ? "/" + streamUrl : ""}${
       courseUrl !== "" ? "/" + courseUrl : ""
     }${stateUrl !== "" ? "/" + stateUrl : ""}/${cityUrl}`;
@@ -154,7 +151,7 @@ const FilterItem = ({ queryParent, type, filters, value }) => {
 
 const Lobby = ({ query, data }) => {
   // const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  
+
   const filtersType = [
     {
       type: "stream",
@@ -548,7 +545,11 @@ const Lobby = ({ query, data }) => {
           </div>
         ))}
       </div>
-      <div className={styles.lobbyMobileFilter}>
+      <div
+        className={
+          mobFilOpen ? styles.mobFilHeight100 : styles.lobbyMobileFilter
+        }
+      >
         {mobFilOpen ? (
           <>
             <div className={styles.lobbyFilTopMob}>

@@ -16,7 +16,7 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
   const [course, setCourse] = useState("");
   const [city, setCity] = useState("");
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState({});
 
   const validationSignupInput = async () => {
     let errors = {};
@@ -24,7 +24,10 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
       name: yup.string().required(),
       number: yup.number().required().positive().integer(),
       email: yup.string().email().required(),
-      password: yup.string().required(),
+      password: yup
+        .string()
+        .required()
+        .min(8, "Password must be atleast 8 characters long"),
       course: yup.string().required(),
       city: yup.string().required(),
     });
@@ -35,17 +38,19 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
         { name, number: intNumber, email, password, course, city },
         { abortEarly: false }
       );
+
       return {
         isValid: true,
         errors: {},
       };
-      console.log(validationResult);
     } catch (err) {
-      // console.log(err.inner, err.path, "err");
       err.inner.forEach((error) => {
         errors[error.path] = error.message;
       });
 
+      if (!errors.number && number.length !== 10) {
+        errors.number = "Number must be 10 digit long";
+      }
       return {
         isValid: false,
         errors,
@@ -55,10 +60,10 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
 
   const handleSignup = async () => {
     try {
+      setError({});
       const { errors, isValid } = await validationSignupInput();
 
       if (!isValid) {
-        console.log(errors);
         setError(errors);
       } else {
         const result = await signupWithEmailAndPassword(
@@ -72,7 +77,8 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
         setAuthOpen(!authOpen);
       }
     } catch (err) {
-      setError({ auth: error.message });
+      console.log(err);
+      setError({ auth: err.message });
     }
   };
 
@@ -98,6 +104,11 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            {error.name && error.name !== "" ? (
+              <p className={styles.authError}>{error.name}</p>
+            ) : (
+              <></>
+            )}
           </div>
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
@@ -113,6 +124,11 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            {error.email && error.email !== "" ? (
+              <p className={styles.authError}>{error.email}</p>
+            ) : (
+              <></>
+            )}
           </div>
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
@@ -129,12 +145,18 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               value={course}
               onChange={(e) => setCourse(e.target.value)}
             >
+              <option value="">Select One...</option>
               <option value="BTech">BTech</option>
               <option value="MBA">MBA</option>
               <option value="BSc">BSc</option>
               <option value="BBA">BBA</option>
               <option value="MSc">MSc</option>
             </select>
+            {error.course && error.course !== "" ? (
+              <p className={styles.authError}>{error.course}</p>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div className={styles.signup_form_right}>
@@ -152,6 +174,11 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               value={number}
               onChange={(e) => setNumber(e.target.value)}
             />
+            {error.number && error.number !== "" ? (
+              <p className={styles.authError}>{error.number}</p>
+            ) : (
+              <></>
+            )}
           </div>
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
@@ -167,6 +194,11 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {error.password && error.password !== "" ? (
+              <p className={styles.authError}>{error.password}</p>
+            ) : (
+              <></>
+            )}
           </div>
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
@@ -182,6 +214,11 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
+            {error.city && error.city !== "" ? (
+              <p className={styles.authError}>{error.city}</p>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
@@ -192,6 +229,11 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
         <p onClick={screenSwitchHandler} className={styles.linkSup}>
           Already Registered? Click Here to Login!
         </p>
+        {error.auth && error.auth !== "" ? (
+          <p className={styles.authError}>{error.auth}</p>
+        ) : (
+          <></>
+        )}
       </div>
       <div className={styles.auth_crossButton} onClick={handleCrossClick}>
         <svg

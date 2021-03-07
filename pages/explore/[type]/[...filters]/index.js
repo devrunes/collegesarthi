@@ -47,9 +47,10 @@ export async function getServerSideProps(context) {
       // data: [],
     };
   }
-  console.log(data, "asd");
+  // console.log(data, "asd");
   snapshot.forEach((doc) => {
-    data.push(doc.data());
+    const { links, prelog, examName, url } = doc.data();
+    data.push({ links, prelog, examName, url });
   });
   // console.log(data, "piyush");
   return {
@@ -58,9 +59,6 @@ export async function getServerSideProps(context) {
 }
 
 const TypeWrapper = (props) => {
-  // console.log(data, "b")
-  // console.log(props.data, props.query, "piyush2");
-  console.log(props.data, "asda");
   return (
     <div>
       <EccComponent data={props.data} />

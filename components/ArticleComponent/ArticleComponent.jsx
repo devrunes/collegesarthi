@@ -8,20 +8,22 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 const ArticleComponent = (props) => {
-  const { doc} = props;
+  const { doc } = props;
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
   const Ref = useRef(null);
   const router = useRouter();
   const query = router.query;
+
   useEffect(() => {
     if (doc) {
       setLoading(false);
       setData(doc);
     }
   }, [props.doc]);
-  console.log(router)
+  console.log(router);
   // console.log(props, "hadiaslkjm");
+
   return (
     <div>
       <Head>

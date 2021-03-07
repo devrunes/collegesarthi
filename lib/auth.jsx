@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import firebase from "./firebase";
 import axios from "axios";
-// import { createUser } from "./db";
 
 const authContext = createContext({
   auth: null,
@@ -97,10 +96,12 @@ function useProvideAuth() {
       };
     } catch (err) {
       console.log(err);
-      return {
-        data: err,
-        isError: true,
-      };
+
+      throw err;
+      // return {
+      //   data: err,
+      //   isError: true,
+      // };
     }
   };
 

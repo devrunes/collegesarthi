@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./ArticleContent.module.css";
 import JsxParser from "react-jsx-parser";
 import Link from "next/link";
-import NotificationButton from "../NotificationButtons/NotificationButton"
+import NotificationButton from "../NotificationButtons/NotificationButton";
 
 export default function ArticleContent(props) {
   const { data } = props;
   console.log(data);
+  useEffect(() => {
+    if (data && location.hash) {
+      //remove # from the string
+      let elId = location.hash.replace("#", "");
+      //locate the anchored element on the page by its ID property
+      let scrollToEl = document.getElementById(elId);
+      console.debug(location.hash, elId, scrollToEl, "scroll");
+      //scroll to the anchored element
+      if (scrollToEl) {
+        scrollToEl.scrollIntoView(true);
+      }
+    }
+  });
   let doc =
     '<ul><li><Link href="#who-conducts-the-jee-main-exam"><a>hello</a></Link></li><li><Link href="#who-conducts-the-jee-main-exam"><a>hello</a></Link></li></ul><div>yoyooy</div>';
   return (
@@ -20,7 +33,7 @@ export default function ArticleContent(props) {
           ContentTableData: styles.ContentTableData,
           ContentListContainer: styles.ContentListContainer,
           ContentListLink: styles.ContentListLink,
-          TableContainer:styles.TableContainer
+          TableContainer: styles.TableContainer,
         }}
         components={{ Link, NotificationButton }}
         jsx={data}

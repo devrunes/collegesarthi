@@ -22,13 +22,13 @@
   border-radius: 4px;
   padding: 2% 5%;
   color: #fff;
-  font-size:3vw;
+  font-size: 3vw;
   display: flex;
- white-space: nowrap;
+  white-space: nowrap;
 }
 .middle {
   padding: 3% 3% 5%;
-  font-size: 2.5vw;
+  font-size: 3.6vw;
   font-weight: 300;
 }
 
@@ -42,33 +42,33 @@
   flex-wrap: wrap;
   justify-content: center;
   font-size: 2.5vw;
-
+  line-height: 1.5em;
 }
 .footerLinks {
   white-space: nowrap;
 }
-@media only screen and (min-width:548px){
-  .footer{
+@media only screen and (min-width: 548px) {
+  .footer {
     font-size: 2vw;
   }
-  .middle{
+  .middle {
     font-size: 2vw;
   }
 }
- @media only screen and (min-width:900px){
+@media only screen and (min-width: 900px) {
   .topBar > h3 {
-    font-size: 2vw;
+    font-size: 1.6vw;
     /* font-weight: normal; */
   }
-  .topBar >button {
-    font-size: .9vw;
+  .topBar > button {
+    font-size: 0.9vw;
     padding: 2% 6%;
   }
-  .middle{
-    font-size: 1vw;
+  .middle {
+    font-size: .9vw;
     font-weight: 400;
   }
-  .footer{
-    font-size: 1vw;
+  .footer {
+    font-size:.8vw;
   }
- }
+}

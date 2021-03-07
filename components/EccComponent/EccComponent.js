@@ -5,12 +5,12 @@ import Head from "next/head";
 import styles from "./EccComponent.module.css";
 import Lobby from "./Lobby/Lobby";
 
-const EccComponent = ({data}) => {
+const EccComponent = ({ data }) => {
   const router = useRouter();
   const query = router.query;
   const links = ["exams", "colleges", "courses"];
   useEffect(() => {
-    console.log(query);
+    // console.log(query);
     if (query.type) {
       let idx = links.indexOf(query.type);
       let navLinks = document.getElementsByClassName(styles.ecc_nav_link);
@@ -21,7 +21,6 @@ const EccComponent = ({data}) => {
       //   console.log(navLinks);
     }
   }, [query]);
-  console.log(data)
   return (
     <div>
       <Head>
@@ -41,7 +40,7 @@ const EccComponent = ({data}) => {
         </Link>
       </div>
       {/* <div>{query.type}</div> */}
-      <Lobby query={query} data={data}/>
+      <Lobby query={query} data={data} />
     </div>
   );
 };

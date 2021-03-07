@@ -82,6 +82,13 @@
   top: 40px;
   right: 40px;
 }
+.authError {
+  text-align: center;
+  color: rgb(103, 6, 6);
+  padding: 0.3vw 1vw;
+  font-size: 0.8em;
+  font-weight: 600;
+}
 .auth_crossButton > svg {
   width: 20px;
   height: 20px;
