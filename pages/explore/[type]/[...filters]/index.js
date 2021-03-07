@@ -4,6 +4,7 @@ import { db } from "../../../../lib/firebase-admin";
 
 export async function getServerSideProps(context) {
   const { query } = context;
+  // console.log(context,"ashdb");
   let filters = {
     stream: query.filters
       ? query.filters[0]
@@ -23,6 +24,7 @@ export async function getServerSideProps(context) {
     city: query.filters ? (query.filters[3] ? query.filters[3] : "") : "",
   };
   // console.log(filters, "here");
+  // console.log(query);
   let ECCRef = db.collection(query.type);
 
   const queryList = Object.keys(filters);
@@ -45,7 +47,7 @@ export async function getServerSideProps(context) {
       // data: [],
     };
   }
-
+  console.log(data, "asd");
   snapshot.forEach((doc) => {
     data.push(doc.data());
   });
@@ -58,6 +60,7 @@ export async function getServerSideProps(context) {
 const TypeWrapper = (props) => {
   // console.log(data, "b")
   // console.log(props.data, props.query, "piyush2");
+  console.log(props.data, "asda");
   return (
     <div>
       <EccComponent data={props.data} />

@@ -55,7 +55,9 @@ export default function Navbar() {
   return (
     <div className={styles.nav_cont}>
       <div ref={logoRef} className={styles.nav_logo}>
-        LOGO
+        <Link href="/" >
+        <a>LOGO</a>
+        </Link>
       </div>
       <div ref={inputRef} className={styles.nav_input}>
         <input
@@ -66,8 +68,14 @@ export default function Navbar() {
         />
       </div>
       <div className={styles.nav_links}>
-        <div>Exam</div>
-        <div>College</div>
+        <div>
+          <Link href="/explore/exams">
+          <a>Exam</a>
+          </Link>
+          </div>
+        <div> <Link href="/explore/colleges">
+          <a>College</a>
+          </Link></div>
         <Link href="/write-a-review">
           <a>Write a review</a>
         </Link>

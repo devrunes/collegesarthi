@@ -8,7 +8,6 @@ import Lobby from "./Lobby/Lobby";
 const EccComponent = ({data}) => {
   const router = useRouter();
   const query = router.query;
-  console.log(data);
   const links = ["exams", "colleges", "courses"];
   useEffect(() => {
     console.log(query);
@@ -22,7 +21,7 @@ const EccComponent = ({data}) => {
       //   console.log(navLinks);
     }
   }, [query]);
-
+  console.log(data)
   return (
     <div>
       <Head>
@@ -42,7 +41,7 @@ const EccComponent = ({data}) => {
         </Link>
       </div>
       {/* <div>{query.type}</div> */}
-      <Lobby query={query} />
+      <Lobby query={query} data={data}/>
     </div>
   );
 };

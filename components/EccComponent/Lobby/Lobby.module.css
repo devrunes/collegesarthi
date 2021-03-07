@@ -46,7 +46,7 @@
 
 .lobbyDropdownType {
   display: flex;
-  padding: 1em;
+  padding: 1em 3em;
   align-items: center;
   font-size: 1.3vw;
 }
