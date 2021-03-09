@@ -1,11 +1,7 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import styles from "../styles/Home.module.css";
-// import NavStream from "../components/NavStream/NavStream";
-// import HomeSearch from "../components/HomeSearch/HomeSearch";
-// import Explore from "../components/Explore/Explore";
-// import MissUpdate from "../components/MissUpdate/MissUpdate";
-// import Footer from "../components/Footer/Footer";
+import { db } from "../lib/firebase-admin";
 const NavStream = dynamic(() => import("../components/NavStream/NavStream"));
 const Explore = dynamic(() => import("../components/Explore/Explore"));
 const HomeSearch = dynamic(() => import("../components/HomeSearch/HomeSearch"));
@@ -23,9 +19,9 @@ const HomeColleges = dynamic(
   }
 );
 
-export default function Home() {
+export default function Home({ data }) {
   const { auth } = useAuth();
-  console.log(auth, "auth data");
+  console.log(data, "auth data");
 
   return (
     <div className={styles.container}>
@@ -46,9 +42,7 @@ export default function Home() {
           heading="Never miss an Update!"
           headingSup="You focus on your studies , we take care of rest"
         />
-
-        <HomeExams />
-
+        <HomeExams data={data} />
         <MissUpdate
           themeColor="#1C8549"
           heading="Get complete study material!"
@@ -59,4 +53,24 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  var res = db.collection("exams").where("displayOnHome", "==", true);
+  var docs = await res.get();
+  var data = [];
+  if (docs.empty) {
+    return {
+      props: { data },
+      // data: [],
+    };
+  }
+  console.log(data, "asd");
+  docs.forEach((doc) => {
+    data.push(doc.data());
+  });
+  console.log(data, "piyush");
+  return {
+    props: { data }, // will be passed to the page component as props
+  };
 }

@@ -3,19 +3,11 @@ import React from "react";
 import styles from "./HomeCard.module.css";
 
 export default function HomeCard({ card }) {
-  // console.log(card.links);
-  if (!card) {
-    return <div>card</div>;
-  }
   return (
     <div>
       <div className={styles.homeExamsCard}>
         <div className={styles.topBar}>
-          <Link href={`${card.url}`}>
-            <a href="">
-              <h3>{card.examName}</h3>
-            </a>
-          </Link>
+          <h3>{card.examName}</h3>
           <button>Get Updates</button>
         </div>
         <div className={styles.middle}>
@@ -23,23 +15,16 @@ export default function HomeCard({ card }) {
             {card.prelog.substring(0, 300)}...
             <buton>
               <Link href={`${card.url}`}>
-                <a style={{ color: "blue", fontWeight: 600 }}>show more</a>
+                <a>show more</a>
               </Link>
             </buton>
           </p>
         </div>
         <div className={styles.footer}>
-          {Object.entries(card.links).map(([key, value], idx) => (
-            // <Link href={`${card.url}#${value}`}>
-            <a href={`${card.url}#${value}`} className={styles.footerLinks}>
-              {key}
-              {idx + 1 === Object.keys(card.links).length ? (
-                ""
-              ) : (
-                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-              )}
-            </a>
-            // </Link>
+          {Object.entries(card.links).map(([key, value]) => (
+            <Link href={`${card.url}#${value}`}>
+              <a className={styles.footerLinks}> {key} |&nbsp; </a>
+            </Link>
           ))}
         </div>
       </div>

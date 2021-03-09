@@ -25,7 +25,7 @@
 }
 .MissUpdateForm div {
   text-align: left;
-  font-size: 1.5em;
+  font-size: 3vw;
   margin: 0.5em 0.5em 1em 0.5em;
 }
 .MissUpdateForm div > input {
@@ -37,7 +37,7 @@
 .MissUpdateButton {
   background: transparent;
   color: white;
-  font-size: 1.4em;
+  font-size: 4vw;
   padding: 0.5em 1em;
   border-radius: 50px;
   border: 1px solid white;
@@ -69,7 +69,7 @@
   .MissUpdateForm {
     display: flex;
     justify-content: space-around;
-    padding: 3% 5%;
+    padding: 2% 5%;
     margin: 1em 0em;
     flex-wrap: wrap;
   }

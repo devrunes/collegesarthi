@@ -1,11 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./MissUpdate.module.css";
+import * as yup from "yup";
+import axios from "axios";
 
 export default function MissUpdate(props) {
-  const {themeColor, heading , headingSup} = props;
-  const backColor = themeColor
+  const { themeColor, heading, headingSup } = props;
+  const backColor = themeColor;
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("0");
+  const [course, setCourse] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+
+  const validationSubscriberInput = async () => {
+    console.log(name, course, email, number);
+    let errors = {};
+    let schema = yup.object().shape({
+      name: yup.string().required(),
+      number: yup.number().required().positive().integer(),
+      email: yup.string().email().required(),
+      course: yup.string().required(),
+    });
+    let intNumber = parseInt(number);
+    try {
+      const validationResult = await schema.validate(
+        { name, number: intNumber, email, course },
+        { abortEarly: false }
+      );
+      return {
+        isValid: true,
+        errors: {},
+      };
+      // console.log(validationResult);
+    } catch (err) {
+      console.log(err.inner, err.path, "err");
+      err.inner.forEach((error) => {
+        errors[error.path] = error.message;
+      });
+
+      return {
+        isValid: false,
+        errors,
+      };
+    }
+  };
+
+  const onSubscribeUser = async () => {
+    const { isValid, errors } = await validationSubscriberInput();
+    try {
+      if (!isValid) {
+        setError(errors);
+      } else {
+        const subscribeUser = await axios.post("/api/subscribeUser", {
+          email,
+          name,
+          course,
+          number,
+        });
+
+        setMessage(subscribeUser.data.message);
+        console.log(subscribeUser.data);
+      }
+    } catch (err) {
+      setError(err);
+      console.log(err);
+    }
+  };
   return (
-    <section className={styles.missUpdateSection} style={{background:backColor}}>
+    <section
+      className={styles.missUpdateSection}
+      style={{ background: backColor }}
+    >
       <div className={styles.MissUpdateHeading}>
         <svg
           width="94"
@@ -28,22 +94,49 @@ export default function MissUpdate(props) {
       <div className={styles.MissUpdateForm}>
         <div>
           <p>Name</p>
-          <input type="text" name="Name" id="Name" />
+          <input
+            type="text"
+            name="Name"
+            id="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </div>
         <div>
           <p>Mobile</p>
-          <input type="number" name="Mobile" id="Mobile" />
+          <input
+            type="text"
+            name="Mobile"
+            id="Mobile"
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+          />
         </div>
         <div>
           <p>Email</p>
-          <input type="email" name="Email" id="Email" />
+          <input
+            type="email"
+            name="Email"
+            id="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div>
           <p>Course</p>
-          <input type="text" name="Course" id="Course" />
+          <input
+            type="text"
+            name="Course"
+            id="Course"
+            value={course}
+            onChange={(e) => setCourse(e.target.value)}
+          />
         </div>
       </div>
-      <button className={styles.MissUpdateButton}>Yes, I'm in</button>
+      <button className={styles.MissUpdateButton} onClick={onSubscribeUser}>
+        Yes, I'm in
+      </button>
+      <div >{message}</div>
     </section>
   );
 }

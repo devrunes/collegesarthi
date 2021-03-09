@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import styles from "./ArticleContent.module.css";
 import JsxParser from "react-jsx-parser";
 import Link from "next/link";
-import NotificationButton from "../NotificationButtons/NotificationButton";
+import NotificationButton from "../NotificationButtons/NotificationButton"
+import Photo from "../Photo/Photo"
+
 
 export default function ArticleContent(props) {
+
   const { data } = props;
   console.log(data);
   useEffect(() => {
@@ -33,9 +36,9 @@ export default function ArticleContent(props) {
           ContentTableData: styles.ContentTableData,
           ContentListContainer: styles.ContentListContainer,
           ContentListLink: styles.ContentListLink,
-          TableContainer: styles.TableContainer,
+          TableContainer:styles.TableContainer,
         }}
-        components={{ Link, NotificationButton }}
+        components={{ Link, NotificationButton, Photo }}
         jsx={data}
       />
       {/* <div className={styles.OverViewCont}>
