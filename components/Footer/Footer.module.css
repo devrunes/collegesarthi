@@ -14,14 +14,16 @@
 .Footer_row {
   display: inline;
   color: white;
+  align-items: baseline;
 }
 .Footer_row div > h3 {
   text-decoration: underline white;
   font-size: 1.6em;
-  padding: 0.4em 0em;
+  padding: 1.3vw 0em;
 }
-.Footer_row div > p {
+.Footer_row div > a {
   line-height: 1.6em;
+  font-size: 3vw;
 }
 
 .Footer_col_emo {
@@ -33,18 +35,31 @@
   padding-left: 0;
   padding-right: 2em;
 }
-
+.col{
+  display: grid;
+}
 @media only screen and (min-width: 768px) {
   .Footer_row {
     display: flex;
-    justify-content: space-between;
   }
   .Footer_col_emo {
     text-align: center;
     display: inline;
     margin-top: 0%;
+    position: absolute;
+    right: 4.5%;
+    align-self: flex-end;
+    
   }
   .Footer_col_emo ul {
     padding: 10px;
+  }
+  .ImageIcon{
+    height: 2.8vw;
+    width: 2.5vw;
+  }
+  .Footer_row div > a {
+    /* line-height: 1.6em; */
+    font-size: 1vw;
   }
 }

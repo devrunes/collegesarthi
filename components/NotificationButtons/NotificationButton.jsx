@@ -1,7 +1,14 @@
-import React from "react";
+import React , {useContext} from "react";
 import styles from "./NotificationButton.module.css";
+import { useAuth } from "../../lib/auth";
+import { AuthOpenContext } from "../../lib/authContext";
 
 export default function NotificationButton() {
+  const { auth } = useAuth();
+  const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
+   const handleAuthClick = () => {
+    setAuthOpen(!authOpen);
+  };
   return (
     <div className={styles.ButtonContainer}>
       <button className={styles.ButtonG}>
@@ -21,7 +28,30 @@ export default function NotificationButton() {
         </div>
         Ask a Question
       </button>
-      <button className={styles.ButtonB}>
+      {auth && auth.isLogin ? (
+         <button className={styles.ButtonB} style={{display:"none"}}>
+         <div className={styles.SVG}>
+           <svg
+             width="25"
+             height="25"
+             viewBox="0 0 25 24"
+             fill="none"
+             xmlns="http://www.w3.org/2000/svg"
+           >
+             <path
+               d="M15.9425 16.5L11.75 12.3075V5.25H13.25V11.685L17 15.4425L15.9425 16.5Z"
+               fill="white"
+             />
+             <path
+               d="M12.5 1.5C11.1012 1.5002 9.71669 1.78108 8.42842 2.32602C7.14015 2.87096 5.97433 3.66887 5 4.6725V1.5H3.5V7.5H9.5V6H5.81C7.21702 4.43647 9.12724 3.41515 11.2089 3.1134C13.2905 2.81166 15.4121 3.24856 17.2052 4.34823C18.9983 5.4479 20.3495 7.14086 21.0243 9.1331C21.6991 11.1253 21.6547 13.291 20.899 15.2539C20.1433 17.2169 18.7239 18.8531 16.8873 19.8785C15.0507 20.9039 12.9131 21.2536 10.8455 20.8669C8.77793 20.4803 6.91111 19.3816 5.56925 17.7618C4.22739 16.142 3.49525 14.1034 3.5 12H2C2 14.0767 2.61581 16.1068 3.76957 17.8335C4.92332 19.5602 6.5632 20.906 8.48182 21.7007C10.4004 22.4955 12.5116 22.7034 14.5484 22.2982C16.5852 21.8931 18.4562 20.8931 19.9246 19.4246C21.3931 17.9562 22.3931 16.0852 22.7982 14.0484C23.2034 12.0116 22.9955 9.90045 22.2007 7.98182C21.406 6.0632 20.0602 4.42332 18.3335 3.26957C16.6068 2.11581 14.5767 1.5 12.5 1.5Z"
+               fill="white"
+             />
+           </svg>
+         </div>
+         Get Updates
+       </button>
+        ) : (
+          <button className={styles.ButtonB} onClick={handleAuthClick}>
         <div className={styles.SVG}>
           <svg
             width="25"
@@ -42,6 +72,7 @@ export default function NotificationButton() {
         </div>
         Get Updates
       </button>
+        )}
       <button className={styles.ButtonG}>
         <div className={styles.SVG}>
           <svg

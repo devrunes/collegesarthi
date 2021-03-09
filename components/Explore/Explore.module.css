@@ -43,11 +43,11 @@
   color: #4a788d;
 }
 
-.exploreHomeCard:hover > div > svg {
+.exploreHomeCard:hover > a > div > svg {
   color: white;
 }
 
-.exploreHomeCard:hover > div {
+.exploreHomeCard:hover > a > div {
   color: white;
 }
 

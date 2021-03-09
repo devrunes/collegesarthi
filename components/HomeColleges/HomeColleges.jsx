@@ -21,7 +21,7 @@ export default function HomeColleges() {
         <h2>Top Featured Colleges</h2>
         <p>Detailed information on every college in one place, just for you!</p>
       </div>
-      {window.innerWidth > 600 ? (
+      {/* {window.innerWidth > 600 ? (
         <div>
           <div className={styles.homeCollegesCardsWrapper}>
             {arr.map((exam) => {
@@ -48,7 +48,7 @@ export default function HomeColleges() {
             <HomeCard title="Jaypee" />
           </div>
         </Slider>
-      )}
+      )} */}
     </section>
   );
 }

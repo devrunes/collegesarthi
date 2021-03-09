@@ -128,19 +128,19 @@ export default function Navbar() {
                 // unoptimized={true}
               />
             </div>
-            Exams
+            <a href="/explore/exams">Exams</a>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamCol.svg" alt="exam logo " layout="fill" />
             </div>
-            Colleges
+            <a href="/explore/colleges">Colleges</a>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamWar.svg" alt="exam logo " layout="fill" />
             </div>
-            Write A review
+            <a href="write-a-review">Write A review</a>
           </div>
         </div>
         <hr />
@@ -149,49 +149,54 @@ export default function Navbar() {
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamEng.svg" alt="exam logo " layout="fill" />
             </div>
-            Engineering
+            <a href="/explore/exams/engineering">Engineering</a>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamMed.svg" alt="exam logo " layout="fill" />
             </div>
-            Medical
+            <a href="/explore/exams/medical">Medical</a>
+            
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamHM.svg" alt="exam logo " layout="fill" />
             </div>
-            Hotel Management
+            <a href="/explore/exams/hotel-management">Hotel Management</a>
+            
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamDes.svg" alt="exam logo " layout="fill" />
             </div>
-            Design
+            <a href="/explore/exams/design">Design</a>
+            
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamAgr.svg" alt="exam logo " layout="fill" />
             </div>
-            Agriculture
+            <a href="/explore/exams/agriculture">Agriculture</a>
+            
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamCom.svg" alt="exam logo " layout="fill" />
             </div>
-            Commerce
+            <a href="/explore/exams/commerce">Commerce</a>
+            
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamAvi.svg" alt="exam logo " layout="fill" />
             </div>
-            Aviation
+            <a href="/explore/exams/aviation">Aviation</a>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamDef.svg" alt="exam logo " layout="fill" />
             </div>
-            Defence Services
+            <a href="/explore/exams/defence">Defence Services</a>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
