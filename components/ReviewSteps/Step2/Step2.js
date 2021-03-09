@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "../steps.module.scss";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function Step2({
   reviewValues,
@@ -8,23 +10,40 @@ export default function Step2({
   handleSaveBtn,
   handleBackBtn,
 }) {
-  const { register, handleSubmit, watch, errors } = useForm();
-
+  const schema = yup.object().shape({
+    paymentId: yup.string().required(),
+  });
+  const { register, handleSubmit, watch, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
   return (
     <form onSubmit={handleSubmit(handleSaveBtn)}>
       <div className={styles.formRow}>
-        <label>Step2</label>
+        <label>Payment Method</label>
         <select
-          name="instituteName"
+          name="paymentMethod"
           ref={register}
           className={styles.formSelectInput}
-          value={reviewValues.instituteName}
-          // onChange={(e) => setInstituteName(e.target.value)}
-          onChange={(e) => handleOnChange(e, "instituteName")}
+          value={reviewValues.paymentMethod}
+          onChange={(e) => handleOnChange(e, "paymentMethod")}
         >
-          <option value="JIIT">JIIT</option>
-          <option value="IITD">IITD</option>
+          <option value="Paytm">Paytm</option>
+          <option value="UPI">UPI</option>
         </select>
+      </div>
+      <div className={styles.formRow}>
+        <label>
+          {reviewValues.paymentMethod === "Paytm" ? "Paytm Number" : "UPI Id"}
+        </label>
+        <input
+          type="text"
+          name="paymentId"
+          ref={register}
+          className={styles.formSelectInput}
+          value={reviewValues.paymentId}
+          onChange={(e) => handleOnChange(e, "paymentId")}
+        />
+        <p className={styles.errorMsg}>{errors.paymentId?.message}</p>
       </div>
       <div className={styles.actionBtnWrapper}>
         <button

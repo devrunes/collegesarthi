@@ -19,7 +19,6 @@ export default function Step0({
           ref={register}
           className={styles.formSelectInput}
           value={reviewValues.instituteName}
-          // onChange={(e) => setInstituteName(e.target.value)}
           onChange={(e) => handleOnChange(e, "instituteName")}
         >
           <option value="JIIT">JIIT</option>

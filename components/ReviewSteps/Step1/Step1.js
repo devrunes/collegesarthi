@@ -11,14 +11,26 @@ export default function Step1({
   handleBackBtn,
 }) {
   const schema = yup.object().shape({
-    examScore: yup.string().required(),
-    examRank: yup.number().positive().integer().required(),
+    examTaken: yup.bool(),
+    examScore: yup.number().when("examTaken", {
+      is: true,
+      then: yup.number().required().positive(),
+    }),
+    examRank: yup.number().when("examTaken", {
+      is: true,
+      then: yup.number().required().positive(),
+    }),
+    howYouGotAdmission: yup.string().when("examTaken", {
+      is: false,
+      then: yup.string().required(),
+    }),
   });
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
   console.log(errors);
+  console.log(reviewValues.examTaken);
 
   return (
     <form onSubmit={handleSubmit(handleSaveBtn)}>
@@ -28,10 +40,11 @@ export default function Step1({
           <div className={styles.radioInput}>
             <input
               type="radio"
+              ref={register}
               // className={styles.radioInput}
               name="examTaken"
-              value="yes"
-              checked={reviewValues.examTaken === "yes"}
+              value={true}
+              checked={reviewValues.examTaken}
               onChange={(e) => handleOnChange(e, "examTaken")}
             />{" "}
             Yes
@@ -39,17 +52,17 @@ export default function Step1({
           <div className={styles.radioInput}>
             <input
               type="radio"
-              // className={styles.radioInput}
+              ref={register}
               name="examTaken"
-              value="no"
-              checked={reviewValues.examTaken === "no"}
+              value={false}
+              checked={!reviewValues.examTaken}
               onChange={(e) => handleOnChange(e, "examTaken")}
             />{" "}
             No
           </div>
         </div>
       </div>
-      {reviewValues.examTaken === "yes" ? (
+      {reviewValues.examTaken ? (
         <div>
           <div className={styles.formRow}>
             <label>Entrance Exam</label>
@@ -75,18 +88,19 @@ export default function Step1({
                 value={reviewValues.examScore}
                 onChange={(e) => handleOnChange(e, "examScore")}
               />
-              {errors.examScore && <span>Error</span>}
-              <p>{errors.examScore?.message}</p>
+              <p className={styles.errorMsg}>{errors.examScore?.message}</p>
             </div>
             <div>
               <label>Rank</label>
               <input
                 type="text"
                 name="examRank"
+                ref={register}
                 className={styles.formSelectInput}
                 value={reviewValues.examRank}
                 onChange={(e) => handleOnChange(e, "examRank")}
               />
+              <p className={styles.errorMsg}>{errors.examRank?.message}</p>
             </div>
           </div>
         </div>
@@ -96,10 +110,14 @@ export default function Step1({
           <input
             type="text"
             name="howYouGotAdmission"
+            ref={register({ required: true })}
             className={styles.formSelectInput}
             value={reviewValues.howYouGotAdmission}
             onChange={(e) => handleOnChange(e, "howYouGotAdmission")}
           />
+          <p className={styles.errorMsg}>
+            {errors.howYouGotAdmission?.message}
+          </p>
         </div>
       )}
       <div className={styles.actionBtnWrapper}>
@@ -110,12 +128,7 @@ export default function Step1({
         >
           Back
         </button>
-        <input
-          type="submit"
-          // onClick={handleSaveBtn}
-          className={styles.saveBtn}
-          value="Save and next"
-        />
+        <input type="submit" className={styles.saveBtn} value="Save and next" />
       </div>
     </form>
   );
