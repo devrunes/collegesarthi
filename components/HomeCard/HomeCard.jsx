@@ -12,7 +12,9 @@ export default function HomeCard({ card }) {
       <div className={styles.homeExamsCard}>
         <div className={styles.topBar}>
           <Link href={`${card.url}`}>
-            <h3>{card.examName}</h3>
+            <a href="">
+              <h3>{card.examName}</h3>
+            </a>
           </Link>
           <button>Get Updates</button>
         </div>
@@ -21,7 +23,7 @@ export default function HomeCard({ card }) {
             {card.prelog.substring(0, 300)}...
             <buton>
               <Link href={`${card.url}`}>
-                <a>show more</a>
+                <a style={{ color: "blue", fontWeight: 600 }}>show more</a>
               </Link>
             </buton>
           </p>
@@ -29,14 +31,14 @@ export default function HomeCard({ card }) {
         <div className={styles.footer}>
           {Object.entries(card.links).map(([key, value], idx) => (
             // <Link href={`${card.url}#${value}`}>
-              <a href={`${card.url}#${value}`} className={styles.footerLinks}>
-                {key}
-                {idx + 1 === Object.keys(card.links).length ? (
-                  ""
-                ) : (
-                  <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                )}
-              </a>
+            <a href={`${card.url}#${value}`} className={styles.footerLinks}>
+              {key}
+              {idx + 1 === Object.keys(card.links).length ? (
+                ""
+              ) : (
+                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+              )}
+            </a>
             // </Link>
           ))}
         </div>

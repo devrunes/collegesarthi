@@ -9,7 +9,7 @@ const NavStream = () => {
           <a>Engineering</a>
         </Link>
       </div>
-      <div> <Link href="/explore/exams/madical">
+      <div> <Link href="/explore/exams/medical">
           <a>Medical</a>
         </Link></div>
       <div> <Link href="/explore/exams/management">

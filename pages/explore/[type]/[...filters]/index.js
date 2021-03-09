@@ -4,7 +4,13 @@ import { db } from "../../../../lib/firebase-admin";
 
 export async function getServerSideProps(context) {
   const { query } = context;
-  // console.log(context,"ashdb");
+
+  if (query.type !== "exams" && query.type !== "colleges") {
+    return {
+      notFound: true,
+    };
+  }
+
   let filters = {
     stream: query.filters
       ? query.filters[0]
@@ -25,9 +31,11 @@ export async function getServerSideProps(context) {
   };
   // console.log(filters, "here");
   // console.log(query);
+
   let ECCRef = db.collection(query.type);
 
   const queryList = Object.keys(filters);
+
   queryList.forEach((item) => {
     // console.log(filters[item])
     if (filters[item] !== "")
@@ -38,21 +46,43 @@ export async function getServerSideProps(context) {
       );
     // console.log(ECCRef)
   });
+
   var snapshot = await ECCRef.get();
+
+  // console.log("fetched..", snapshot)
+
   var data = [];
   // console.log(snapshot)
   if (snapshot.empty) {
+    console.log(true);
     return {
       props: { data },
       // data: [],
     };
   }
+  // console.log("ajsdbnajksbdnkj")
   // console.log(data, "asd");
+
   snapshot.forEach((doc) => {
-    const { links, prelog, examName, url } = doc.data();
-    data.push({ links, prelog, examName, url });
+    if (query.type === "exams") {
+      const { links, prelog, examName, url } = doc.data();
+      data.push({ links, prelog, examName, url });
+    }
+    if (query.type === "colleges") {
+      // const { links, prelog, examName, url } = doc.data();
+      data.push(doc.data());
+    }
   });
-  // console.log(data, "piyush");
+
+  if (query.type === "colleges") {
+    data.sort(
+      (a, b) =>
+        a.ranks[filters.stream.toLowerCase()] -
+        b.ranks[filters.stream.toLowerCase()]
+    );
+  }
+
+  console.log(data, "piyush");
   return {
     props: { data, query: context.query }, // will be passed to the page component as props
   };
@@ -60,9 +90,9 @@ export async function getServerSideProps(context) {
 
 const TypeWrapper = (props) => {
   return (
-    <div>
+    <>
       <EccComponent data={props.data} />
-    </div>
+    </>
   );
 };
 export default TypeWrapper;

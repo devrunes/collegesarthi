@@ -8,13 +8,13 @@ import Lobby from "./Lobby/Lobby";
 const EccComponent = ({ data }) => {
   const router = useRouter();
   const query = router.query;
-  const links = ["exams", "colleges", "courses"];
+  const links = ["exams", "colleges"];
   useEffect(() => {
     // console.log(query);
     if (query.type) {
       let idx = links.indexOf(query.type);
       let navLinks = document.getElementsByClassName(styles.ecc_nav_link);
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 2; i++) {
         navLinks[i].classList.remove(styles.ecc_active);
       }
       navLinks[idx].classList.add(styles.ecc_active);
@@ -22,7 +22,7 @@ const EccComponent = ({ data }) => {
     }
   }, [query]);
   return (
-    <div>
+    <div className={styles.ecc_wrapper}>
       <Head>
         <title>
           CollegeSarthi {query.type ? `- ${query.type.toUpperCase()}` : ""}
@@ -35,9 +35,9 @@ const EccComponent = ({ data }) => {
         <Link href="/explore/colleges">
           <a className={styles.ecc_nav_link}>Colleges</a>
         </Link>
-        <Link href="/explore/courses">
+        {/* <Link href="/explore/courses">
           <a className={styles.ecc_nav_link}>Courses</a>
-        </Link>
+        </Link> */}
       </div>
       {/* <div>{query.type}</div> */}
       <Lobby query={query} data={data} />

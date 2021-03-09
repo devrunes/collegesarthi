@@ -5,10 +5,20 @@ import { db } from "../../../lib/firebase-admin";
 export async function getServerSideProps(context) {
   const { query, params } = context;
 
+  // console.log(query.type === "exams");
+
+  if (query.type !== "exams" && query.type !== "colleges") {
+    return {
+      notFound: true,
+    };
+  }
+
   let ECCRef = db.collection(params.type);
 
   var snapshot = await ECCRef.get();
+
   var data = [];
+
   if (snapshot.empty) {
     return {
       props: { data },
@@ -16,9 +26,17 @@ export async function getServerSideProps(context) {
   }
 
   snapshot.forEach((doc) => {
-    const { links, prelog, examName, url } = doc.data();
-    data.push({ links, prelog, examName, url });
+    if (query.type === "exams") {
+      const { links, prelog, examName, url } = doc.data();
+      data.push({ links, prelog, examName, url });
+    }
+    if (query.type === "colleges") {
+      console.log(doc.data());
+      // const { links, prelog, examName, url } = doc.data();
+      data.push(doc.data());
+    }
   });
+
   return {
     props: { data, query: context.params },
   };
@@ -26,9 +44,9 @@ export async function getServerSideProps(context) {
 
 const TypeWrapper = ({ data, query }) => {
   return (
-    <div>
+    <>
       <EccComponent data={data} query={query} />
-    </div>
+    </>
   );
 };
 export default TypeWrapper;

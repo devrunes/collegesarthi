@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Lobby.module.css";
 import HomeCard from "../../HomeCard/HomeCard";
+import CollegeCard from "../../collegeCard/CollegeCard";
+
+// import firebase from "../../../lib/firebase";
 
 const FilterItem = ({ queryParent, type, filters, value }) => {
   const checkRest = (ty) => {
@@ -344,10 +347,10 @@ const Lobby = ({ query, data }) => {
         nFilters[filtersType[idx].type] = "";
       }
     }
-    console.debug(filters);
+    // console.debug(filters);
     let nextUrl = urlGenerator(query.type, filtersType[idx].type, filters, val);
-    console.debug(nFilters);
-    console.debug(nextUrl);
+    // console.debug(nFilters);
+    // console.debug(nextUrl);
     setNextUrl(nextUrl);
     setFilters(nFilters);
   };
@@ -378,9 +381,10 @@ const Lobby = ({ query, data }) => {
       });
     }
     setNextUrl(url);
-    console.debug(url, "run");
+    // console.debug(url, "run");
   }, [query]);
 
+  const dData = [1, 2, 3, 4];
   return (
     <div className={styles.lobbyWrapper}>
       <div className={styles.lobbyFilterWrapper}>
@@ -500,6 +504,7 @@ const Lobby = ({ query, data }) => {
             if (
               filters.state !== "" &&
               filters.state !== "all-state" &&
+              query.type !== "exams" &&
               items.values[filters.state.toLowerCase()]
             ) {
               return (
@@ -539,11 +544,21 @@ const Lobby = ({ query, data }) => {
         })}
       </div>
       <div className={styles.lobbyCardComp}>
-        {data.map((card) => (
-          <div className={styles.lobbyCard}>
-            <HomeCard card={card} />
-          </div>
-        ))}
+        <>
+          {query.type === "exams" &&
+            data.map((card, idx) => (
+              <div key={idx} className={styles.lobbyCard}>
+                <HomeCard card={card} />
+              </div>
+            ))}
+
+          {query.type === "colleges" &&
+            data.map((card, idx) => (
+              <div key={idx} className={styles.lobbyCard}>
+                <CollegeCard card={card} />
+              </div>
+            ))}
+        </>
       </div>
       <div
         className={

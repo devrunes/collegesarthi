@@ -36,14 +36,19 @@ export default function Home() {
 
       <main className={styles.main}>
         <NavStream />
+
         <HomeSearch />
+
         <Explore />
+
         <MissUpdate
           themeColor="#4a788d"
           heading="Never miss an Update!"
           headingSup="You focus on your studies , we take care of rest"
         />
+
         <HomeExams />
+
         <MissUpdate
           themeColor="#1C8549"
           heading="Get complete study material!"

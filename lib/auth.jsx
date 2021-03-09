@@ -19,17 +19,28 @@ const formatAuthState = (user) => ({
 function useProvideAuth() {
   const [auth, setAuth] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({});
 
   /**
    * Callback function used for firebase.auth.onAuthStateChanged().
    * Takes the user object returned and formats it for my state.
    * We fetch the idToken and append it to my auth state and store it.
    */
+
   const handleAuthChange = async (authState) => {
     if (!authState) {
+      setUser({});
       return;
     }
 
+    axios
+      .get(`/api/getUser/${authState.uid}`)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
     // Formats response into my required state.
     const formattedAuth = formatAuthState(authState);
     // Fetch firebase auth ID Token.
@@ -61,6 +72,7 @@ function useProvideAuth() {
    * Callback for when firebase signOut.
    * Sets auth state to null and loading to true.
    */
+
   const clear = () => {
     setAuth(null);
     setLoading(true);
@@ -129,6 +141,7 @@ function useProvideAuth() {
   // returns state values and callbacks for signIn and signOut.
   return {
     auth,
+    user,
     loading,
     signInWithEmailAndPassword,
     signupWithEmailAndPassword,

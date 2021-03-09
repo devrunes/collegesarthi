@@ -1,0 +1,25 @@
+.model_wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.514);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1vw;
+}
+.model_crossButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.model_crossButton > svg {
+  width: 20px;
+  height: 20px;
+}
+.display_none {
+  display: none;
+}

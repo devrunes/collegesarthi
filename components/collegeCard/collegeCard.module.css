@@ -1,0 +1,150 @@
+.clgCard_wrapper {
+  border-radius: 12px;
+  border: 1px solid #f2f2f2;
+  margin-top: 3%;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.clgCard_image {
+  display: flex;
+  height: 150px;
+  padding: 1em;
+  position: relative;
+}
+.clgCard_main {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+}
+.clgCard_main_name {
+  width: 100%;
+  padding: 0 1em 0 0;
+}
+.clgCard_main_name h3 {
+  /* white-space: nowrap; */
+  font-weight: 600;
+  font-size: 3.4vw;
+  /* padding: 0.5em; */
+}
+/* .clgCard_main_left > * {
+  font-size: 1.3vw;
+} */
+
+.clgCard_main_fee {
+  display: flex;
+  font-size: 3vw;
+
+  /* align-items: center; */
+}
+
+.clgCard_main_infosec {
+  padding: 0.8em 0em;
+  display: flex;
+  justify-content: space-around;
+}
+
+.clgCard_rupee {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  margin-top: 9%;
+}
+
+.clgCard_inlineImage {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-top: 3%;
+}
+
+.clgCard_logoSec {
+  display: flex;
+  justify-content: center;
+}
+
+.clgCard_logoImage {
+  position: relative;
+  width: 11vw;
+  height: 11vw;
+}
+
+.clgCard_main_fee p:nth-child(1) {
+  color: #4a788d;
+  font-weight: 600;
+  padding: 0 0.1em;
+  white-space: nowrap;
+}
+.clgCard_main_rating {
+  font-size: 3vw;
+}
+.clgCard_main_rating p:nth-child(1) {
+  color: #4a788d;
+  font-weight: 600;
+  padding: 0 0.1em;
+}
+
+.small {
+  font-size: 0.8em;
+}
+
+.clgCard_footerButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  background-color: #4a788d;
+  color: #fff;
+}
+@media only screen and (min-width: 584px) {
+  .clgCard_main_name h3 {
+    font-size: 2vw;
+  }
+  .clgCard_main_rating {
+    font-size: 1.8vw;
+  }
+  .clgCard_main_fee {
+    font-size: 1.8vw;
+  }
+  .clgCard_logoImage {
+    position: relative;
+    width: 7vw;
+    height: 7vw;
+  }
+  .small {
+    font-size: 0.7em;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .clgCard_main_name h3 {
+    font-size: 1.5vw;
+  }
+  .clgCard_main_rating {
+    font-size: 1.4vw;
+  }
+  .clgCard_main_fee {
+    font-size: 1.4vw;
+  }
+  .clgCard_logoImage {
+    width: 5vw;
+    height: 5vw;
+  }
+  .small {
+    font-size: 0.6em;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .clgCard_main_name h3 {
+    font-size: 1.3vw;
+  }
+  .clgCard_main_rating {
+    font-size: 1.2vw;
+  }
+  .clgCard_main_fee {
+    font-size: 1.2vw;
+  }
+}
