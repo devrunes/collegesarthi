@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./MissUpdate.module.css";
 import * as yup from "yup";
 import axios from "axios";
 
 export default function MissUpdate(props) {
-  const { themeColor, heading, headingSup } = props;
+  const { themeColor, heading, headingSup, user } = props;
+  console.debug(user, "user", props);
   const backColor = themeColor;
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("0");
+  const [name, setName] = useState(user ? user.name : "");
+  const [number, setNumber] = useState(user ? user.number : "0");
   const [course, setCourse] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -67,6 +68,13 @@ export default function MissUpdate(props) {
       console.log(err);
     }
   };
+  useEffect(() => {
+    if (user) {
+      setEmail(user ? user.email : "");
+      setName(user ? user.name : "");
+      setNumber(user ? user.number : "0");
+    }
+  }, [user]);
   return (
     <section
       className={styles.missUpdateSection}
@@ -136,7 +144,7 @@ export default function MissUpdate(props) {
       <button className={styles.MissUpdateButton} onClick={onSubscribeUser}>
         Yes, I'm in
       </button>
-      <div >{message}</div>
+      <div>{message}</div>
     </section>
   );
 }

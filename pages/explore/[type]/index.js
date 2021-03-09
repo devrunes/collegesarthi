@@ -31,7 +31,7 @@ export async function getServerSideProps(context) {
       data.push({ links, prelog, examName, url });
     }
     if (query.type === "colleges") {
-      console.log(doc.data());
+      // console.log(doc.data());
       // const { links, prelog, examName, url } = doc.data();
       data.push(doc.data());
     }

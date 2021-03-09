@@ -10,7 +10,7 @@ const Model = () => {
   const { auth, user } = useAuth();
 
   const handleCrossClick = () => {
-    setModel({ open: false, ModelNo: 0 });
+    setModel({ open: false, modelNo: 0 });
   };
 
   const parentRef = useRef(null);
@@ -21,6 +21,7 @@ const Model = () => {
       handleCrossClick();
     }
   };
+  //   console.debug(auth.isLogin ? user : false);
 
   return (
     <div
@@ -30,7 +31,7 @@ const Model = () => {
     >
       {model.modelNo === 0 ? (
         <MissUpdate
-          user={auth.isLogin ? user : false}
+          user={auth && auth.isLogin ? user : false}
           themeColor="#1C8549"
           heading="Ask a question"
           headingSup="Previous Year Question Papers, Preparation Kit and much more!"
@@ -38,11 +39,6 @@ const Model = () => {
       ) : (
         ""
       )}
-      <MissUpdate
-        themeColor="#1C8549"
-        heading="Ask a question"
-        headingSup="Previous Year Question Papers, Preparation Kit and much more!"
-      />
       <div className={styles.model_crossButton} onClick={handleCrossClick}>
         <svg
           id="auth_crossButton"
