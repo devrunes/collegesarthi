@@ -3,7 +3,6 @@ import ArticleComponent from "../../../../components/ArticleComponent/ArticleCom
 import { db } from "../../../../lib/firebase-admin";
 export default function index(props) {
   const { doc } = props;
-  // console.log(props,"jajskjdh")
   return (
     <div>
       <ArticleComponent doc={doc} />
@@ -18,13 +17,24 @@ export async function getStaticPaths() {
       { params: { type: "exams", article: "nda" } },
       // { params: {type: "exams", article: "nift" } },
     ],
-    fallback: false,
+    fallback: true,
   };
 }
 
 export async function getStaticProps({ params }) {
+  // const { query, params } = context;
+
+  // console.log(query.type === "exams");
+
+  if (params.type !== "exams" && params.type !== "colleges") {
+    return {
+      notFound: true,
+    };
+  }
+
   const cityRef = db.collection(params.type).doc(params.article);
   const doc = await cityRef.get();
+  // console.log(doc);
   if (!doc.exists) {
     return {
       notFound: true,

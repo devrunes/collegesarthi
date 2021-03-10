@@ -27,7 +27,7 @@ export default function Home({ data }) {
     <div className={styles.container}>
       <Head>
         <title>CollegeSarthi</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/iconMain.ico" />
       </Head>
 
       <main className={styles.main}>
@@ -65,11 +65,11 @@ export async function getServerSideProps() {
       // data: [],
     };
   }
-  console.log(data, "asd");
+  // console.log(data, "asd");
   docs.forEach((doc) => {
     data.push(doc.data());
   });
-  console.log(data, "piyush");
+  // console.log(data, "piyush");
   return {
     props: { data }, // will be passed to the page component as props
   };

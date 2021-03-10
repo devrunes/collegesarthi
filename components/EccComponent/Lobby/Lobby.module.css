@@ -144,6 +144,9 @@
 }
 .lobbyMobFilItemCont {
   padding: 0.5em;
+  overflow: auto;
+  margin-bottom: 80px;
+  width: 100%;
 }
 .lobbyMobFilItemCont > div {
   padding: 0.5em;

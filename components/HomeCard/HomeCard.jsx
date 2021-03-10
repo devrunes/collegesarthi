@@ -1,28 +1,47 @@
+import React, { useContext } from "react";
 import Link from "next/link";
-import React from "react";
 import styles from "./HomeCard.module.css";
+import { AuthOpenContext } from "../../lib/authContext";
+import { useAuth } from "../../lib/auth";
 
 export default function HomeCard({ card }) {
+  const { auth } = useAuth();
+  const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
+
+  const handleGetUpdateClick = () => {
+    setAuthOpen(!authOpen);
+  };
+  // console.log(card);
+  if (!card) {
+    return "";
+  }
+
   return (
     <div>
       <div className={styles.homeExamsCard}>
         <div className={styles.topBar}>
-          <h3>{card.examName}</h3>
-          <button>Get Updates</button>
+          <Link href={`${card && card.url}`}>
+            <a>
+              <h3>{card.examName}</h3>
+            </a>
+          </Link>
+          {auth && auth.isLogin ? (
+            ""
+          ) : (
+            <button onClick={handleGetUpdateClick}>Get Updates</button>
+          )}
         </div>
         <div className={styles.middle}>
           <p>
             {card.prelog.substring(0, 300)}...
-            <buton>
-              <Link href={`${card.url}`}>
-                <a>show more</a>
-              </Link>
-            </buton>
+            <Link href={`${card && card.url}`}>
+              <a>show more</a>
+            </Link>
           </p>
         </div>
         <div className={styles.footer}>
           {Object.entries(card.links).map(([key, value]) => (
-            <Link href={`${card.url}#${value}`}>
+            <Link key={key + value} href={`${card.url}#${value}`}>
               <a className={styles.footerLinks}> {key} |&nbsp; </a>
             </Link>
           ))}

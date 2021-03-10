@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import styles from "./model.module.css";
 import { ModelOpenContext } from "../../lib/authContext";
 import MissUpdate from "../MissUpdate/MissUpdate";
@@ -23,6 +23,14 @@ const Model = () => {
   };
   //   console.debug(auth.isLogin ? user : false);
 
+  useEffect(() => {
+    if (model.open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
+  });
+
   return (
     <div
       className={model.open ? styles.model_wrapper : styles.display_none}
@@ -31,10 +39,28 @@ const Model = () => {
     >
       {model.modelNo === 0 ? (
         <MissUpdate
+          modelData={model.modelData}
           user={auth && auth.isLogin ? user : false}
           themeColor="#1C8549"
-          heading="Ask a question"
-          headingSup="Previous Year Question Papers, Preparation Kit and much more!"
+          heading={
+            model.modelData && model.modelData.collegeName
+              ? model.modelData.collegeName
+              : "Provide Details"
+          }
+          headingSup="We will reach back to you later"
+          buttonText="Submit"
+        />
+      ) : (
+        ""
+      )}
+      {model.modelNo === 1 ? (
+        <MissUpdate
+          modelType="askAQuestion"
+          user={auth && auth.isLogin ? user : false}
+          themeColor="#1C8549"
+          heading="Ask A question"
+          headingSup="You ask we Answer"
+          buttonText="Submit"
         />
       ) : (
         ""

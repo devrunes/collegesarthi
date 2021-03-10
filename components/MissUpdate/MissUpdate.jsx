@@ -4,8 +4,16 @@ import * as yup from "yup";
 import axios from "axios";
 
 export default function MissUpdate(props) {
-  const { themeColor, heading, headingSup, user } = props;
-  console.debug(user, "user", props);
+  const {
+    themeColor,
+    heading,
+    headingSup,
+    user,
+    modelData,
+    buttonText = "Yes, I'm in",
+    modelType = "",
+  } = props;
+  // console.debug(user, "user", props);
   const backColor = themeColor;
   const [email, setEmail] = useState("");
   const [name, setName] = useState(user ? user.name : "");
@@ -13,10 +21,17 @@ export default function MissUpdate(props) {
   const [course, setCourse] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [modelDatas, setModelData] = useState({});
+  const [question, setQuestion] = useState("");
 
   const validationSubscriberInput = async () => {
-    console.log(name, course, email, number);
+    // console.log(name, course, email, number);
     let errors = {};
+    if (modelType === "askAQuestion") {
+      if (question === "") {
+        errors.question = "Question is Empty";
+      }
+    }
     let schema = yup.object().shape({
       name: yup.string().required(),
       number: yup.number().required().positive().integer(),
@@ -30,16 +45,16 @@ export default function MissUpdate(props) {
         { abortEarly: false }
       );
       return {
-        isValid: true,
-        errors: {},
+        isValid: !Object.keys(errors).length > 0,
+        errors,
       };
       // console.log(validationResult);
     } catch (err) {
-      console.log(err.inner, err.path, "err");
+      // console.log(err.inner, err.path, "err");
       err.inner.forEach((error) => {
         errors[error.path] = error.message;
       });
-
+      console.log(errors);
       return {
         isValid: false,
         errors,
@@ -48,7 +63,9 @@ export default function MissUpdate(props) {
   };
 
   const onSubscribeUser = async () => {
+    setError({});
     const { isValid, errors } = await validationSubscriberInput();
+
     try {
       if (!isValid) {
         setError(errors);
@@ -58,14 +75,16 @@ export default function MissUpdate(props) {
           name,
           course,
           number,
+          modelDatas,
+          question,
         });
 
         setMessage(subscribeUser.data.message);
-        console.log(subscribeUser.data);
+        // console.log(subscribeUser.data);
       }
     } catch (err) {
       setError(err);
-      console.log(err);
+      // console.log(err);
     }
   };
   useEffect(() => {
@@ -74,7 +93,19 @@ export default function MissUpdate(props) {
       setName(user ? user.name : "");
       setNumber(user ? user.number : "0");
     }
-  }, [user]);
+
+    if (modelData) {
+      // console.debug(modelData);
+      setModelData(modelData);
+    }
+
+    return () => {
+      setEmail("");
+      setName("");
+      setNumber("0");
+      setModelData({});
+    };
+  }, [user, modelData]);
   return (
     <section
       className={styles.missUpdateSection}
@@ -109,6 +140,11 @@ export default function MissUpdate(props) {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          {error.name && error.name !== "" ? (
+            <p className={styles.authError}>{error.name}</p>
+          ) : (
+            <></>
+          )}
         </div>
         <div>
           <p>Mobile</p>
@@ -119,6 +155,11 @@ export default function MissUpdate(props) {
             value={number}
             onChange={(e) => setNumber(e.target.value)}
           />
+          {error.number && error.number !== "" ? (
+            <p className={styles.authError}>{error.number}</p>
+          ) : (
+            <></>
+          )}
         </div>
         <div>
           <p>Email</p>
@@ -129,6 +170,11 @@ export default function MissUpdate(props) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          {error.email && error.email !== "" ? (
+            <p className={styles.authError}>{error.email}</p>
+          ) : (
+            <></>
+          )}
         </div>
         <div>
           <p>Course</p>
@@ -138,11 +184,37 @@ export default function MissUpdate(props) {
             id="Course"
             value={course}
             onChange={(e) => setCourse(e.target.value)}
+            placeholder="Example B.Tech"
           />
+          {error.course && error.course !== "" ? (
+            <p className={styles.authError}>{error.course}</p>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
+      {modelType === "askAQuestion" ? (
+        <div className={styles.missUpdate_textArea}>
+          <textarea
+            name="question"
+            id="question"
+            placeholder="Write your question"
+            cols="30"
+            rows="10"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+          ></textarea>
+          {error.question && error.question !== "" ? (
+            <p className={styles.authError}>{error.question}</p>
+          ) : (
+            <></>
+          )}
+        </div>
+      ) : (
+        ""
+      )}
       <button className={styles.MissUpdateButton} onClick={onSubscribeUser}>
-        Yes, I'm in
+        {buttonText}
       </button>
       <div>{message}</div>
     </section>

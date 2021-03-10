@@ -55,8 +55,18 @@ export default function Navbar() {
   return (
     <div className={styles.nav_cont}>
       <div ref={logoRef} className={styles.nav_logo}>
-        <Link href="/" >
-        <a>LOGO</a>
+        <Link href="/">
+          <a>
+            <div className={styles.nav_logoImage}>
+              <Image
+                src={"/logoMain.svg"}
+                alt="college logo "
+                layout="fill"
+                quality={100}
+                // unoptimized={true}
+              />
+            </div>
+          </a>
         </Link>
       </div>
       <div ref={inputRef} className={styles.nav_input}>
@@ -70,15 +80,19 @@ export default function Navbar() {
       <div className={styles.nav_links}>
         <div>
           <Link href="/explore/exams">
-          <a>Exam</a>
+            <a>Exam</a>
           </Link>
-          </div>
-        <div> <Link href="/explore/colleges">
-          <a>College</a>
-          </Link></div>
-        <Link href="/write-a-review">
-          <a>Write a review</a>
-        </Link>
+        </div>
+        <div>
+          <Link href="/explore/colleges">
+            <a>College</a>
+          </Link>
+        </div>
+        <div>
+          <Link href="/write-a-review">
+            <a>Write a review</a>
+          </Link>
+        </div>
       </div>
       <div ref={authButRef} className={styles.nav_authButon}>
         {auth && auth.isLogin ? (
@@ -156,35 +170,30 @@ export default function Navbar() {
               <Image src="/hamMed.svg" alt="exam logo " layout="fill" />
             </div>
             <a href="/explore/exams/medical">Medical</a>
-            
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamHM.svg" alt="exam logo " layout="fill" />
             </div>
             <a href="/explore/exams/hotel-management">Hotel Management</a>
-            
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamDes.svg" alt="exam logo " layout="fill" />
             </div>
             <a href="/explore/exams/design">Design</a>
-            
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamAgr.svg" alt="exam logo " layout="fill" />
             </div>
             <a href="/explore/exams/agriculture">Agriculture</a>
-            
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamCom.svg" alt="exam logo " layout="fill" />
             </div>
             <a href="/explore/exams/commerce">Commerce</a>
-            
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>

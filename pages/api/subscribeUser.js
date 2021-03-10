@@ -3,7 +3,22 @@ import { db } from "../../lib/firebase-admin";
 export default async (req, res) => {
   if (req.method === "POST") {
     try {
-      const { name, email, number, course } = req.body;
+      const {
+        name,
+        email,
+        number,
+        course,
+        modelDatas: modelData = {},
+        question = "",
+      } = req.body;
+
+      let questions = {};
+
+      if (question !== "") {
+        questions.question = question;
+      }
+
+      // console.log(modelData, req.body.modelDatas);
 
       const user = await db
         .collection("subscribedUsers")
@@ -20,19 +35,24 @@ export default async (req, res) => {
 
       user.forEach((aUser) => {
         console.log(aUser.id);
-        userData.push({id: aUser.id, ...aUser.data()});
+        userData.push({ id: aUser.id, ...aUser.data() });
       });
 
-      console.log(userData, "ndm");
+      // console.log(userData, "ndm");
 
       if (userData[0]) {
-        const useset = db.collection("subscribedUsers").doc(userData[0].id).set({
-          name,
-          email,
-          number,
-          course,
-          createdAt,
-        });
+        const useset = db
+          .collection("subscribedUsers")
+          .doc(userData[0].id)
+          .set({
+            name,
+            email,
+            number,
+            course,
+            createdAt,
+            ...modelData,
+            ...questions,
+          });
 
         return res
           .status(200)
@@ -44,6 +64,8 @@ export default async (req, res) => {
           number,
           course,
           createdAt,
+          ...modelData,
+          ...questions,
         });
 
         return res

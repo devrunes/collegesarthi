@@ -93,7 +93,7 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
               <div className={styles.signup_img}>
-                <Image src="/mail.svg" alt="em" layout="fill" />
+                <Image src="/user.svg" alt="em" layout="fill" />
               </div>
               <p>Full Name</p>
             </div>
@@ -133,7 +133,7 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
               <div className={styles.signup_img}>
-                <Image src="/mail.svg" alt="em" layout="fill" />
+                <Image src="/course.svg" alt="em" layout="fill" />
               </div>
               <p>Course</p>
             </div>
@@ -163,7 +163,7 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
               <div className={styles.signup_img}>
-                <Image src="/mail.svg" alt="em" layout="fill" />
+                <Image src="/number.svg" alt="em" layout="fill" />
               </div>
               <p>Mobile Number</p>
             </div>
@@ -183,7 +183,7 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
               <div className={styles.signup_img}>
-                <Image src="/mail.svg" alt="em" layout="fill" />
+                <Image src="/user.svg" alt="em" layout="fill" />
               </div>
               <p>Password</p>
             </div>
@@ -203,7 +203,7 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
               <div className={styles.signup_img}>
-                <Image src="/mail.svg" alt="em" layout="fill" />
+                <Image src="/locationPin.svg" alt="em" layout="fill" />
               </div>
               <p>City</p>
             </div>

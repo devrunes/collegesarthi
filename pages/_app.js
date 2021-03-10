@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
   const model = useState({
     open: false,
     modelNo: 0,
+    modelData: {},
   });
 
   return (

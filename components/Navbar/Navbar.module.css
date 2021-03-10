@@ -6,7 +6,12 @@
   font-size: 1em;
 }
 .nav_logo {
-  margin: 0em 0.3em;
+  margin: 0em 0em;
+}
+.nav_logoImage {
+  position: relative;
+  height: 50px;
+  width: 120px;
 }
 .nav_input {
   margin: 0em 1em 0em 1em;
@@ -67,15 +72,16 @@
   width: 25px;
   height: 30px;
 }
+
 @media only screen and (min-width: 769px) {
   .nav_cont {
     display: flex;
-    padding: 0.8em 1em;
+    padding: 0.6em 1em;
     justify-content: unset;
     font-size: 1.4vw;
   }
   .nav_logo {
-    margin: 0em 2.3em;
+    margin: 0em .3em;
   }
   .nav_input {
     margin: 0em 2.5em 0em 1.5em;
