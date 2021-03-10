@@ -180,11 +180,12 @@ export default function ReviewComponent({
           )}
           {reviewValues[fieldKey].scholarshipProvided &&
             reviewValues[fieldKey].scholarshipGiven && (
-              <div>
+              <div className={styles.formRow}>
                 <label>How much Scholarship did you receive?</label>
                 <input
                   type="text"
                   name="scholarshipReceived"
+                  className={styles.formSelectInput}
                   value={reviewValues[fieldKey].scholarshipReceived}
                   onChange={(e) =>
                     handleReviewComponentChange(
@@ -218,7 +219,7 @@ export default function ReviewComponent({
     );
   }
 
-  if (currentStep === 9) {
+  if (currentStep === 10) {
     return (
       <div className={styles.reviewWrapper}>
         <nav className={styles.nav}>
@@ -235,21 +236,20 @@ export default function ReviewComponent({
           ))}
         </nav>
         <div className={styles.main}>
-          {/* <div className={styles.formRow}>
+          <div className={styles.formRow}>
             <label>Which Course do you want to Pursue?</label>
             <select
-              name="instituteName"
-              ref={register}
+              name="course"
               className={styles.formSelectInput}
-              value={reviewValues.instituteName}
+              value={reviewValues.course}
               onChange={(e) =>
-                handleReviewComponentChange(e.target.value, fieldKey, "")
+                handleReviewComponentChange(e.target.value, fieldKey, "course")
               }
             >
               <option value="JIIT">JIIT</option>
               <option value="IITD">IITD</option>
             </select>
-          </div> */}
+          </div>
           <div className={styles.actionBtnWrapper}>
             <button
               className={styles.backBtn}

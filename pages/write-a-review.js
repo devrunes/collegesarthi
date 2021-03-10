@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { useAuth } from "../lib/auth";
 
 export default function Review() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(10);
   const [headerValue, setHeaderValue] = useState("Write a Review");
   const [reviewId, setReviewId] = useState("");
   const [reviewValues, setReviewValues] = useState({
@@ -215,6 +215,19 @@ export default function Review() {
           ans={reviewValues.clubsAndAssociation.ans}
           rating={reviewValues.clubsAndAssociation.rating}
           fieldKey="clubsAndAssociation"
+        />
+      )}
+      {currentStep === 10 && (
+        <ReviewComponent
+          currentStep={currentStep}
+          reviewId={reviewId}
+          setCurrentStep={setCurrentStep}
+          ques="Do you wish to continue higher studies?"
+          handleReviewComponentChange={handleReviewComponentChange}
+          // ans={reviewValues.clubsAndAssociation.ans}
+          // rating={reviewValues.clubsAndAssociation.rating}
+          fieldKey="higherStudies"
+          reviewValues={reviewValues}
         />
       )}
     </div>
