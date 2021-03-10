@@ -43,6 +43,14 @@
   border: 1px solid white;
   outline: none;
 }
+.missUpdate_textArea {
+  padding: 1em;
+}
+.missUpdate_textArea > textarea {
+  padding: 0.5em;
+  width: 100%;
+  font-size: 1em;
+}
 @media only screen and (min-width: 600px) {
   .missUpdateSection {
     background: #4a788d;
@@ -84,11 +92,17 @@
     margin-bottom: 20px;
   }
   .MissUpdateForm div > input {
-    font-size: 1.4em;
+    font-size: 1em;
     padding: 7px;
     width: 40vw;
     margin: 0em;
   }
+  .missUpdate_textArea > textarea {
+    padding: 0.5em;
+    width: 100%;
+    font-size: 1.1em;
+  }
+
   .MissUpdateButton {
     background: transparent;
     font-size: 1.7em;

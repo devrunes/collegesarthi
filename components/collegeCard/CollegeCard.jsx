@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./collegeCard.module.css";
 import Image from "next/image";
+import { ModelOpenContext } from "../../lib/authContext";
 
-const CollegeCard = ({card}) => {
-  console.log(card)
+const CollegeCard = ({ card }) => {
+  const [model, setModel] = useContext(ModelOpenContext);
+  const handleApplyClick = () => {
+    setModel({
+      open: true,
+      modelNo: 0,
+      modelData: { collegeName: card.name },
+    });
+  };
   return (
     <div>
       <div className={styles.clgCard_wrapper}>
         <div className={styles.clgCard_image}>
-          <Image
-            src="/college.png"
+          <img
+            src={card.collegeImage || "/college.png"}
             alt="exam logo "
             layout="fill"
             quality={100}
@@ -26,12 +34,11 @@ const CollegeCard = ({card}) => {
               <div>
                 <div className={styles.clgCard_main_fee}>
                   <div className={styles.clgCard_rupee}>
-                    <Image
+                    <img
                       src="/rupee.svg"
                       alt="exam logo "
                       layout="fill"
                       quality={100}
-                      // unoptimized={true}
                     />
                   </div>
                   <div>
@@ -41,21 +48,15 @@ const CollegeCard = ({card}) => {
                 </div>
               </div>
               <div className={styles.clgCard_main_rating}>
-                <p>10/10 Rating</p>
-                <p className={styles.small}>MHRD Ranking</p>
+                <p>{card.rating || 10}/10 Rating</p>
+                <p className={styles.small}>based on user reviews</p>
               </div>
             </div>
           </div>
           <div className={styles.clgCard_main_right}>
             <div className={styles.clgCard_main_fee}>
               <div className={styles.clgCard_inlineImage}>
-                <Image
-                  src="/locationpin.svg"
-                  alt="exam logo "
-                  layout="fill"
-                  quality={100}
-                  // unoptimized={true}
-                />
+                <img src="/locationPin.svg" alt="location pin" layout="fill" />
               </div>
               <div>
                 <p>{card.location}</p>
@@ -63,18 +64,19 @@ const CollegeCard = ({card}) => {
             </div>
             <div className={styles.clgCard_logoSec}>
               <div className={styles.clgCard_logoImage}>
-                <Image
-                  src="/clgLogo.png"
-                  alt="exam logo "
+                <img
+                  src={card.logoImage || "/clgLogo.png"}
+                  alt="college logo "
                   layout="fill"
                   quality={100}
-                  // unoptimized={true}
                 />
               </div>
             </div>
           </div>
         </div>
-        <div className={styles.clgCard_footerButton}>Apply Now</div>
+        <div className={styles.clgCard_footerButton} onClick={handleApplyClick}>
+          Apply Now
+        </div>
       </div>
     </div>
   );

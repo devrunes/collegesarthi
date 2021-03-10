@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import HomeCard from "../HomeCard/HomeCard";
 
-export default function HomeExams({data}) {
+export default function HomeExams({ data }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -13,8 +13,6 @@ export default function HomeExams({data}) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  // const arr = [1, 2, 3, 4, 5, 6];
-  // console.log(window.innerWidth);
   return (
     <section className={styles.homeExamsSection}>
       <div className={styles.homeExamsHeading}>
@@ -25,6 +23,7 @@ export default function HomeExams({data}) {
         <div>
           <div className={styles.homeExamsCardsWrapper}>
             {data.map((exam) => {
+              console.log(exam);
               return (
                 <div className={styles.homeCardWrapper} key={exam}>
                   <HomeCard card={exam} />
@@ -32,21 +31,17 @@ export default function HomeExams({data}) {
               );
             })}
           </div>
-          {/* <div className={styles.homeExamsBtnWrapper}>
-            <button>Apply Here</button>
-          </div> */}
         </div>
       ) : (
         <Slider {...settings}>
-          <div className={styles.homeCardWrapper}>
-            <HomeCard title="Jee Main" />
-          </div>
-          <div className={styles.homeCardWrapper}>
-            <HomeCard title="Jee Main" />
-          </div>
-          <div className={styles.homeCardWrapper}>
-            <HomeCard title="Jee Main" />
-          </div>
+          {data.map((exam) => {
+            console.log(exam);
+            return (
+              <div className={styles.homeCardWrapper} key={exam}>
+                <HomeCard card={exam} />
+              </div>
+            );
+          })}
         </Slider>
       )}
     </section>

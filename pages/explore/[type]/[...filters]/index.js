@@ -47,7 +47,7 @@ export async function getServerSideProps(context) {
     // console.log(ECCRef)
   });
 
-  var snapshot = await ECCRef.get();
+  var snapshot = await ECCRef.where("development", "==", false).get();
 
   // console.log("fetched..", snapshot)
 
@@ -82,7 +82,7 @@ export async function getServerSideProps(context) {
     );
   }
 
-  console.log(data, "piyush");
+  // console.log(data, "piyush");
   return {
     props: { data, query: context.query }, // will be passed to the page component as props
   };

@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Notifications.module.css";
+import { ModelOpenContext } from "../../lib/authContext";
 
 export default function Notifications() {
+  const [model, setModel] = useContext(ModelOpenContext);
+  const handleAskAQuestionClick = () => {
+    setModel({ open: true, modelNo: 1, modelData: {} });
+  };
   return (
     <div>
-      <button className={styles.notify_buttons}>
+      <button
+        className={styles.notify_buttons}
+        onClick={handleAskAQuestionClick}
+      >
         <div style={{ paddingRight: "10px" }}>
           <svg
             width="25"
@@ -22,7 +30,6 @@ export default function Notifications() {
         Ask a Question
       </button>
       <button className={styles.notify_buttons}>
-        {" "}
         <div style={{ paddingRight: "10px", float: "left" }}>
           <svg
             width="25"

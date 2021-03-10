@@ -5,8 +5,6 @@ import styles from "./Lobby.module.css";
 import HomeCard from "../../HomeCard/HomeCard";
 import CollegeCard from "../../collegeCard/CollegeCard";
 
-// import firebase from "../../../lib/firebase";
-
 const FilterItem = ({ queryParent, type, filters, value }) => {
   const checkRest = (ty) => {
     let check = true;
@@ -145,7 +143,7 @@ const FilterItem = ({ queryParent, type, filters, value }) => {
               </svg>
             )}
           </span>
-          {value}
+          {value.replace(/-/g, " ")}
         </div>
       </a>
     </Link>
@@ -158,26 +156,179 @@ const Lobby = ({ query, data }) => {
   const filtersType = [
     {
       type: "stream",
-      values: ["Engineering", "Medical", "Law", "Management", "Defence"],
+      values: [
+        "Engineering",
+        "Medical",
+        "Hotel-Management",
+        "Design",
+        "Agriculture",
+        "Commerce",
+        "Aviation",
+        "Defence",
+        "Law",
+      ],
     },
     {
       type: "course",
       values: {
-        all: ["sare"],
-        engineering: ["bsc", "btech", "mtech"],
-        medical: ["Mbbs", "phd"],
+        engineering: [
+          "bsc",
+          "btech",
+          "mtech",
+          "Electrical-Engineering",
+          "Civil-Engineering",
+          "Metallurgical-And-Materials-Engineering",
+          "Aerospace-Engineering",
+          "Mechanical-Engineering",
+          "Computer-Science-And-Engineering",
+          "Chemical-Engineering",
+          "Naval-Architecture-&-Ocean-Engineering",
+          "Engineering-Physics",
+          "Textile-Engineering",
+          "Material-Science-&-Engineering",
+          "Maths-&-computing-Engineering",
+          "Power-Engineering",
+          "Industrial-Production-Engineering",
+          "Biotechnology",
+          "Biochemical-Engineering",
+          "Polymer-science-and-technology",
+          "Electronics-and-communications-Engineering",
+          "Biomedical-Engineering",
+          "Artificial-Intelligence",
+          "Instrumentation-and-control-Engineering",
+          "Naval-Architecture-and-Ocean-Engineering",
+        ],
+        medical: [
+          "MBBS",
+          "BSc-Nursing-Hons",
+          "BSc-Nursing-Post-Basic",
+          "Bachelor-of-optometry",
+          "Bachelor-of-Physiotherapy",
+          "BAMS",
+          "Bsc",
+          "BDC",
+          "B.Pharm",
+          "BBA-Healthcare-and-hospital-management",
+        ],
+        agriculture: ["B.sc", "M.sc", "PHD", "Diploma", "Bsc-Hons"],
+        commerce: [
+          "B.Com-Hons",
+          "B.com",
+          "M.com",
+          "PG-Diploma",
+          "M.com",
+          "B.B.A",
+          "M.B.A",
+        ],
+        law: [
+          "B.A.",
+          "LL.B-Hons",
+          "LL.B.",
+          "L.L.M",
+          "L.L.M-corporate-laws",
+          "L.L.M-IPR",
+          "PhD",
+          "M.Phill",
+          "L.L.D",
+          "B.S.W.LLB",
+          "B.B.A.LLB",
+          "B.B.A",
+          "PG-Diploma-in-Labourlaw",
+          "Air-space-law",
+        ],
+        aviation: [
+          "Bsc-Aviation",
+          "Msc-in-aviation",
+          "commercial-pilot-license",
+          "PG-diploma-in-airline-operation",
+          "BE-in-Aircraft-maintainance-engineering",
+          "B.Tech",
+          "M.Tech",
+          "MS-Research",
+          "PhD-Aerospace engineering",
+        ],
+        "hotel-management": [
+          "Bsc-in-Hospitality",
+          "Bsc-in-Hotel-Administration",
+          "Msc-in-Hotel-Administration",
+          "PGD-in-accomodation-operation-and-management",
+          "Diploma-in-bakery-and-cofectionery",
+          "Diploma-in-food-and-beverages",
+          "BHM",
+          "Diploma-in-Hotel-Management",
+          "Craftsmanship-course-in-food-production-and-patisserie",
+          "Craftsmanship-course-in-food-and-beverage-service",
+          "Diploma-in-food-production",
+          "bachelor-of-Hotel-management",
+          "Bachelor-of-Hotel-management-and-catering-technology",
+        ],
+        design: [
+          "B.Des",
+          "M.Des",
+          "Doctoral-program-in-design",
+          "BA-Hons-fashion-design",
+          "BA-Hons-communication-design",
+          "BA-Hons-interior-design",
+          "BA-Hons-fashion-business",
+          "MA-fashion-design",
+          "MA-fashion-business",
+          "B.F.tech",
+          "M.F.tech",
+        ],
+
+        defence: [
+          "Bsc-in-Security-and-intelligence",
+          "bsc-in-Millitary-science",
+          "Bsc-in-computer-science",
+          "Bsc-Cyber-security",
+        ],
       },
     },
     {
       type: "state",
-      values: ["UP", "MP", "Bihar"],
+      values: [
+        "UP",
+        "Uttarakhand",
+        "Punjab",
+        "Maharashtra",
+        "Gujarat",
+        "Tamilnadu",
+        "Andhra-pradesh",
+        "Haryana",
+        "Jammu",
+        "Kerala",
+        "MP",
+        "Orissa",
+        "Telangana",
+        "karnataka",
+        "NewDelhi",
+        "Westbengal",
+        "Rajasthan",
+        "Assam",
+      ],
     },
     {
       type: "city",
       values: {
-        up: ["Kanpur", "Agra"],
-        mp: ["Bhopal", "Indore", "Ujjain"],
-        bihar: ["Ara", "chapra", "patna"],
+        up: ["Aligarh", "Meerut", "Amethi", "kanpur", "Lucknow", "Varanasi"],
+        mp: ["Indore"],
+        gujarat: ["Gandhinagar", "Ahmedabad"],
+        maharashtra: ["Mumbai", "Gondia", "Boramati", "Pune"],
+        uttarakhand: ["Patnagar", "Roorkie"],
+        punjab: ["Patiala", "Chandigarh", "Ludhiana"],
+        jammu: ["jammu"],
+        puducherry: ["puducherry"],
+        kerala: ["Kochi"],
+        orrisa: ["Bhuvneshwar"],
+        telengana: ["Hydrabad"],
+        karnataka: ["Bengaluru"],
+        newdelhi: ["Delhi"],
+        westbengal: ["Kharagpur", "Kolkata"],
+        rajasthan: ["Jodhpur"],
+        assam: ["Guwahati"],
+        tamilnadu: ["Coimbator", "Chennai", "Tiruchirapalli", "Vellore"],
+        "andhra-pradesh": ["Guntur"],
+        hariyana: ["hissar"],
       },
     },
   ];
@@ -384,7 +535,6 @@ const Lobby = ({ query, data }) => {
     // console.debug(url, "run");
   }, [query]);
 
-  const dData = [1, 2, 3, 4];
   return (
     <div className={styles.lobbyWrapper}>
       <div className={styles.lobbyFilterWrapper}>
@@ -593,7 +743,8 @@ const Lobby = ({ query, data }) => {
                     );
                   } else if (
                     item.type === "city" &&
-                    filters.state !== "all-India"
+                    filters.state !== "all-India" &&
+                    query.type !== "exams"
                   ) {
                     return (
                       <div onClick={() => handleSetCurMObFil(item.type)}>
@@ -643,7 +794,7 @@ const Lobby = ({ query, data }) => {
                               />
                             </svg>
                           )}
-                          {item}
+                          {item.replace(/-/g, " ")}
                         </div>
                       );
                     })
@@ -694,7 +845,7 @@ const Lobby = ({ query, data }) => {
                               />
                             </svg>
                           )}
-                          {item}
+                          {item.replace(/-/g, " ")}
                         </div>
                       );
                     })

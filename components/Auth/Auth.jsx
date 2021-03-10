@@ -5,7 +5,7 @@ import Login from "./Login/Login";
 import Signup from "./Signup/Signup";
 
 const Auth = ({ handleCross }) => {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(1);
   const p1Ref = useRef(null);
   const parentRef = useRef(null);
   const handleCurChange = () => {

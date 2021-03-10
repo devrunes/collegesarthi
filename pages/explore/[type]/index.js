@@ -15,7 +15,7 @@ export async function getServerSideProps(context) {
 
   let ECCRef = db.collection(params.type);
 
-  var snapshot = await ECCRef.get();
+  var snapshot = await ECCRef.where("development", "==", false).get();
 
   var data = [];
 

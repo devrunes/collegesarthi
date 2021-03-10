@@ -4,10 +4,3 @@ module.exports = withImages({
     domains: ["firebasestorage.googleapis.com"],
   },
 });
-// const withImages = require("next-images");
-// module.exports = {
-//   images: {
-//     domains: ["firebasestorage.googleapis.com"],
-//   },
-// };
-// module.exports = withImages();
