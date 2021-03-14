@@ -11,7 +11,7 @@ export default function HomeCard({ card }) {
   const handleGetUpdateClick = () => {
     setAuthOpen(!authOpen);
   };
-  // console.log(card);
+
   if (!card) {
     return "";
   }
@@ -41,7 +41,11 @@ export default function HomeCard({ card }) {
         </div>
         <div className={styles.footer}>
           {Object.entries(card.links).map(([key, value]) => (
-            <Link key={key + value} href={`${card.url}#${value}`}>
+            <Link
+              key={key + value}
+              href={`${card.url}#${value}`}
+              prefetch={false}
+            >
               <a className={styles.footerLinks}> {key} |&nbsp; </a>
             </Link>
           ))}

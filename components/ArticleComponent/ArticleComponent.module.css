@@ -8,7 +8,7 @@
   width: 100%;
   font-weight: 800;
   font-size: 2em;
-  background-color: #4a788d;
+  background-color: #333366;
   color: white;
   padding: 0.5em;
 }
@@ -54,7 +54,7 @@
   }
   .ExamGetUpdateButton {
     background: #f2f2f2;
-    color: #4a788d;
+    color: #333366;
     height: max-content;
     font-size: 1.5em;
     font-weight: 400;

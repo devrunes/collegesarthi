@@ -27,7 +27,7 @@ export default function Home({ data }) {
     <div className={styles.container}>
       <Head>
         <title>CollegeSarthi</title>
-        <link rel="icon" href="/iconMain.ico" />
+        {/* <link rel="icon" href="/iconMain.ico" /> */}
       </Head>
 
       <main className={styles.main}>
@@ -38,7 +38,7 @@ export default function Home({ data }) {
         <Explore />
 
         <MissUpdate
-          themeColor="#4a788d"
+          themeColor="#333366"
           heading="Never miss an Update!"
           headingSup="You focus on your studies , we take care of rest"
         />
@@ -67,9 +67,9 @@ export async function getServerSideProps() {
   }
   // console.log(data, "asd");
   docs.forEach((doc) => {
-    data.push(doc.data());
+    const { links, prelog, examName, url } = doc.data();
+    data.push({ links, prelog, examName, url });
   });
-  // console.log(data, "piyush");
   return {
     props: { data }, // will be passed to the page component as props
   };

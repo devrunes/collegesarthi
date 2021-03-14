@@ -21,7 +21,7 @@
 }
 
 .auth_cont_p1 {
-  background-color: #4a788d;
+  background-color: #333366;
   color: white;
   padding: 2em 2em;
   position: relative;
@@ -65,7 +65,7 @@
     justify-content: unset;
   }
   .auth_cont_p1 {
-    background-color: #4a788d;
+    background-color: #333366;
     color: white;
     padding: 2em 2em;
     position: relative;

@@ -127,7 +127,7 @@
   bottom: 0;
   text-align: center;
   padding: 0.5em 1em;
-  background-color: #4a788d;
+  background-color: #333366;
   width: 100%;
   color: white;
   cursor: pointer;
@@ -139,7 +139,7 @@
   background-color: #fff;
 }
 .lobbyOpenFilterButtons > div:nth-child(2) {
-  background-color: #4a788d;
+  background-color: #333366;
   color: white;
 }
 .lobbyMobFilItemCont {

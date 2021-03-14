@@ -5,13 +5,13 @@
   /* background-color: #f2f2f2; */
 }
 .homeExamsHeading {
-  border-left: 5px solid #4a788d;
-  padding-left: 1%;
+  border-left: 5px solid #333366;
+  padding-left: 2%;
 }
 
 .homeExamsHeading > h2 {
   margin: 0;
-  color: #4a788d;
+  color: #333366;
   font-size: 2.5em;
 }
 
@@ -25,9 +25,12 @@
   justify-content: space-between;
   padding: 2% 5%;
 }
-
+.homeCardWrapper > div {
+  height: 100%;
+}
 .homeCardWrapper {
   width: 45%;
+  padding: 0.5em;
 }
 
 .homeExamsBtnWrapper {

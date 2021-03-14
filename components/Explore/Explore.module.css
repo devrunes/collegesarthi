@@ -3,13 +3,13 @@
 }
 
 .exploreHomeHeading {
-  border-left: 5px solid #4a788d;
+  border-left: 5px solid #333366;
   padding-left: 5%;
 }
 
 .exploreHomeHeading > h2 {
   margin: 0;
-  color: #4a788d;
+  color: #333366;
   font-size: 2.5em;
 }
 
@@ -34,13 +34,13 @@
 }
 
 .exploreHomeCard:hover {
-  background-color: #4a788d;
+  background-color: #333366;
 }
 
 .exploreHomeCardImageWrapper > svg {
   width: 100%;
   height: 55px;
-  color: #4a788d;
+  color: #333366;
 }
 
 .exploreHomeCard:hover > a > div > svg {
@@ -52,7 +52,7 @@
 }
 
 .exploreCardHeading {
-  color: #4a788d;
+  color: #333366;
   font-size: 22px;
   text-align: center;
   padding: 3%;

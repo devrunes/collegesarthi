@@ -1,5 +1,5 @@
 .login_cont {
-  background-color: #4a788d;
+  background-color: #333366;
   height: 100%;
   width: 100%;
   color: white;
@@ -51,6 +51,7 @@
   padding: 1em 1em;
   border: none;
   background-color: white;
+  border-radius: 10px;
 }
 
 .login_button_cont {
@@ -64,7 +65,7 @@
   border: none;
   background-color: white;
   border-radius: 8px;
-  color: #4a788d;
+  color: #333366;
 }
 .linkSup {
   font-size: 1em;
@@ -114,7 +115,7 @@
     width: 27px;
   }
   .login_form_sec > input {
-    width: 90%;
+    width: 100%;
     font-size: 1em;
   }
   .login_button_cont {
@@ -140,9 +141,9 @@
     font-size: 0.9em;
   }
   .login_form_sec > input {
-    width: 50%;
+    width: 70%;
     font-size: 0.9em;
-    padding: 0.8em 1em;
+    padding: 1em 1em;
   }
   .login_button {
     font-size: 1.2em;

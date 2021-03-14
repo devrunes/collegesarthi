@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Explore.module.css";
 import Image from "next/image";
-// import ExploreSvg from '../../assets/ExploreSvg.svg'
 
 export default function Explore() {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];

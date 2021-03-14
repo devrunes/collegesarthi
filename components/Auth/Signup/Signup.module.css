@@ -45,6 +45,7 @@
   padding: 0.8em 1em;
   border: none;
   background-color: #f2f2f2;
+  border-radius: 10px;
 }
 
 .formSelectInput {
@@ -66,7 +67,7 @@
   font-size: 1.3em;
   width: 100%;
   border: none;
-  background-color: #4a788d;
+  background-color: #333366;
   border-radius: 8px;
   color: white;
 }
@@ -166,7 +167,7 @@
     font-size: 1em;
     width: 100%;
     border: none;
-    background-color: #4a788d;
+    background-color: #333366;
     border-radius: 8px;
     color: white;
   }

@@ -26,7 +26,7 @@ const Auth = ({ handleCross }) => {
       p1Ref.current.style.backgroundColor = "white";
       p1Ref.current.style.color = "#4F4F4F";
     } else {
-      p1Ref.current.style.backgroundColor = "#4a788d";
+      p1Ref.current.style.backgroundColor = "#333366";
       p1Ref.current.style.color = "white";
     }
   }, [current]);

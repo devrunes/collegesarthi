@@ -16,8 +16,8 @@ export default function MissUpdate(props) {
   // console.debug(user, "user", props);
   const backColor = themeColor;
   const [email, setEmail] = useState("");
-  const [name, setName] = useState(user ? user.name : "");
-  const [number, setNumber] = useState(user ? user.number : "0");
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
   const [course, setCourse] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -38,7 +38,7 @@ export default function MissUpdate(props) {
       email: yup.string().email().required(),
       course: yup.string().required(),
     });
-    let intNumber = parseInt(number);
+    let intNumber = parseInt(number ? number : 0);
     try {
       const validationResult = await schema.validate(
         { name, number: intNumber, email, course },
@@ -91,7 +91,7 @@ export default function MissUpdate(props) {
     if (user) {
       setEmail(user ? user.email : "");
       setName(user ? user.name : "");
-      setNumber(user ? user.number : "0");
+      setNumber(user ? user.number : "");
     }
 
     if (modelData) {
@@ -102,7 +102,7 @@ export default function MissUpdate(props) {
     return () => {
       setEmail("");
       setName("");
-      setNumber("0");
+      setNumber("");
       setModelData({});
     };
   }, [user, modelData]);
