@@ -75,11 +75,11 @@ export default function ReviewComponent({
         currentStep,
         payload: { [fieldKey]: { ans, rating } },
       });
-      if (currentStep <= 8) setCurrentStep((currentStep) => currentStep + 1);
+      if (currentStep <= 9) setCurrentStep((currentStep) => currentStep + 1);
       else {
         setIsCompleted(true);
         setTimeout(() => {
-          //   router.push("/");
+          router.push("/");
         }, 2000);
       }
     }

@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function user() {
   const { auth, user } = useAuth();
 
-  console.log("user", user);
+  // console.log("user", user);
 
   if (!auth || !auth.isLogin) {
     return <div>You need to Login</div>;

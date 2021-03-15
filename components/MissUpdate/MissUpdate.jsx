@@ -13,11 +13,11 @@ export default function MissUpdate(props) {
     buttonText = "Yes, I'm in",
     modelType = "",
   } = props;
-  // console.debug(user, "user", props);
+  console.log(user, "user", props);
   const backColor = themeColor;
   const [email, setEmail] = useState("");
-  const [name, setName] = useState(user ? user.name : "");
-  const [number, setNumber] = useState(user ? user.number : "0");
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("0");
   const [course, setCourse] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");

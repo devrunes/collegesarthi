@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { useAuth } from "../lib/auth";
 
 export default function Review() {
-  const [currentStep, setCurrentStep] = useState(10);
+  const [currentStep, setCurrentStep] = useState(0);
   const [headerValue, setHeaderValue] = useState("Write a Review");
   const [reviewId, setReviewId] = useState("");
   const [reviewValues, setReviewValues] = useState({
@@ -38,14 +38,14 @@ export default function Review() {
   });
 
   const router = useRouter();
-  console.log("router", router);
+  // console.log("router", router);
   const { user } = useAuth();
 
   useEffect(() => {
     const fetchReview = async (id) => {
-      console.log("id is", id);
+      // console.log("id is", id);
       const res = await axios.get(`/api/review?id=${id}`);
-      console.log("response from get", res.data);
+      // console.log("response from get", res.data);
       const { currentStep, ...rest } = res.data;
       setCurrentStep(currentStep);
       setReviewValues({ ...rest });
@@ -100,8 +100,8 @@ export default function Review() {
     setCurrentStep((currentStep) => currentStep - 1);
   };
 
-  console.log("currentStep", currentStep);
-  console.log("reviewValues", reviewValues);
+  // console.log("currentStep", currentStep);
+  // console.log("reviewValues", reviewValues);
 
   return (
     <div className={styles.formWrapper}>

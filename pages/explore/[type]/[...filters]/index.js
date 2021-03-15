@@ -54,7 +54,7 @@ export async function getServerSideProps(context) {
   var data = [];
   // console.log(snapshot)
   if (snapshot.empty) {
-    console.log(true);
+    // console.log(true);
     return {
       props: { data },
       // data: [],

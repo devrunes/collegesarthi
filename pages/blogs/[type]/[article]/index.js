@@ -34,7 +34,7 @@ export async function getStaticProps({ params }) {
 
   const cityRef = db.collection(params.type).doc(params.article);
   const doc = await cityRef.get();
-  console.log(doc.data());
+  // console.log(doc.data());
   if (!doc.exists) {
     return {
       notFound: true,
