@@ -2,6 +2,7 @@ import React from "react";
 import MissUpdate from "../MissUpdate/MissUpdate";
 import styles from "./Footer.module.css";
 import Link from "next/link";
+import NewsLetter from "../NewsLetter/NewsLetter";
 export default function Footer() {
   const explore = [1, 2, 3, 4, 5];
   const exams = [1, 2, 3, 4, 5];
@@ -14,6 +15,7 @@ export default function Footer() {
           heading="Never miss an Update!"
           headingSup="You focus on your studies , we take care of rest"
         />
+        <NewsLetter />
         <div className={styles.mu_subsec}>
           <div className={styles.Footer_row}>
             <div className={styles.col}>

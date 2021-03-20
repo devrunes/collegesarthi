@@ -1,0 +1,111 @@
+@import "../../styles/vars.scss";
+
+.newsletter {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.headingWrapper {
+  padding: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.heading {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: $primary-color;
+  width: 100%;
+  text-align: center;
+}
+
+.benefitsWrapper {
+  display: flex;
+  padding: 1rem 0;
+}
+
+.benefit {
+  padding: 0 0.5rem;
+  font-size: 0.6rem;
+  border-right: 1px solid #333;
+}
+
+.benefit:last-child {
+  border: none;
+}
+
+.formWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.7rem;
+  border-radius: 0.2rem;
+  border: none;
+  background-color: #f2f2f2;
+}
+
+.submitBtn {
+  background-color: $primary-color;
+  border: none;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  width: 10rem;
+  margin-top: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .topbar {
+    flex-wrap: nowrap;
+    padding: 0 5rem;
+  }
+  .heading {
+    font-size: 3rem;
+  }
+  .benefit {
+    padding: 0 0.5rem;
+    font-size: 1rem;
+  }
+
+  .benefit:last-child {
+    border: none;
+  }
+
+  .formWrapper {
+    flex-wrap: nowrap;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .input {
+    padding: 0.7rem;
+    margin: 0.7rem;
+    width: 20%;
+  }
+
+  .submitBtn {
+    padding: 0.7rem;
+    width: 10rem;
+    margin-top: 0;
+    margin-left: 0.5rem;
+  }
+}
