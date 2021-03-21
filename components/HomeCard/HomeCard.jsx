@@ -40,15 +40,19 @@ export default function HomeCard({ card }) {
           </p>
         </div>
         <div className={styles.footer}>
-          {Object.entries(card.links).map(([key, value]) => (
-            <Link
-              key={key + value}
-              href={`${card.url}#${value}`}
-              prefetch={false}
-            >
-              <a className={styles.footerLinks}> {key} |&nbsp; </a>
-            </Link>
-          ))}
+          {
+            card.links.map(sub => (
+              Object.entries(sub).map(([key, value]) => (
+                <Link
+                  key={key + value}
+                  href={`${card.url}#${value}`}
+                  prefetch={false}
+                >
+                  <a className={styles.footerLinks}> {key} |&nbsp; </a>
+                </Link>
+              ))
+            ))
+          }
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ const ArticleComponent = (props) => {
       setData(doc);
     }
   }, [props.doc]);
-  // console.log(router)
+  console.log(data)
   const handleAuthClick = () => {
     setAuthOpen(!authOpen);
   };
@@ -98,7 +98,7 @@ const ArticleComponent = (props) => {
                 <ArticleContent data={data.content} />
               </div>
               <div className={styles.Notifications}>
-                <Notifications />
+                <Notifications notis={data.notifications} papers={data.samplePapers}/>
               </div>
             </div>
           </div>
