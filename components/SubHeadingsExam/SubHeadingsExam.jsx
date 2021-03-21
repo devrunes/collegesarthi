@@ -10,12 +10,14 @@ export default function SubHeadingsExam(props) {
                  <ul className={styles.ListItem} >{subHeading}</ul>
             ))} */}
         {
-            Object.entries(data).map(([key, value]) => (
-                <ul className={styles.ListItem}>
-                <Link href={`/blogs/${query.type}/${query.article}#${value}`}>
-                    <a>{key}</a>
-                </Link>
-                </ul>
+            data.map(subHeading => (
+                Object.entries(subHeading).map(([key, value]) => (
+                    <ul className={styles.ListItem}>
+                    <Link href={`/blogs/${query.type}/${query.article}#${value}`}>
+                        <a>{key}</a>
+                    </Link>
+                    </ul>
+                ))
             ))
         }
         </div>

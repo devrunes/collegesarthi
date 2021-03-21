@@ -33,7 +33,10 @@
   font-size: 1.2em;
 }
 .NotificationListData {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 300;
-  line-height: 2em;
+  line-height: 1.3em;
+}
+.NotificationListData > ol > li {
+  padding: 1vw 0vw;
 }

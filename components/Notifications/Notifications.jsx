@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import styles from "./Notifications.module.css";
 import { ModelOpenContext } from "../../lib/authContext";
 
-export default function Notifications() {
+export default function Notifications({notis, papers}) {
   const [model, setModel] = useContext(ModelOpenContext);
   const handleAskAQuestionClick = () => {
     setModel({ open: true, modelNo: 1, modelData: {} });
   };
+  console.log(papers)
   return (
     <div>
       <button
@@ -30,6 +31,7 @@ export default function Notifications() {
         Ask a Question
       </button>
       <button className={styles.notify_buttons}>
+      <a href={papers}>
         <div style={{ paddingRight: "10px", float: "left" }}>
           <svg
             width="25"
@@ -46,7 +48,7 @@ export default function Notifications() {
             <path d="M7.5 12H16.5V13.5H7.5V12Z" fill="white" />
           </svg>
         </div>
-        Sample Papers
+       Sample Papers</a>
       </button>
       <div>
         <div className={styles.NotificationListHeading}>
@@ -68,11 +70,11 @@ export default function Notifications() {
         </div>
         <div className={styles.NotificationListData}>
           <ol>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            {
+              notis.map(note => (
+              <li>{note}</li>
+              ))
+            }
           </ol>
         </div>
       </div>
