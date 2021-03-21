@@ -29,8 +29,8 @@ export default function Step1({
     resolver: yupResolver(schema),
   });
 
-  console.log(errors);
-  console.log(reviewValues.examTaken);
+  // console.log(errors);
+  // console.log(reviewValues.examTaken);
 
   return (
     <form onSubmit={handleSubmit(handleSaveBtn)}>

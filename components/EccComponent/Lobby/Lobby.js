@@ -2,120 +2,124 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Lobby.module.css";
-import HomeCard from "../../HomeCard/HomeCard";
-import CollegeCard from "../../collegeCard/CollegeCard";
+import dynamic from "next/dynamic";
 
-const FilterItem = ({ queryParent, type, filters, value }) => {
-  const checkRest = (ty) => {
-    let check = true;
-    let keys = Object.keys(filters);
-    // console.log(keys);
-    let idx = keys.indexOf(ty);
-    for (let i = 0; i < idx; i++) {
-      if (filters[ty].toLowerCase() === "up") {
-        console.log(keys[i]);
-      }
-      // if (keys[i] !== type) {
-      if (keys[i] === "stream" && filters[keys[i]] !== "all-stream") {
-        check = false;
-      }
-      if (keys[i] === "course" && filters[keys[i]] !== "all-courses") {
-        check = false;
-      }
-      if (keys[i] === "state" && filters[keys[i] !== "All-India"]) {
-        check = false;
-      }
+const HomeCard = dynamic(() => import("../../HomeCard/HomeCard"), {
+  ssr: false,
+});
+
+const CollegeCard = dynamic(() => import("../../collegeCard/CollegeCard"), {
+  ssr: false,
+});
+
+const checkRest1 = (ty, filters) => {
+  let check = true;
+  let keys = Object.keys(filters);
+  let idx = keys.indexOf(ty);
+  for (let i = 0; i < idx; i++) {
+    if (filters[ty].toLowerCase() === "up") {
     }
-    if (idx === 0) {
+    if (keys[i] === "stream" && filters[keys[i]] !== "all-stream") {
       check = false;
     }
-    return check;
-  };
-  const urlGenerator = () => {
-    let url = `/explore/${queryParent}`;
-    let streamUrl, courseUrl, stateUrl, cityUrl;
-    let keys = Object.keys(filters);
+    if (keys[i] === "course" && filters[keys[i]] !== "all-courses") {
+      check = false;
+    }
+    if (keys[i] === "state" && filters[keys[i] !== "All-India"]) {
+      check = false;
+    }
+  }
+  if (idx === 0) {
+    check = false;
+  }
+  return check;
+};
 
-    if (type === "stream") {
-      if (filters.stream === value) {
-        if (filters.state !== "all-India") {
-          streamUrl = "all-stream";
-        } else streamUrl = "";
-      } else streamUrl = value;
-    } else {
-      streamUrl = filters.stream;
-    }
+const urlGenerator1 = (queryParent, type, filters, value) => {
+  let url = `/explore/${queryParent}`;
+  let streamUrl, courseUrl, stateUrl, cityUrl;
+  let keys = Object.keys(filters);
 
-    if (type === "course") {
-      if (filters.course === value) {
-        if (filters.state !== "all-India") {
-          courseUrl = "all-courses";
-        } else courseUrl = "";
-      } else courseUrl = value;
-    } else {
-      courseUrl = filters.course;
-    }
+  if (type === "stream") {
+    if (filters.stream === value) {
+      if (filters.state !== "all-India") {
+        streamUrl = "all-stream";
+      } else streamUrl = "";
+    } else streamUrl = value;
+  } else {
+    streamUrl = filters.stream;
+  }
 
-    if (type === "state") {
-      if (filters.state === value) {
-        stateUrl = "";
-      } else stateUrl = value;
-    } else {
-      if (keys.indexOf(type) < keys.indexOf("state")) {
-        if (filters.state === "all-India") {
-          stateUrl = "";
-        } else {
-          stateUrl = filters.state;
-        }
-      } else if (keys.indexOf(type) > keys.indexOf("state")) {
-        stateUrl = filters.state;
-      }
-    }
-
-    if (type === "city") {
-      if (filters.city === value) {
-        cityUrl = "";
-      } else cityUrl = value;
-    } else {
-      cityUrl = filters.city;
-    }
-
-    if (type === "state" && filters.state === value) {
-      cityUrl = "";
-    }
-    if (type === "state" && filters.state !== value) {
-      cityUrl = "";
-    }
-    if (type === "stream") {
+  if (type === "course") {
+    if (filters.course === value) {
       if (filters.state !== "all-India") {
         courseUrl = "all-courses";
       } else courseUrl = "";
-    }
-    if (
-      type === "stream" &&
-      filters.course === "all-courses" &&
-      filters.state === "all-India"
-    ) {
-      courseUrl = "";
-      stateUrl = "";
-    }
-    // console.log(checkRest(type), filters[type])
-    if (filters[type] === value && checkRest(type)) {
-      courseUrl = "";
-      stateUrl = "";
-      streamUrl = "";
-      cityUrl = "";
-    }
+    } else courseUrl = value;
+  } else {
+    courseUrl = filters.course;
+  }
 
-    return `${url}${streamUrl !== "" ? "/" + streamUrl : ""}${
-      courseUrl !== "" ? "/" + courseUrl : ""
-    }${stateUrl !== "" ? "/" + stateUrl : ""}/${cityUrl}`;
-  };
+  if (type === "state") {
+    if (filters.state === value) {
+      stateUrl = "";
+    } else stateUrl = value;
+  } else {
+    if (keys.indexOf(type) < keys.indexOf("state")) {
+      if (filters.state === "all-India") {
+        stateUrl = "";
+      } else {
+        stateUrl = filters.state;
+      }
+    } else if (keys.indexOf(type) > keys.indexOf("state")) {
+      stateUrl = filters.state;
+    }
+  }
+
+  if (type === "city") {
+    if (filters.city === value) {
+      cityUrl = "";
+    } else cityUrl = value;
+  } else {
+    cityUrl = filters.city;
+  }
+
+  if (type === "state" && filters.state === value) {
+    cityUrl = "";
+  }
+  if (type === "state" && filters.state !== value) {
+    cityUrl = "";
+  }
+  if (type === "stream") {
+    if (filters.state !== "all-India") {
+      courseUrl = "all-courses";
+    } else courseUrl = "";
+  }
+  if (
+    type === "stream" &&
+    filters.course === "all-courses" &&
+    filters.state === "all-India"
+  ) {
+    courseUrl = "";
+    stateUrl = "";
+  }
+  // console.log(checkRest(type), filters[type])
+  if (filters[type] === value && checkRest1(type, filters)) {
+    courseUrl = "";
+    stateUrl = "";
+    streamUrl = "";
+    cityUrl = "";
+  }
+  return `${url}${streamUrl !== "" ? "/" + streamUrl : ""}${
+    courseUrl !== "" ? "/" + courseUrl : ""
+  }${stateUrl !== "" ? "/" + stateUrl : ""}/${cityUrl}`;
+};
+
+const FilterItem = ({ queryParent, type, filters, value }) => {
   return (
     <Link
       href={{
-        pathname: urlGenerator(),
-        // pathname: `/explore/${queryParent}/${type === "stream" ? value : filters.stream}/${type === "course" ? value : filters.course}/${type === "state" ? value : filters.state}/${type === "city" ? value : filters.city}`,
+        pathname: urlGenerator1(queryParent, type, filters, value),
       }}
     >
       <a>
@@ -151,8 +155,6 @@ const FilterItem = ({ queryParent, type, filters, value }) => {
 };
 
 const Lobby = ({ query, data }) => {
-  // const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
   const filtersType = [
     {
       type: "stream",
@@ -351,14 +353,12 @@ const Lobby = ({ query, data }) => {
   const handleFilterClick = () => {};
 
   const handleFilterItemClick = (idx) => {
-    // console.log(DrpItemTypeRef.current[idx]);
     DrpItemTypeRef.current[idx].childNodes[1].classList.toggle(
       styles.lobbyDrpItemContShow
     );
     DrpItemTypeRef.current[idx].childNodes[0].childNodes[1].classList.toggle(
       styles.lobbyFilArrOpen
     );
-    console.log(DrpItemTypeRef.current[idx].childNodes[0].childNodes[1]);
   };
 
   const filterClickHandler = () => {
@@ -367,123 +367,11 @@ const Lobby = ({ query, data }) => {
 
   const handleSetCurMObFil = (type) => {
     let idx = filtersType.findIndex((el) => el.type === type);
-    console.debug(type, idx);
+    // console.debug(type, idx);
     setCurMobFil(idx);
   };
 
-  const checkRest = (ty) => {
-    let check = true;
-    let keys = Object.keys(filters);
-    // console.log(keys);
-    let idx = keys.indexOf(ty);
-    for (let i = 0; i < idx; i++) {
-      if (filters[ty].toLowerCase() === "up") {
-        console.log(keys[i]);
-      }
-      // if (keys[i] !== type) {
-      if (keys[i] === "stream" && filters[keys[i]] !== "all-stream") {
-        check = false;
-      }
-      if (keys[i] === "course" && filters[keys[i]] !== "all-courses") {
-        check = false;
-      }
-      if (keys[i] === "state" && filters[keys[i] !== "All-India"]) {
-        check = false;
-      }
-    }
-    if (idx === 0) {
-      check = false;
-    }
-    return check;
-  };
-
-  const urlGenerator = (queryParent, type, filters, value) => {
-    // console.debug(queryParent, type, filters, value);
-    let url = `/explore/${queryParent}`;
-    let streamUrl, courseUrl, stateUrl, cityUrl;
-    let keys = Object.keys(filters);
-
-    if (type === "stream") {
-      if (filters.stream === value) {
-        if (filters.state !== "all-India") {
-          streamUrl = "all-stream";
-        } else streamUrl = "";
-      } else streamUrl = value;
-    } else {
-      streamUrl = filters.stream;
-    }
-
-    if (type === "course") {
-      if (filters.course === value) {
-        if (filters.state !== "all-India") {
-          courseUrl = "all-courses";
-        } else courseUrl = "";
-      } else courseUrl = value;
-    } else {
-      courseUrl = filters.course;
-    }
-
-    if (type === "state") {
-      if (filters.state === value) {
-        stateUrl = "";
-      } else stateUrl = value;
-    } else {
-      if (keys.indexOf(type) < keys.indexOf("state")) {
-        if (filters.state === "all-India") {
-          stateUrl = "";
-        } else {
-          stateUrl = filters.state;
-        }
-      } else if (keys.indexOf(type) > keys.indexOf("state")) {
-        stateUrl = filters.state;
-      }
-    }
-
-    if (type === "city") {
-      if (filters.city === value) {
-        cityUrl = "";
-      } else cityUrl = value;
-    } else {
-      cityUrl = filters.city;
-    }
-
-    if (type === "state" && filters.state === value) {
-      cityUrl = "";
-    }
-    if (type === "state" && filters.state !== value) {
-      cityUrl = "";
-    }
-    if (type === "stream") {
-      if (filters.state !== "all-India") {
-        courseUrl = "all-courses";
-      } else courseUrl = "";
-    }
-    if (
-      type === "stream" &&
-      filters.course === "all-courses" &&
-      filters.state === "all-India"
-    ) {
-      courseUrl = "";
-      stateUrl = "";
-    }
-    // console.log(checkRest(type), filters[type])
-    if (filters[type] === value && checkRest(type)) {
-      courseUrl = "";
-      stateUrl = "";
-      streamUrl = "";
-      cityUrl = "";
-    }
-    // if (filters.stream==="all-stream" && filters.course === "all-courses" && filters.state === "all-India") {
-    //   courseUrl = "";
-    //   stateUrl = "";
-    // }
-    return `${url}${streamUrl !== "" ? "/" + streamUrl : ""}${
-      courseUrl !== "" ? "/" + courseUrl : ""
-    }${stateUrl !== "" ? "/" + stateUrl : ""}/${cityUrl}`;
-  };
-
   const handleUrlGeneration = (val, idx) => {
-    // let nFilters = filters;
     const nFilters = JSON.parse(JSON.stringify(filters));
     if (nFilters[filtersType[idx].type] !== val) {
       nFilters[filtersType[idx].type] = val;
@@ -499,14 +387,19 @@ const Lobby = ({ query, data }) => {
       }
     }
     // console.debug(filters);
-    let nextUrl = urlGenerator(query.type, filtersType[idx].type, filters, val);
-    // console.debug(nFilters);
-    // console.debug(nextUrl);
+    let nextUrl = urlGenerator1(
+      query.type,
+      filtersType[idx].type,
+      filters,
+      val
+    );
+    
     setNextUrl(nextUrl);
     setFilters(nFilters);
   };
 
   useEffect(() => {
+    setMobFilOpen(false);
     setFilters({
       stream: query.filters
         ? query.filters[0]
@@ -532,7 +425,6 @@ const Lobby = ({ query, data }) => {
       });
     }
     setNextUrl(url);
-    // console.debug(url, "run");
   }, [query]);
 
   return (
@@ -548,11 +440,11 @@ const Lobby = ({ query, data }) => {
           if (items.type === "stream") {
             return (
               <div
+                key={`${items.type + i}`}
                 ref={(el) => {
                   if (!DrpItemTypeRef[i]) {
                     DrpItemTypeRef.current[i] = el;
                   }
-                  // console.log(i, DrpItemTypeRef.current);
                 }}
                 className={styles.lobbyDropdownWrapper}
               >
@@ -566,8 +458,9 @@ const Lobby = ({ query, data }) => {
                   </div>
                 </div>
                 <div className={styles.lobbyDrpItemContHidden}>
-                  {items.values.map((val) => (
+                  {items.values.map((val, idx) => (
                     <FilterItem
+                      key={`${val + idx}`}
                       queryParent={query.type}
                       type={items.type}
                       filters={filters}
@@ -586,11 +479,11 @@ const Lobby = ({ query, data }) => {
             ) {
               return (
                 <div
+                  key={`${items.type + i}`}
                   ref={(el) => {
                     if (!DrpItemTypeRef[i]) {
                       DrpItemTypeRef.current[i] = el;
                     }
-                    // console.log(i, DrpItemTypeRef.current);
                   }}
                   className={styles.lobbyDropdownWrapper}
                 >
@@ -604,15 +497,18 @@ const Lobby = ({ query, data }) => {
                     </div>
                   </div>
                   <div className={styles.lobbyDrpItemContHidden}>
-                    {items.values[filters.stream.toLowerCase()].map((val) => (
-                      <FilterItem
-                        queryParent={query.type}
-                        type={items.type}
-                        filters={filters}
-                        value={val}
-                        onCLick={handleFilterClick}
-                      />
-                    ))}
+                    {items.values[filters.stream.toLowerCase()].map(
+                      (val, idx) => (
+                        <FilterItem
+                          key={`${val + idx}`}
+                          queryParent={query.type}
+                          type={items.type}
+                          filters={filters}
+                          value={val}
+                          onCLick={handleFilterClick}
+                        />
+                      )
+                    )}
                   </div>
                 </div>
               );
@@ -620,11 +516,11 @@ const Lobby = ({ query, data }) => {
           } else if (items.type === "state") {
             return (
               <div
+                key={`${items.type + i}`}
                 ref={(el) => {
                   if (!DrpItemTypeRef[i]) {
                     DrpItemTypeRef.current[i] = el;
                   }
-                  // console.log(i, DrpItemTypeRef.current);
                 }}
                 className={styles.lobbyDropdownWrapper}
               >
@@ -638,8 +534,9 @@ const Lobby = ({ query, data }) => {
                   </div>
                 </div>
                 <div className={styles.lobbyDrpItemContHidden}>
-                  {items.values.map((val) => (
+                  {items.values.map((val, idx) => (
                     <FilterItem
+                      key={`${val + idx}`}
                       queryParent={query.type}
                       type={items.type}
                       filters={filters}
@@ -659,11 +556,11 @@ const Lobby = ({ query, data }) => {
             ) {
               return (
                 <div
+                  key={`${items.type + i}`}
                   ref={(el) => {
                     if (!DrpItemTypeRef[i]) {
                       DrpItemTypeRef.current[i] = el;
                     }
-                    // console.log(i, DrpItemTypeRef.current);
                   }}
                   className={styles.lobbyDropdownWrapper}
                 >
@@ -677,15 +574,18 @@ const Lobby = ({ query, data }) => {
                     </div>
                   </div>
                   <div className={styles.lobbyDrpItemContHidden}>
-                    {items.values[filters.state.toLowerCase()].map((val) => (
-                      <FilterItem
-                        queryParent={query.type}
-                        type={items.type}
-                        filters={filters}
-                        value={val}
-                        onCLick={handleFilterClick}
-                      />
-                    ))}
+                    {items.values[filters.state.toLowerCase()].map(
+                      (val, idx) => (
+                        <FilterItem
+                          key={`${val + idx}`}
+                          queryParent={query.type}
+                          type={items.type}
+                          filters={filters}
+                          value={val}
+                          onCLick={handleFilterClick}
+                        />
+                      )
+                    )}
                   </div>
                 </div>
               );

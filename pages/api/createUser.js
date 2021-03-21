@@ -18,7 +18,7 @@ export default async (req, res) => {
 
       res.status(200).json({ userId });
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       res.status(500).json({ err: "Something went wrong" });
     }
   } else {

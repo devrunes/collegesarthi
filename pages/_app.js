@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { AuthProvider } from "../lib/auth";
 import Navbar from "../components/Navbar/Navbar";
-import Model from "../components/model/model";
+import dynamic from "next/dynamic";
+
+// import Model from "../components/model/model";
 import { AuthOpenContext, ModelOpenContext } from "../lib/authContext";
 import "../styles/globals.scss";
 import Head from "next/head";
+
+const Model = dynamic(() => import("../components/model/model"), {
+  ssr: false,
+});
 
 function MyApp({ Component, pageProps }) {
   const authOpen = useState(false);

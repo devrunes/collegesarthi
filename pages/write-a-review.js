@@ -41,10 +41,6 @@ export default function Review() {
   // console.log("router", router);
   const { user, auth } = useAuth();
 
-  if (!auth || !auth.isLogin) {
-    return <div>You need to Login</div>;
-  }
-
   useEffect(() => {
     const fetchReview = async (id) => {
       // console.log("id is", id);
@@ -107,7 +103,7 @@ export default function Review() {
   // console.log("currentStep", currentStep);
   // console.log("reviewValues", reviewValues);
 
-  return (
+  return auth && auth.isLogin ? (
     <div className={styles.formWrapper}>
       <header className={styles.reviewHeader}>{headerValue}</header>
       {currentStep === 0 && (
@@ -235,5 +231,7 @@ export default function Review() {
         />
       )}
     </div>
+  ) : (
+    <div>Please Login To continue</div>
   );
 }

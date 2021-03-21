@@ -13,7 +13,7 @@ export default function HomeExams({ data }) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  console.log("data", data);
+  // console.log("data", data);
   return (
     <section className={styles.homeExamsSection}>
       <div className={styles.homeExamsHeading}>
@@ -35,7 +35,7 @@ export default function HomeExams({ data }) {
       ) : (
         <Slider {...settings}>
           {data.map((exam) => {
-            console.log(exam);
+            // console.log(exam);
             return (
               <div className={styles.homeCardWrapper} key={exam}>
                 <HomeCard card={exam} />

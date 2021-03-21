@@ -16,7 +16,7 @@ const Auth = ({ handleCross }) => {
     }
   };
   const handleBackDropClick = (e) => {
-    console.log(parentRef.current, e.target);
+    // console.log(parentRef.current, e.target);
     if (parentRef.current === e.target) {
       handleCross();
     }

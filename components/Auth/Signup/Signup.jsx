@@ -77,7 +77,7 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
         setAuthOpen(!authOpen);
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setError({ auth: err.message });
     }
   };

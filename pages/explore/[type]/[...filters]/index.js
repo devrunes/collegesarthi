@@ -29,39 +29,28 @@ export async function getServerSideProps(context) {
       : "all-India",
     city: query.filters ? (query.filters[3] ? query.filters[3] : "") : "",
   };
-  // console.log(filters, "here");
-  // console.log(query);
 
   let ECCRef = db.collection(query.type);
 
   const queryList = Object.keys(filters);
 
   queryList.forEach((item) => {
-    // console.log(filters[item])
     if (filters[item] !== "")
       ECCRef = ECCRef.where(
         `filters.${filters[item].toLowerCase()}`,
         "==",
         true
       );
-    // console.log(ECCRef)
   });
 
   var snapshot = await ECCRef.where("development", "==", false).get();
 
-  // console.log("fetched..", snapshot)
-
   var data = [];
-  // console.log(snapshot)
   if (snapshot.empty) {
-    // console.log(true);
     return {
       props: { data },
-      // data: [],
     };
   }
-  // console.log("ajsdbnajksbdnkj")
-  // console.log(data, "asd");
 
   snapshot.forEach((doc) => {
     if (query.type === "exams") {
@@ -69,7 +58,6 @@ export async function getServerSideProps(context) {
       data.push({ links, prelog, examName, url });
     }
     if (query.type === "colleges") {
-      // const { links, prelog, examName, url } = doc.data();
       data.push(doc.data());
     }
   });
@@ -82,9 +70,8 @@ export async function getServerSideProps(context) {
     );
   }
 
-  // console.log(data, "piyush");
   return {
-    props: { data, query: context.query }, // will be passed to the page component as props
+    props: { data, query: context.query },
   };
 }
 

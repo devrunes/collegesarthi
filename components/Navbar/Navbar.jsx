@@ -2,22 +2,21 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import { AuthOpenContext } from "../../lib/authContext";
 import { useAuth } from "../../lib/auth";
 import styles from "./Navbar.module.css";
-// import { Squash as Hamburger } from "hamburger-react";
-import Image from "next/image";
-// import Login from "../Auth/Login/Login";
-// import Auth from "../Auth/Auth";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+
+// import HamburgerMenu from "./hamBurgerMenu/hamburgerMenu.jsx";
+
 const Auth = dynamic(() => import("../Auth/Auth"));
-// const useAuth = dynamic(() =>
-//   import("../../lib/auth").then((mod) => mod.useAuth)
-// );
+const  HamburgerMenu = dynamic(() => import("./hamBurgerMenu/hamburgerMenu.jsx"));
+
+
 const Hamburger = dynamic(() =>
   import("hamburger-react").then((mod) => mod.Squash)
 );
 
 export default function Navbar() {
-  const { auth, signOut } = useAuth();
+  const { user, auth, signOut } = useAuth();
   const [isOpen, setOpen] = useState(false);
   const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
 
@@ -25,6 +24,7 @@ export default function Navbar() {
   let inputRef = useRef(null);
   let logoRef = useRef(null);
   let authButRef = useRef(null);
+  let userNameRef = useRef(null);
   // let testRef = useRef(null);
 
   const handleAuthClick = () => {
@@ -40,18 +40,22 @@ export default function Navbar() {
       logoRef.current.style.display = "none";
       authButRef.current.style.display = "block";
       document.body.style.overflow = "hidden";
+      userNameRef.current.style.display = "block";
     } else {
       inputRef.current.style.display = "block";
       logoRef.current.style.display = "block";
       authButRef.current.style.display = "none";
       hamMenuRef.current.style.display = "none";
       document.body.style.overflow = "scroll";
+      userNameRef.current.style.display = "none";
     }
     if (window.innerWidth >= 769) {
       authButRef.current.style.display = "block";
+      userNameRef.current.style.display = "block";
     }
-    console.log(window.innerWidth);
+    // console.log(window.innerWidth);
   }, [isOpen]);
+
   return (
     <div className={styles.nav_cont}>
       <div ref={logoRef} className={styles.nav_logo}>
@@ -68,12 +72,12 @@ export default function Navbar() {
         </Link>
       </div>
       <div ref={inputRef} className={styles.nav_input}>
-        <input
+        {/* <input
           type="text"
           name="search"
           id="nav_search"
           placeholder="Search Anything"
-        />
+        /> */}
       </div>
       <div className={styles.nav_links}>
         <div>
@@ -92,13 +96,22 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
+      {auth && auth.isLogin ? (
+        <div ref={userNameRef} className={styles.nav_userName}>
+          <Link href="/user">
+            <a>
+              {user && user.name
+                ? user.name.charAt(0).toUpperCase() + user.name.slice(1)
+                : ""}
+            </a>
+          </Link>
+        </div>
+      ) : (
+        <div ref={userNameRef} className={styles.nav_userName}></div>
+      )}
       <div ref={authButRef} className={styles.nav_authButon}>
         {auth && auth.isLogin ? (
           <div>
-            {/* <Link href="/">
-            <a>Dashboard link.</a>
-          </Link>
-           */}
             <div>
               <button
                 className={styles.nav_authButton_button}
@@ -129,6 +142,9 @@ export default function Navbar() {
         />
       </div>
       <div className={styles.nav_ham_menu} ref={hamMenuRef}>
+        <HamburgerMenu setOpen={setOpen} />
+      </div>
+      {/* <div className={styles.nav_ham_menu} ref={hamMenuRef}>
         <div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
@@ -137,22 +153,27 @@ export default function Navbar() {
                 alt="exam logo "
                 layout="fill"
                 quality={100}
-                // unoptimized={true}
               />
             </div>
-            <a href="/explore/exams">Exams</a>
+            <Link href="/explore/exams">
+              <a>Exams</a>
+            </Link>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamCol.svg" alt="exam logo " layout="fill" />
             </div>
-            <a href="/explore/colleges">Colleges</a>
+            <Link href="/explore/colleges">
+              <a>Colleges</a>
+            </Link>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamWar.svg" alt="exam logo " layout="fill" />
             </div>
-            <a href="write-a-review">Write A review</a>
+            <Link href="/write-a-review">
+              <a>Write a review</a>
+            </Link>
           </div>
         </div>
         <hr />
@@ -161,60 +182,77 @@ export default function Navbar() {
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamEng.svg" alt="exam logo " layout="fill" />
             </div>
-            <a href="/explore/exams/engineering">Engineering</a>
+            <Link href="/explore/exams/engineering">
+              <a>Engineering</a>
+            </Link>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamMed.svg" alt="exam logo " layout="fill" />
             </div>
-            <a href="/explore/exams/medical">Medical</a>
+            <Link href="/explore/exams/medical">
+              <a>Medical</a>
+            </Link>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamHM.svg" alt="exam logo " layout="fill" />
             </div>
-            <a href="/explore/exams/hotel-management">Hotel Management</a>
+            <Link href="/explore/exams/hotel-management">
+              <a>Hotel Management</a>
+            </Link>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamDes.svg" alt="exam logo " layout="fill" />
             </div>
-            <a href="/explore/exams/design">Design</a>
+            <Link href="/explore/exams/design">
+              <a>Design</a>
+            </Link>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamAgr.svg" alt="exam logo " layout="fill" />
             </div>
-            <a href="/explore/exams/agriculture">Agriculture</a>
+            <Link href="/explore/exams/agriculture">
+              <a>Agriculture</a>
+            </Link>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamCom.svg" alt="exam logo " layout="fill" />
             </div>
-            <a href="/explore/exams/commerce">Commerce</a>
+            <Link href="/explore/exams/commerce">
+              <a>Commerce</a>
+            </Link>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamAvi.svg" alt="exam logo " layout="fill" />
             </div>
-            <a href="/explore/exams/aviation">Aviation</a>
+            <Link href="/explore/exams/aviation">
+              <a>Aviation</a>
+            </Link>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamDef.svg" alt="exam logo " layout="fill" />
             </div>
-            <a href="/explore/exams/defence">Defence Services</a>
+            <Link href="/explore/exams/defence">
+              <a>Defence Services</a>
+            </Link>
           </div>
           <div className={styles.nav_ham_menu_link}>
             <div className={styles.nav_ham_menu_image}>
               <Image src="/hamLaw.svg" alt="exam logo " layout="fill" />
             </div>
-            Law
+            <Link href="/explore/exams/law">
+              <a>Law</a>
+            </Link>
           </div>
         </div>
-      </div>
+      </div> */}
       {authOpen ? <Auth handleCross={handleAuthClick} /> : ""}
-      {/* <Auth/> */}
     </div>
   );
 }

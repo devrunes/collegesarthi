@@ -13,7 +13,7 @@ export default function MissUpdate(props) {
     buttonText = "Yes, I'm in",
     modelType = "",
   } = props;
-  console.log(user, "user", props);
+  // console.log(user, "user", props);
   const backColor = themeColor;
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -54,7 +54,7 @@ export default function MissUpdate(props) {
       err.inner.forEach((error) => {
         errors[error.path] = error.message;
       });
-      console.log(errors);
+      // console.log(errors);
       return {
         isValid: false,
         errors,
@@ -89,9 +89,9 @@ export default function MissUpdate(props) {
   };
   useEffect(() => {
     if (user) {
-      setEmail(user ? user.email : "");
-      setName(user ? user.name : "");
-      setNumber(user ? user.number : "");
+      setEmail(user && user.email ? user.email : "");
+      setName(user && user.name? user.name : "");
+      setNumber(user && user.number ? user.number : "");
     }
 
     if (modelData) {
@@ -199,7 +199,7 @@ export default function MissUpdate(props) {
             name="question"
             id="question"
             placeholder="Write your question"
-            cols="30"
+            cols="20"
             rows="10"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}

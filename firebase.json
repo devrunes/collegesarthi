@@ -14,7 +14,16 @@
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "max-age=604800"
+            "value": "max-age=2592000"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|svg)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=2592000"
           }
         ]
       },
@@ -23,7 +32,7 @@
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "max-age=86400"
+            "value": "max-age=604800"
           }
         ]
       }

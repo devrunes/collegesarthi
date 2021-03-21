@@ -16,13 +16,7 @@ const CollegeCard = ({ card }) => {
     <div>
       <div className={styles.clgCard_wrapper}>
         <div className={styles.clgCard_image}>
-          <img
-            src={card.collegeImage || "/college.png"}
-            alt="exam logo "
-            layout="fill"
-            quality={100}
-            // unoptimized={true}
-          />
+          <img src={card.collegeImage || "/college.png"} alt="exam logo " />
         </div>
         <div className={styles.clgCard_main}>
           <div className={styles.clgCard_main_left}>
@@ -34,12 +28,7 @@ const CollegeCard = ({ card }) => {
               <div>
                 <div className={styles.clgCard_main_fee}>
                   <div className={styles.clgCard_rupee}>
-                    <img
-                      src="/rupee.svg"
-                      alt="exam logo "
-                      layout="fill"
-                      quality={100}
-                    />
+                    <img src="/rupee.svg" alt="exam logo " />
                   </div>
                   <div>
                     <p>{card.fee}</p>
@@ -56,7 +45,7 @@ const CollegeCard = ({ card }) => {
           <div className={styles.clgCard_main_right}>
             <div className={styles.clgCard_main_fee}>
               <div className={styles.clgCard_inlineImage}>
-                <img src="/locationPin.svg" alt="location pin" layout="fill" />
+                <img src="/locationPin.svg" alt="location pin" />
               </div>
               <div>
                 <p>{card.location}</p>
@@ -67,8 +56,6 @@ const CollegeCard = ({ card }) => {
                 <img
                   src={card.logoImage || "/clgLogo.png"}
                   alt="college logo "
-                  layout="fill"
-                  quality={100}
                 />
               </div>
             </div>

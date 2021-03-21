@@ -34,7 +34,7 @@ export default async (req, res) => {
       let userData = [];
 
       user.forEach((aUser) => {
-        console.log(aUser.id);
+        // console.log(aUser.id);
         userData.push({ id: aUser.id, ...aUser.data() });
       });
 
@@ -73,7 +73,7 @@ export default async (req, res) => {
           .json({ message: "We will Notify you from now on....." });
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       return res.status(500).json({ err: "Something went wrong" });
     }
   } else {

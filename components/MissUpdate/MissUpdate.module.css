@@ -3,6 +3,7 @@
   text-align: center;
   padding: 5%;
   width: 100%;
+  border-radius: 10px;
 }
 .MissUpdateSVG {
   width: 50px;
@@ -31,7 +32,7 @@
 .MissUpdateForm div > input {
   width: 100%;
   font-size: 1em;
-  padding: 0.5em;
+  padding: 1em;
   margin: 0.4em 0;
   border-radius: 10px;
   border: none;
@@ -52,6 +53,8 @@
   padding: 0.5em;
   width: 100%;
   font-size: 1em;
+  border-radius: 10px;
+  border: none;
 }
 @media only screen and (min-width: 600px) {
   .missUpdateSection {
@@ -100,9 +103,9 @@
     margin: 0em;
   }
   .missUpdate_textArea > textarea {
-    padding: 0.5em;
-    width: 100%;
-    font-size: 1.1em;
+    padding: 1em;
+    width: 90%;
+    font-size: 1.2em;
   }
 
   .MissUpdateButton {

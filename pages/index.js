@@ -10,7 +10,7 @@ const Footer = dynamic(() => import("../components/Footer/Footer"));
 const HomeExams = dynamic(() => import("../components/HomeExams/HomeExams"), {
   ssr: false,
 });
-import { useAuth } from "../lib/auth";
+// import { useAuth } from "../lib/auth";
 
 const HomeColleges = dynamic(
   () => import("../components/HomeColleges/HomeColleges"),
@@ -19,15 +19,13 @@ const HomeColleges = dynamic(
   }
 );
 
-export default function Home({ data }) {
-  const { auth } = useAuth();
-  // console.log(data, "auth data");
+export default function Home({ collegeData, examData }) {
+  // const { auth } = useAuth();
 
   return (
     <div className={styles.container}>
       <Head>
         <title>CollegeSarthi</title>
-        {/* <link rel="icon" href="/iconMain.ico" /> */}
       </Head>
 
       <main className={styles.main}>
@@ -42,13 +40,13 @@ export default function Home({ data }) {
           heading="Never miss an Update!"
           headingSup="You focus on your studies , we take care of rest"
         />
-        <HomeExams data={data} />
+        <HomeExams data={examData} />
         <MissUpdate
           themeColor="#1C8549"
           heading="Get complete study material!"
           headingSup="Previous Year Question Papers, Preparation Kit and much more!"
         />
-        <HomeColleges />
+        <HomeColleges data={collegeData} />
         <Footer />
       </main>
     </div>
@@ -56,21 +54,32 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  var res = db.collection("exams").where("displayOnHome", "==", true);
-  var docs = await res.get();
-  var data = [];
-  if (docs.empty) {
-    return {
-      props: { data },
-      // data: [],
-    };
-  }
-  // console.log(data, "asd");
-  docs.forEach((doc) => {
+  var examRef = db.collection("exams").where("displayOnHome", "==", true);
+  var examDocs = await examRef.get();
+
+  var examData = [];
+
+  // if (examDocs.empty) {
+  //   return {
+  //     props: { examData },
+  //   };
+  // }
+
+  examDocs.forEach((doc) => {
     const { links, prelog, examName, url } = doc.data();
-    data.push({ links, prelog, examName, url });
+    examData.push({ links, prelog, examName, url });
   });
+
+  var collegeRef = db.collection("colleges").where("displayOnHome", "==", true);
+  var collegeDocs = await collegeRef.get();
+
+  var collegeData = [];
+
+  collegeDocs.forEach((doc) => {
+    collegeData.push(doc.data());
+  });
+
   return {
-    props: { data }, // will be passed to the page component as props
+    props: { collegeData, examData }, // will be passed to the page component as props
   };
 }

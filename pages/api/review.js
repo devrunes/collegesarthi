@@ -12,7 +12,7 @@ export default async (req, res) => {
       if (currentStep === 0) {
         const ref = db.collection("reviews").doc();
         newId = ref.id;
-        console.log(newId);
+        console.log(newId, userId);
         const respo = await db
           .collection("users")
           .doc(userId)

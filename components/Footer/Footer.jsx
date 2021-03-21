@@ -10,11 +10,11 @@ export default function Footer() {
   return (
     <div>
       <section>
-        <MissUpdate
+        {/* <MissUpdate
           themeColor="#333333"
           heading="Never miss an Update!"
           headingSup="You focus on your studies , we take care of rest"
-        />
+        /> */}
         <NewsLetter />
         <div className={styles.mu_subsec}>
           <div className={styles.Footer_row}>

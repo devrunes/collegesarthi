@@ -16,7 +16,7 @@ const Model = () => {
   const parentRef = useRef(null);
 
   const handleBackDropClick = (e) => {
-    console.log(parentRef.current, e.target);
+    // console.log(parentRef.current, e.target);
     if (parentRef.current === e.target) {
       handleCrossClick();
     }
@@ -57,7 +57,7 @@ const Model = () => {
         <MissUpdate
           modelType="askAQuestion"
           user={auth && auth.isLogin ? user : false}
-          themeColor="#1C8549"
+          // themeColor="#1C8549"
           heading="Ask A question"
           headingSup="You ask we Answer"
           buttonText="Submit"

@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './SubHeadingsExam.module.css';
 export default function SubHeadingsExam(props) {
     const {data, query} = props
-    console.log(data,Object.keys(data))
+    // console.log(data,Object.keys(data))
     return (
         <div>
             {/* {data.map(subHeading => (

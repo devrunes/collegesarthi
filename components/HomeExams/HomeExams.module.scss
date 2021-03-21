@@ -2,7 +2,6 @@
 
 .homeExamsSection {
   padding: 5%;
-  /* background-color: #f2f2f2; */
 }
 .homeExamsHeading {
   border-left: 5px solid #333366;
@@ -23,7 +22,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 2% 5%;
+  padding: 2% 2%;
 }
 .homeCardWrapper > div {
   height: 100%;
@@ -60,6 +59,15 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .homeExamsSection {
+    margin: 5% 0;
+  }
+  .homeExamsHeading > h2 {
+    font-size: 1.8em;
+  }
+  .homeExamsHeading {
+    padding-left: 5%;
+  }
   .homeCardWrapper {
     width: 100%;
   }

@@ -30,6 +30,7 @@ function useProvideAuth() {
   const handleAuthChange = async (authState) => {
     if (!authState) {
       setUser({});
+      setAuth({});
       return;
     }
 
@@ -39,7 +40,7 @@ function useProvideAuth() {
         setUser(res.data);
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
       });
     // Formats response into my required state.
     const formattedAuth = formatAuthState(authState);
@@ -51,22 +52,6 @@ function useProvideAuth() {
     // Sets loading state to false.
     setLoading(false);
   };
-
-  /**
-   * Callback function used for response from firebase OAuth.
-   * Store user object returned in firestore.
-   * @param firebase User Credential
-   */
-  // const signedIn = async (response) => {
-  //   if (!response.user) {
-  //     throw new Error("No User");
-  //   }
-
-  //   // Format user into my required state.
-  //   const authedUser = formatAuthState(response.user);
-  //   // firestore database function
-  //   // createUser(authedUser.uid, authedUser);
-  // };
 
   /**
    * Callback for when firebase signOut.
@@ -107,7 +92,7 @@ function useProvideAuth() {
         isError: false,
       };
     } catch (err) {
-      console.log(err);
+      // console.log(err);
 
       throw err;
       // return {
