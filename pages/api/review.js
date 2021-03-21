@@ -20,6 +20,19 @@ export default async (req, res) => {
             reviews: firestore.FieldValue.arrayUnion({
               id: newId,
               name: payload.instituteName,
+              complete: false,
+            }),
+          });
+      }
+      if (currentStep === 10) {
+        const respo = await db
+          .collection("users")
+          .doc(userId)
+          .update({
+            reviews: firestore.FieldValue.arrayUnion({
+              id: newId,
+              name: payload.instituteName,
+              complete: true,
             }),
           });
       }

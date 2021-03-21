@@ -13,6 +13,8 @@ export default function user() {
     return <div>You need to Login</div>;
   }
 
+  console.log("user.reviews", user.reviews);
+
   return (
     <div className={styles.userWrapper}>
       <div className={styles.leftSection}>
@@ -25,7 +27,7 @@ export default function user() {
           user.reviews &&
           user.reviews.map((review) => (
             <div key={review.id} className={styles.reviewWrapper}>
-              <div>Incomplete Review</div>
+              <div>{review.complete ? "Completed" : "Incomplete Review"}</div>
               <div>{review.name}</div>
               <Link
                 href={{
@@ -34,7 +36,7 @@ export default function user() {
                 }}
                 as="write-a-review"
               >
-                Complete Now
+                {review.complete ? "Completed" : "Complete Now"}
               </Link>
             </div>
           ))}
