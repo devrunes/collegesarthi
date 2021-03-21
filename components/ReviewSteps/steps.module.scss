@@ -68,6 +68,10 @@
   justify-content: center;
 }
 
+.errorMsg {
+  color: red;
+}
+
 @media only screen and (min-width: 600px) {
   .formWrapper > form {
     width: 50vw;

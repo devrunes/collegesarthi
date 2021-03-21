@@ -58,12 +58,10 @@ export default function Navbar() {
         <Link href="/">
           <a>
             <div className={styles.nav_logoImage}>
-              <Image
-                src={"/logoMain.svg"}
+              <img
+                src="/logoMain.png"
                 alt="college logo "
-                layout="fill"
-                quality={100}
-                // unoptimized={true}
+                className={styles.nav_logo_image}
               />
             </div>
           </a>

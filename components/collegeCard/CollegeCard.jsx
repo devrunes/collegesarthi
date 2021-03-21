@@ -5,7 +5,6 @@ import { ModelOpenContext } from "../../lib/authContext";
 
 const CollegeCard = ({ card }) => {
   const [model, setModel] = useContext(ModelOpenContext);
-  // console.log(card)
   const handleApplyClick = () => {
     setModel({
       open: true,
@@ -17,7 +16,7 @@ const CollegeCard = ({ card }) => {
     <div>
       <div className={styles.clgCard_wrapper}>
         <div className={styles.clgCard_image}>
-          <Image
+          <img
             src={card.collegeImage || "/college.png"}
             alt="exam logo "
             layout="fill"
@@ -35,12 +34,11 @@ const CollegeCard = ({ card }) => {
               <div>
                 <div className={styles.clgCard_main_fee}>
                   <div className={styles.clgCard_rupee}>
-                    <Image
+                    <img
                       src="/rupee.svg"
                       alt="exam logo "
                       layout="fill"
                       quality={100}
-                      // unoptimized={true}
                     />
                   </div>
                   <div>
@@ -58,13 +56,7 @@ const CollegeCard = ({ card }) => {
           <div className={styles.clgCard_main_right}>
             <div className={styles.clgCard_main_fee}>
               <div className={styles.clgCard_inlineImage}>
-                <Image
-                  src="/locationpin.svg"
-                  alt="lopcation pin"
-                  layout="fill"
-                  quality={100}
-                  // unoptimized={true}
-                />
+                <img src="/locationPin.svg" alt="location pin" layout="fill" />
               </div>
               <div>
                 <p>{card.location}</p>
@@ -72,12 +64,11 @@ const CollegeCard = ({ card }) => {
             </div>
             <div className={styles.clgCard_logoSec}>
               <div className={styles.clgCard_logoImage}>
-                <Image
+                <img
                   src={card.logoImage || "/clgLogo.png"}
                   alt="college logo "
                   layout="fill"
                   quality={100}
-                  // unoptimized={true}
                 />
               </div>
             </div>

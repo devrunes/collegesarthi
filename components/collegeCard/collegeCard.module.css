@@ -12,8 +12,11 @@
 .clgCard_image {
   display: flex;
   height: 150px;
-  padding: 1em;
   position: relative;
+}
+
+.clgCard_image > img {
+  width: 100%;
 }
 .clgCard_main {
   display: flex;
@@ -70,6 +73,10 @@
   position: relative;
   width: 11vw;
   height: 11vw;
+}
+
+.clgCard_logoImage > img {
+  width: 100%;
 }
 
 .clgCard_main_fee p:nth-child(1) {

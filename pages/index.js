@@ -21,7 +21,7 @@ const HomeColleges = dynamic(
 
 export default function Home({ data }) {
   const { auth } = useAuth();
-  console.log(data, "auth data");
+  // console.log(data, "auth data");
 
   return (
     <div className={styles.container}>

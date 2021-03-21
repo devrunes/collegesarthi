@@ -13,7 +13,7 @@ export default function MissUpdate(props) {
     buttonText = "Yes, I'm in",
     modelType = "",
   } = props;
-  // console.debug(user, "user", props);
+  console.log(user, "user", props);
   const backColor = themeColor;
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");

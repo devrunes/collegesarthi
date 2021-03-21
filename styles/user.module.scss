@@ -1,0 +1,56 @@
+@import "./vars.scss";
+
+.userWrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.leftSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: 8% 3%;
+}
+
+.rightSection {
+  width: 100%;
+}
+.userName {
+  color: $primary-color;
+  font-weight: bold;
+  padding: 2%;
+  margin-top: 5%;
+  font-size: 1.3em;
+  width: 100%;
+  text-align: center;
+}
+.userEmail {
+  color: #777;
+}
+.reviewWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #ccc;
+  padding: 2%;
+  margin: 1%;
+}
+
+.reviewWrapper > a {
+  color: $primary-color;
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 768px) {
+  .leftSection {
+    width: 25%;
+    border-right: 1px solid #ccc;
+    height: 90vh;
+    padding: 8% 3%;
+  }
+  .rightSection {
+    width: 75%;
+  }
+}

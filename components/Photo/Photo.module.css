@@ -1,22 +1,11 @@
-.ImageContainer{
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    height: 80vw;
-    /* width: 90%; */
+.ImageContainer {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  /* width: 90%; */
 }
-@media only screen and (max-width: 700px){
-    .ImageContainer{
-        height: 57vw;
-    }
-}
-@media only screen and (min-width: 988px){
-    .ImageContainer{
-        height: 45vw;
-    }
-}
-@media only screen and (min-width: 1366px){
-    .ImageContainer{
-        height: 30vw;
-    }
+
+.ImageContainer > img {
+  width: 100%;
 }

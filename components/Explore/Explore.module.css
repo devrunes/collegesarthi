@@ -21,7 +21,7 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  padding: 1em 8em;
+  padding: 1em 2em;
 }
 
 .exploreHomeCard {
@@ -68,118 +68,107 @@
   font-size: 18px;
 }
 
+@media only screen and (max-width: 1200px) {
+  .exploreHomeSection {
+    padding: 5vw 2%;
+  }
 
+  .exploreHomeHeading > h2 {
+    font-size: 2em;
+  }
 
-@media only screen and (max-width: 1200px){
-    .exploreHomeSection {
-        padding: 2%;
-      }
+  .exploreHomeHeading > p {
+    margin-top: 8px;
+  }
 
-      .exploreHomeHeading > h2 {
-        font-size: 2em;
-      }
-      
-      .exploreHomeHeading > p {
-        margin-top: 8px;
-      }
-      
-      .exploreCardContainer {
-        padding: 1em 2em;
-      }
-      
-      .exploreHomeCard {
-        padding: 4% 2%;
-        width: 30%;
-      }
-      
-      .exploreHomeCardImageWrapper > svg {
-        height: 40px;
-      }
-      
-      .exploreCardHeading {
-        font-size: 20px;
-      }
-      
-      
-      .exploreCardContent > div {
-        font-size: 14px;
-      }
-      
+  .exploreCardContainer {
+    padding: 1em 2em;
+  }
+
+  .exploreHomeCard {
+    padding: 4% 2%;
+    width: 30%;
+  }
+
+  .exploreHomeCardImageWrapper > svg {
+    height: 40px;
+  }
+
+  .exploreCardHeading {
+    font-size: 20px;
+  }
+
+  .exploreCardContent > div {
+    font-size: 14px;
+  }
 }
 
+@media only screen and (max-width: 768px) {
+  /* .exploreHomeSection {
+    padding: 2%;
+  } */
 
+  .exploreHomeHeading > h2 {
+    font-size: 2em;
+  }
 
+  .exploreHomeHeading > p {
+    margin-top: 8px;
+  }
 
+  .exploreCardContainer {
+    padding: 1em;
+  }
 
-@media only screen and (max-width: 768px){
-    .exploreHomeSection {
-        padding: 2%;
-      }
+  .exploreHomeCard {
+    padding: 4% 2%;
+    width: 30%;
+  }
 
-      .exploreHomeHeading > h2 {
-        font-size: 2em;
-      }
-      
-      .exploreHomeHeading > p {
-        margin-top: 8px;
-      }
-      
-      .exploreCardContainer {
-        padding: 1em;
-      }
-      
-      .exploreHomeCard {
-        padding: 4% 2%;
-        width: 30%;
-      }
-      
-      .exploreHomeCardImageWrapper > svg {
-        height: 30px;
-      }
-      
-      .exploreCardHeading {
-        font-size: 16px;
-      }
-      .exploreCardContent > div {
-        font-size: 10px;
-      }
-      
+  .exploreHomeCardImageWrapper > svg {
+    height: 30px;
+  }
+
+  .exploreCardHeading {
+    font-size: 16px;
+  }
+  .exploreCardContent > div {
+    font-size: 10px;
+  }
 }
 
+@media only screen and (max-width: 600px) {
+  .exploreHomeSection {
+    padding: 8vw 2%;
+  }
 
-@media only screen and (max-width: 600px){
-    .exploreHomeSection {
-        padding: 2%;
-      }
 
-      .exploreHomeHeading > h2 {
-        font-size: 2em;
-      }
-      
-      .exploreHomeHeading > p {
-        margin-top: 8px;
-      }
-      
-      .exploreCardContainer {
-        padding: 1em 0;
-      }
-      
-      .exploreHomeCard {
-        padding: 4% 1%;
-        width: 45%;
-      }
-      
-      .exploreHomeCardImageWrapper > svg {
-        height: 30px;
-      }
-      
-      .exploreCardHeading {
-        font-size: 16px;
-      }
-      
-      
-      .exploreCardContent > div {
-        font-size: 10px;
-      }
-      
+  .exploreHomeHeading > h2 {
+    font-size: 2em;
+  }
+
+  .exploreHomeHeading > p {
+    margin-top: 8px;
+  }
+
+  .exploreCardContainer {
+    padding: 1em 0;
+  }
+
+  .exploreHomeCard {
+    padding: 4% 1%;
+    width: 45%;
+  }
+
+  .exploreHomeCardImageWrapper > svg {
+    height: 30px;
+  }
+
+  .exploreCardHeading {
+    font-size: 16px;
+  }
+
+  .exploreCardContent > div {
+    font-size: 10px;
+  }
 }
