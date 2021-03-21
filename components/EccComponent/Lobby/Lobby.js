@@ -393,7 +393,7 @@ const Lobby = ({ query, data }) => {
       filters,
       val
     );
-    
+
     setNextUrl(nextUrl);
     setFilters(nFilters);
   };
@@ -429,170 +429,174 @@ const Lobby = ({ query, data }) => {
 
   return (
     <div className={styles.lobbyWrapper}>
-      <div className={styles.lobbyFilterWrapper}>
-        <div className={styles.lobbyFilTop}>
-          <div>Filters</div>
-          <div>
-            <Link href={`/explore/${query.type}`}>Clear All</Link>
+      {query.type === "colleges" ? (
+        <></>
+      ) : (
+        <div className={styles.lobbyFilterWrapper}>
+          <div className={styles.lobbyFilTop}>
+            <div>Filters</div>
+            <div>
+              <Link href={`/explore/${query.type}`}>Clear All</Link>
+            </div>
           </div>
+          {filtersType.map((items, i) => {
+            if (items.type === "stream") {
+              return (
+                <div
+                  key={`${items.type + i}`}
+                  ref={(el) => {
+                    if (!DrpItemTypeRef[i]) {
+                      DrpItemTypeRef.current[i] = el;
+                    }
+                  }}
+                  className={styles.lobbyDropdownWrapper}
+                >
+                  <div
+                    onClick={() => handleFilterItemClick(i)}
+                    className={styles.lobbyDropdownType}
+                  >
+                    Stream
+                    <div className={styles.lobbyFilArr}>
+                      <Image src="/filterArrow.svg" alt=">" layout="fill" />
+                    </div>
+                  </div>
+                  <div className={styles.lobbyDrpItemContHidden}>
+                    {items.values.map((val, idx) => (
+                      <FilterItem
+                        key={`${val + idx}`}
+                        queryParent={query.type}
+                        type={items.type}
+                        filters={filters}
+                        value={val}
+                        onCLick={handleFilterClick}
+                      />
+                    ))}
+                  </div>
+                </div>
+              );
+            } else if (items.type === "course") {
+              if (
+                filters.stream !== "" &&
+                filters.stream !== "all-courses" &&
+                items.values[filters.stream.toLowerCase()]
+              ) {
+                return (
+                  <div
+                    key={`${items.type + i}`}
+                    ref={(el) => {
+                      if (!DrpItemTypeRef[i]) {
+                        DrpItemTypeRef.current[i] = el;
+                      }
+                    }}
+                    className={styles.lobbyDropdownWrapper}
+                  >
+                    <div
+                      onClick={() => handleFilterItemClick(i)}
+                      className={styles.lobbyDropdownType}
+                    >
+                      Course
+                      <div className={styles.lobbyFilArr}>
+                        <Image src="/filterArrow.svg" alt=">" layout="fill" />
+                      </div>
+                    </div>
+                    <div className={styles.lobbyDrpItemContHidden}>
+                      {items.values[filters.stream.toLowerCase()].map(
+                        (val, idx) => (
+                          <FilterItem
+                            key={`${val + idx}`}
+                            queryParent={query.type}
+                            type={items.type}
+                            filters={filters}
+                            value={val}
+                            onCLick={handleFilterClick}
+                          />
+                        )
+                      )}
+                    </div>
+                  </div>
+                );
+              }
+            } else if (items.type === "state") {
+              return (
+                <div
+                  key={`${items.type + i}`}
+                  ref={(el) => {
+                    if (!DrpItemTypeRef[i]) {
+                      DrpItemTypeRef.current[i] = el;
+                    }
+                  }}
+                  className={styles.lobbyDropdownWrapper}
+                >
+                  <div
+                    onClick={() => handleFilterItemClick(i)}
+                    className={styles.lobbyDropdownType}
+                  >
+                    State
+                    <div className={styles.lobbyFilArr}>
+                      <Image src="/filterArrow.svg" alt=">" layout="fill" />
+                    </div>
+                  </div>
+                  <div className={styles.lobbyDrpItemContHidden}>
+                    {items.values.map((val, idx) => (
+                      <FilterItem
+                        key={`${val + idx}`}
+                        queryParent={query.type}
+                        type={items.type}
+                        filters={filters}
+                        value={val}
+                        onCLick={handleFilterClick}
+                      />
+                    ))}
+                  </div>
+                </div>
+              );
+            } else if (items.type === "city") {
+              if (
+                filters.state !== "" &&
+                filters.state !== "all-state" &&
+                query.type !== "exams" &&
+                items.values[filters.state.toLowerCase()]
+              ) {
+                return (
+                  <div
+                    key={`${items.type + i}`}
+                    ref={(el) => {
+                      if (!DrpItemTypeRef[i]) {
+                        DrpItemTypeRef.current[i] = el;
+                      }
+                    }}
+                    className={styles.lobbyDropdownWrapper}
+                  >
+                    <div
+                      onClick={() => handleFilterItemClick(i)}
+                      className={styles.lobbyDropdownType}
+                    >
+                      City
+                      <div className={styles.lobbyFilArr}>
+                        <Image src="/filterArrow.svg" alt=">" layout="fill" />
+                      </div>
+                    </div>
+                    <div className={styles.lobbyDrpItemContHidden}>
+                      {items.values[filters.state.toLowerCase()].map(
+                        (val, idx) => (
+                          <FilterItem
+                            key={`${val + idx}`}
+                            queryParent={query.type}
+                            type={items.type}
+                            filters={filters}
+                            value={val}
+                            onCLick={handleFilterClick}
+                          />
+                        )
+                      )}
+                    </div>
+                  </div>
+                );
+              }
+            }
+          })}
         </div>
-        {filtersType.map((items, i) => {
-          if (items.type === "stream") {
-            return (
-              <div
-                key={`${items.type + i}`}
-                ref={(el) => {
-                  if (!DrpItemTypeRef[i]) {
-                    DrpItemTypeRef.current[i] = el;
-                  }
-                }}
-                className={styles.lobbyDropdownWrapper}
-              >
-                <div
-                  onClick={() => handleFilterItemClick(i)}
-                  className={styles.lobbyDropdownType}
-                >
-                  Stream
-                  <div className={styles.lobbyFilArr}>
-                    <Image src="/filterArrow.svg" alt=">" layout="fill" />
-                  </div>
-                </div>
-                <div className={styles.lobbyDrpItemContHidden}>
-                  {items.values.map((val, idx) => (
-                    <FilterItem
-                      key={`${val + idx}`}
-                      queryParent={query.type}
-                      type={items.type}
-                      filters={filters}
-                      value={val}
-                      onCLick={handleFilterClick}
-                    />
-                  ))}
-                </div>
-              </div>
-            );
-          } else if (items.type === "course") {
-            if (
-              filters.stream !== "" &&
-              filters.stream !== "all-courses" &&
-              items.values[filters.stream.toLowerCase()]
-            ) {
-              return (
-                <div
-                  key={`${items.type + i}`}
-                  ref={(el) => {
-                    if (!DrpItemTypeRef[i]) {
-                      DrpItemTypeRef.current[i] = el;
-                    }
-                  }}
-                  className={styles.lobbyDropdownWrapper}
-                >
-                  <div
-                    onClick={() => handleFilterItemClick(i)}
-                    className={styles.lobbyDropdownType}
-                  >
-                    Course
-                    <div className={styles.lobbyFilArr}>
-                      <Image src="/filterArrow.svg" alt=">" layout="fill" />
-                    </div>
-                  </div>
-                  <div className={styles.lobbyDrpItemContHidden}>
-                    {items.values[filters.stream.toLowerCase()].map(
-                      (val, idx) => (
-                        <FilterItem
-                          key={`${val + idx}`}
-                          queryParent={query.type}
-                          type={items.type}
-                          filters={filters}
-                          value={val}
-                          onCLick={handleFilterClick}
-                        />
-                      )
-                    )}
-                  </div>
-                </div>
-              );
-            }
-          } else if (items.type === "state") {
-            return (
-              <div
-                key={`${items.type + i}`}
-                ref={(el) => {
-                  if (!DrpItemTypeRef[i]) {
-                    DrpItemTypeRef.current[i] = el;
-                  }
-                }}
-                className={styles.lobbyDropdownWrapper}
-              >
-                <div
-                  onClick={() => handleFilterItemClick(i)}
-                  className={styles.lobbyDropdownType}
-                >
-                  State
-                  <div className={styles.lobbyFilArr}>
-                    <Image src="/filterArrow.svg" alt=">" layout="fill" />
-                  </div>
-                </div>
-                <div className={styles.lobbyDrpItemContHidden}>
-                  {items.values.map((val, idx) => (
-                    <FilterItem
-                      key={`${val + idx}`}
-                      queryParent={query.type}
-                      type={items.type}
-                      filters={filters}
-                      value={val}
-                      onCLick={handleFilterClick}
-                    />
-                  ))}
-                </div>
-              </div>
-            );
-          } else if (items.type === "city") {
-            if (
-              filters.state !== "" &&
-              filters.state !== "all-state" &&
-              query.type !== "exams" &&
-              items.values[filters.state.toLowerCase()]
-            ) {
-              return (
-                <div
-                  key={`${items.type + i}`}
-                  ref={(el) => {
-                    if (!DrpItemTypeRef[i]) {
-                      DrpItemTypeRef.current[i] = el;
-                    }
-                  }}
-                  className={styles.lobbyDropdownWrapper}
-                >
-                  <div
-                    onClick={() => handleFilterItemClick(i)}
-                    className={styles.lobbyDropdownType}
-                  >
-                    City
-                    <div className={styles.lobbyFilArr}>
-                      <Image src="/filterArrow.svg" alt=">" layout="fill" />
-                    </div>
-                  </div>
-                  <div className={styles.lobbyDrpItemContHidden}>
-                    {items.values[filters.state.toLowerCase()].map(
-                      (val, idx) => (
-                        <FilterItem
-                          key={`${val + idx}`}
-                          queryParent={query.type}
-                          type={items.type}
-                          filters={filters}
-                          value={val}
-                          onCLick={handleFilterClick}
-                        />
-                      )
-                    )}
-                  </div>
-                </div>
-              );
-            }
-          }
-        })}
-      </div>
+      )}
       <div className={styles.lobbyCardComp}>
         <>
           {query.type === "exams" &&
@@ -610,169 +614,174 @@ const Lobby = ({ query, data }) => {
             ))}
         </>
       </div>
-      <div
-        className={
-          mobFilOpen ? styles.mobFilHeight100 : styles.lobbyMobileFilter
-        }
-      >
-        {mobFilOpen ? (
-          <>
-            <div className={styles.lobbyFilTopMob}>
-              <div>Filters</div>
-              <div>
-                <Link href={`/explore/${query.type}`}>Clear All</Link>
+      {query.type === "colleges" ? (
+        <></>
+      ) : (
+        <div
+          className={
+            mobFilOpen ? styles.mobFilHeight100 : styles.lobbyMobileFilter
+          }
+        >
+          {mobFilOpen ? (
+            <>
+              <div className={styles.lobbyFilTopMob}>
+                <div>Filters</div>
+                <div>
+                  <Link href={`/explore/${query.type}`}>Clear All</Link>
+                </div>
               </div>
-            </div>
-            <div className={styles.lobbyMobFilterCont}>
-              <div className={styles.lobbyMobFilTypeCont}>
-                {filtersType.map((item) => {
-                  if (item.type === "stream" || item.type === "state") {
-                    return (
-                      <div onClick={() => handleSetCurMObFil(item.type)}>
-                        {item.type}
-                      </div>
-                    );
-                  } else if (
-                    item.type === "course" &&
-                    filters.stream !== "all-stream"
-                  ) {
-                    return (
-                      <div onClick={() => handleSetCurMObFil(item.type)}>
-                        {item.type}
-                      </div>
-                    );
-                  } else if (
-                    item.type === "city" &&
-                    filters.state !== "all-India" &&
-                    query.type !== "exams"
-                  ) {
-                    return (
-                      <div onClick={() => handleSetCurMObFil(item.type)}>
-                        {item.type}
-                      </div>
-                    );
-                  }
-                })}
-              </div>
-              <div className={styles.lobbyMobFilItemCont}>
-                {curMobFil === 0 || curMobFil === 2
-                  ? filtersType[curMobFil].values.map((item) => {
+              <div className={styles.lobbyMobFilterCont}>
+                <div className={styles.lobbyMobFilTypeCont}>
+                  {filtersType.map((item) => {
+                    if (item.type === "stream" || item.type === "state") {
                       return (
-                        <div
-                          onClick={() => handleUrlGeneration(item, curMobFil)}
-                        >
-                          {filters[filtersType[curMobFil].type] === item ? (
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 16 16"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <circle
-                                cx="8"
-                                cy="8"
-                                r="7.5"
-                                fill="#171717"
-                                stroke="#4F4F4F"
-                              />
-                            </svg>
-                          ) : (
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 16 16"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <circle
-                                cx="8"
-                                cy="8"
-                                r="7.5"
-                                fill="white"
-                                stroke="#4F4F4F"
-                              />
-                            </svg>
-                          )}
-                          {item.replace(/-/g, " ")}
+                        <div onClick={() => handleSetCurMObFil(item.type)}>
+                          {item.type}
                         </div>
                       );
-                    })
-                  : filtersType[curMobFil].values[
-                      curMobFil === 1
-                        ? filters.stream.toLowerCase()
-                        : filters.state.toLowerCase()
-                    ]
-                  ? filtersType[curMobFil].values[
-                      curMobFil === 1
-                        ? filters.stream.toLowerCase()
-                        : filters.state.toLowerCase()
-                    ].map((item) => {
+                    } else if (
+                      item.type === "course" &&
+                      filters.stream !== "all-stream"
+                    ) {
                       return (
-                        <div
-                          onClick={() => handleUrlGeneration(item, curMobFil)}
-                        >
-                          {filters[filtersType[curMobFil].type] === item ? (
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 16 16"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <circle
-                                cx="8"
-                                cy="8"
-                                r="7.5"
-                                fill="#171717"
-                                stroke="#4F4F4F"
-                              />
-                            </svg>
-                          ) : (
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 16 16"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <circle
-                                cx="8"
-                                cy="8"
-                                r="7.5"
-                                fill="white"
-                                stroke="#4F4F4F"
-                              />
-                            </svg>
-                          )}
-                          {item.replace(/-/g, " ")}
+                        <div onClick={() => handleSetCurMObFil(item.type)}>
+                          {item.type}
                         </div>
                       );
-                    })
-                  : ""}
-              </div>
-            </div>
-          </>
-        ) : (
-          ""
-        )}
+                    } else if (
+                      item.type === "city" &&
+                      filters.state !== "all-India" &&
+                      query.type !== "exams"
+                    ) {
+                      return (
+                        <div onClick={() => handleSetCurMObFil(item.type)}>
+                          {item.type}
+                        </div>
+                      );
+                    }
+                  })}
+                </div>
 
-        {mobFilOpen ? (
-          <div className={styles.lobbyOpenFilterButtons}>
-            <div onClick={filterClickHandler}>Cancel</div>
-            <div>
-              <Link href={nextUrl}>Apply</Link>
+                <div className={styles.lobbyMobFilItemCont}>
+                  {curMobFil === 0 || curMobFil === 2
+                    ? filtersType[curMobFil].values.map((item) => {
+                        return (
+                          <div
+                            onClick={() => handleUrlGeneration(item, curMobFil)}
+                          >
+                            {filters[filtersType[curMobFil].type] === item ? (
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <circle
+                                  cx="8"
+                                  cy="8"
+                                  r="7.5"
+                                  fill="#171717"
+                                  stroke="#4F4F4F"
+                                />
+                              </svg>
+                            ) : (
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <circle
+                                  cx="8"
+                                  cy="8"
+                                  r="7.5"
+                                  fill="white"
+                                  stroke="#4F4F4F"
+                                />
+                              </svg>
+                            )}
+                            {item.replace(/-/g, " ")}
+                          </div>
+                        );
+                      })
+                    : filtersType[curMobFil].values[
+                        curMobFil === 1
+                          ? filters.stream.toLowerCase()
+                          : filters.state.toLowerCase()
+                      ]
+                    ? filtersType[curMobFil].values[
+                        curMobFil === 1
+                          ? filters.stream.toLowerCase()
+                          : filters.state.toLowerCase()
+                      ].map((item) => {
+                        return (
+                          <div
+                            onClick={() => handleUrlGeneration(item, curMobFil)}
+                          >
+                            {filters[filtersType[curMobFil].type] === item ? (
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <circle
+                                  cx="8"
+                                  cy="8"
+                                  r="7.5"
+                                  fill="#171717"
+                                  stroke="#4F4F4F"
+                                />
+                              </svg>
+                            ) : (
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <circle
+                                  cx="8"
+                                  cy="8"
+                                  r="7.5"
+                                  fill="white"
+                                  stroke="#4F4F4F"
+                                />
+                              </svg>
+                            )}
+                            {item.replace(/-/g, " ")}
+                          </div>
+                        );
+                      })
+                    : ""}
+                </div>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
+
+          {mobFilOpen ? (
+            <div className={styles.lobbyOpenFilterButtons}>
+              <div onClick={filterClickHandler}>Cancel</div>
+              <div>
+                <Link href={nextUrl}>Apply</Link>
+              </div>
             </div>
-          </div>
-        ) : (
-          <div
-            onClick={filterClickHandler}
-            className={styles.lobbyClosedFilterButtons}
-          >
-            Filters
-          </div>
-        )}
-      </div>
+          ) : (
+            <div
+              onClick={filterClickHandler}
+              className={styles.lobbyClosedFilterButtons}
+            >
+              Filters
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
