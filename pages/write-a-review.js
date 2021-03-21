@@ -39,7 +39,11 @@ export default function Review() {
 
   const router = useRouter();
   // console.log("router", router);
-  const { user } = useAuth();
+  const { user, auth } = useAuth();
+
+  if (!auth || !auth.isLogin) {
+    return <div>You need to Login</div>;
+  }
 
   useEffect(() => {
     const fetchReview = async (id) => {
