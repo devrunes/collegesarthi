@@ -57,7 +57,7 @@
 .input {
   width: 100%;
   padding: 0.7rem;
-  margin: 0.7rem;
+  margin: 1rem 0.7rem;
   border-radius: 0.2rem;
   border: none;
   background-color: #f2f2f2;
@@ -71,6 +71,17 @@
   border-radius: 0.4rem;
   width: 10rem;
   margin-top: 1rem;
+}
+
+.inputWrapper {
+  width: 100%;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-left: 0.7rem;
+  margin-top: -0.7rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -96,10 +107,19 @@
     margin-top: 2rem;
   }
 
+  .inputWrapper {
+    width: 15%;
+    margin: 0.7rem;
+  }
+
   .input {
     padding: 0.7rem;
-    margin: 0.7rem;
-    width: 20%;
+    margin: 0;
+    // width: 20%;
+  }
+
+  .error {
+    margin-top: 0.2rem;
   }
 
   .submitBtn {
