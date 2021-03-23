@@ -16,7 +16,11 @@ const CollegeCard = ({ card }) => {
     <div>
       <div className={styles.clgCard_wrapper}>
         <div className={styles.clgCard_image}>
-          <img src={card.collegeImage || "/college.png"} alt="exam logo " />
+          <img
+            src={card.collegeImage || "/college.png"}
+            alt="exam logo"
+            loading="lazy"
+          />
         </div>
         <div className={styles.clgCard_main}>
           <div className={styles.clgCard_main_left}>
@@ -28,7 +32,7 @@ const CollegeCard = ({ card }) => {
               <div>
                 <div className={styles.clgCard_main_fee}>
                   <div className={styles.clgCard_rupee}>
-                    <img src="/rupee.svg" alt="exam logo " />
+                    <img src="/rupee.svg" alt="exam logo " loading="lazy" />
                   </div>
                   <div>
                     <p>{card.fee}</p>

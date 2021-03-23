@@ -47,7 +47,7 @@ export default function Review() {
       const res = await axios.get(`/api/review?id=${id}`);
       // console.log("response from get", res.data);
       const { currentStep, ...rest } = res.data;
-      setCurrentStep(currentStep);
+      setCurrentStep(currentStep + 1);
       setReviewValues({ ...rest });
     };
     if (router.query.reviewId) {
