@@ -1,0 +1,107 @@
+.auth_wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.493);
+    font-size: 1em;
+    z-index: 10;
+  }
+  .auth_cont {
+    border-radius: 10px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+  
+  .auth_cont_p1 {
+    background-color: #333366;
+    color: white;
+    padding: 2em 2em;
+    position: relative;
+  }
+  .auth_cont_p1 > h2 {
+    margin: 0em 1em 1em;
+    white-space: nowrap;
+  }
+  .auth_cont_items {
+    display: flex;
+    align-items: center;
+  }
+  .auth_cont_items > p {
+    padding: 0.8em 0.5em;
+    font-weight: 600;
+    /* white-space: nowrap; */
+  }
+  .auth_cont_p1 > ul {
+    margin-left: 2em;
+    font-weight: 400;
+  }
+  .auth_tick_image {
+    position: relative;
+    width: 25px;
+    height: 20px;
+  }
+  .auth_cont_p2 {
+    width: 100%;
+    position: relative;
+  }
+  
+  
+  @media only screen and (min-width: 768px) {
+    .auth_wrapper {
+      font-size: 1.1em;
+    }
+    .auth_cont {
+      border-radius: 10px;
+      overflow: hidden;
+      width: 70%;
+      flex-direction: row-reverse;
+      justify-content: unset;
+    }
+    .auth_cont_p1 {
+      background-color: #333366;
+      color: white;
+      padding: 2em 2em;
+      position: relative;
+    }
+    .auth_cont_p1 > h2 {
+      margin: 0em 1em 1em;
+      white-space: nowrap;
+    }
+    .auth_cont_items {
+      display: flex;
+      align-items: center;
+    }
+    .auth_cont_items > p {
+      padding: 0.8em 0.5em;
+      font-weight: 600;
+      /* white-space: nowrap; */
+    }
+    .auth_cont_p1 > ul {
+      margin-left: 2em;
+      font-weight: 400;
+    }
+    .auth_tick_image {
+      position: relative;
+      width: 25px;
+      height: 20px;
+    }
+    .auth_cont_p2 {
+      /* flex: 70%; */
+      width: 100%;
+      position: relative;
+    }
+  }
+  @media only screen and (min-width: 1200px) {
+    .auth_wrapper {
+      font-size: 0.8em;
+    }
+  }
+  
