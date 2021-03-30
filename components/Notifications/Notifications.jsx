@@ -69,13 +69,13 @@ export default function Notifications({notis, papers}) {
           </div>
         </div>
         <div className={styles.NotificationListData}>
-          <ol>
+          <ul>
             {
               notis.map(note => (
               <li>{note}</li>
               ))
             }
-          </ol>
+          </ul>
         </div>
       </div>
     </div>

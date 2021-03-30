@@ -95,7 +95,7 @@ const ArticleComponent = (props) => {
                 <SubHeadingsExam data={data.subheadings} query={query} />
               </div>
               <div className={styles.ArticleContent}>
-                <ArticleContent data={data.content} />
+                <ArticleContent data={data.content} papers={data.samplePapers} />
               </div>
               <div className={styles.Notifications}>
                 <Notifications notis={data.notifications} papers={data.samplePapers}/>
