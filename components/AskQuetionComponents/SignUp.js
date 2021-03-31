@@ -1,12 +1,106 @@
-import React ,{useState}from 'react'
+import React ,{useState,useEffect}from 'react'
 import Image from "next/image";
 import styles from './Signup.module.css';
-const SignUp = () => {
+import axios from 'axios'
+import * as yup from "yup";
+
+const SignUp = ({handleCrossClick,user}) => {
 
     const [name,setName]=useState('');
     const [email,setEmail]=useState('');
     const [course,setCourse]=useState('');
     const [number,setNumber]=useState("0");
+    const [message, setMessage] = useState("");
+    const [question,setQuestion]=useState("");
+    const [error, setError] = useState("");
+    const [isLoading,setIsLoading]=useState(false)
+    // console.log(user&&user)
+
+   //validate user
+   const validationSubscriberInput = async () => {
+    // console.log(name, course, email, number,question);
+    let errors = {};
+    
+      if (question === "") {
+        errors.question = "Question is Empty";
+      }
+
+    let schema = yup.object().shape({
+      name: yup.string().required(),
+      number: yup.number().required().positive().integer(),
+      email: yup.string().email().required(),
+      course: yup.string().required(),
+      question:yup.string()
+    });
+    let intNumber = parseInt(number ? number : 0);
+    try {
+      const validationResult = await schema.validate(
+        { name, number: intNumber, email, course },
+        { abortEarly: false }
+      );
+      return {
+        isValid: !Object.keys(errors).length > 0,
+        errors,
+      };
+      // console.log(validationResult);
+    } catch (err) {
+      // console.log(err.inner, err.path, "err");
+      err.inner.forEach((error) => {
+        errors[error.path] = error.message;
+      });
+      // console.log(errors);
+      return {
+        isValid: false,
+        errors,
+      };
+    }
+  };
+
+  //user signup
+
+  const onSubscribeUser = async () => {
+    setError({});
+    const { isValid, errors } = await validationSubscriberInput();
+
+    try {
+      if (!isValid) {
+        setError(errors);
+      } else {
+        setIsLoading(true)
+        const subscribeUser = await axios.post("/api/subscribeUser", {
+          email,
+          name,
+          course,
+          number,
+          question,
+        });
+        setIsLoading(false)
+        setMessage(subscribeUser.data.message);
+        console.log('user data after post request',subscribeUser.data);
+      }
+    } catch (err) {
+      setError(err);
+      // console.log(err);
+    }
+    
+  };
+
+  useEffect(() => {
+    if (user) {
+      setEmail(user && user.email ? user.email : "");
+      setName(user && user.name? user.name : "");
+      setNumber(user && user.number ? user.number : "");
+    }
+
+    return () => {
+      setEmail("");
+      setName("");
+      setNumber("");
+      
+    };
+  }, [user]);
+
+
     return (
         <div className={styles.signup_cont}>
       <div className={styles.signup_head}>
@@ -24,12 +118,16 @@ const SignUp = () => {
             </div>
             <input
               type="text"
-              name="name"
-              id="name"
+              name="Name"
+              id="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-           
+              {error.name && error.name !== "" ? (
+            <p className={styles.authError}>{error.name}</p>
+          ) : (
+            <></>
+          )}
           </div>
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
@@ -40,12 +138,16 @@ const SignUp = () => {
             </div>
             <input
               type="email"
-              name="email"
-              id="email"
+              name="Email"
+              id="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-           
+           {error.email && error.email !== "" ? (
+            <p className={styles.authError}>{error.email}</p>
+          ) : (
+            <></>
+          )}
           </div>
           
 
@@ -60,12 +162,16 @@ const SignUp = () => {
             </div>
             <input
               type="text"
-              name="number"
-              id="number"
+              name="Mobile"
+              id="Mobile"
               value={number}
               onChange={(e) => setNumber(e.target.value)}
             />
-            
+            {error.number && error.number !== "" ? (
+            <p className={styles.authError}>{error.number}</p>
+          ) : (
+            <></>
+          )}
           </div>
           <div className={styles.signup_form_right}>
           <div className={styles.signup_form_sec}>
@@ -77,8 +183,7 @@ const SignUp = () => {
             </div>
             {/* <input type="course" name="course" id="course" /> */}
             <select
-              name="course"
-              // ref={register}
+              name="Course"
               className={styles.formSelectInput}
               value={course}
               onChange={(e) => setCourse(e.target.value)}
@@ -90,23 +195,40 @@ const SignUp = () => {
               <option value="BBA">BBA</option>
               <option value="MSc">MSc</option>
             </select>
+            {error.course && error.course !== "" ? (
+            <p className={styles.authError}>{error.course}</p>
+          ) : (
+            <></>
+          )}
             </div>
             </div>
         </div>
       </div>
        <div className={styles.signup_text_area}>
-            <textarea placeholder="Write your description"/>
+            <textarea 
+            placeholder="Write your description" 
+            id="question" 
+            name="question"
+            value={question}
+            onChange={(e)=>setQuestion(e.target.value)}
+            />
+             {error.question && error.question !== "" ? (
+            <p className={styles.authError}>{error.question}</p>
+          ) : (
+            <></>
+          )}
        </div>
       <div className={styles.signup_button_cont}>
-        <button className={styles.signup_button} >
+        <button className={styles.signup_button}  onClick={onSubscribeUser}>
           Signup
         </button>
+       { message&&<div className={styles.msgStyle}>{message}</div>}
         <p className={styles.linkSup}>
           Already Registered? Click Here to Login!
         </p>
     
       </div>
-      <div className={styles.auth_crossButton}>
+      <div className={styles.auth_crossButton}  onClick={()=>handleCrossClick()}>
         <svg
           // width="40"
           // height="40"

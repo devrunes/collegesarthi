@@ -12,12 +12,9 @@
     flex-direction: column;
     color: #333366;
   }
- .signup_head h1{
-   line-height: 0;
- }
   .signup_head > h2 {
     font-size: 1.3em;
-    line-height: 0.6;
+    line-height: 3.3;
     color:#333366;
   }
   .signup_imgsec {
@@ -53,6 +50,13 @@
     border: none;
     background-color: #f2f2f2;
     border-radius: 10px;
+  }
+  .msgStyle{
+    background:rgba(54, 111, 235, 0.274);
+    padding: 10px 5px;
+    color: blue;
+    margin-top: 10px;
+    text-align: center;
   }
   
   .formSelectInput {

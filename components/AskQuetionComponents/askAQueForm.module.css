@@ -11,6 +11,9 @@
     font-size: 1em;
     z-index: 10;
   }
+  .display_none{
+    display: none !important;
+  }
   .auth_cont {
     border-radius: 10px;
     width: 90%;
