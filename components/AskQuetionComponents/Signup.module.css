@@ -7,14 +7,20 @@
   }
   .signup_head {
     display: flex;
-    align-items: flex-start;
+    align-items:flex-start;
     justify-content: flex-start;
-    flex-direction: column;
     color: #333366;
+  }
+  .head_wrapper{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 20px;
   }
   .signup_head > h2 {
     font-size: 1.3em;
-    line-height: 3.3;
+    line-height: 1.1;
     color:#333366;
   }
   .signup_imgsec {
@@ -223,5 +229,8 @@
     }
     .signup_head h2{
       font-size: 1em;
+    }
+    .auth_crossButton{
+      display: none;
     }
   }

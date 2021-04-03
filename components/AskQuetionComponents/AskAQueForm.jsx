@@ -1,4 +1,4 @@
-import React ,{useContext,useRef,useEffect}from 'react'
+import React ,{useContext}from 'react'
 import styles from './askAQueForm.module.css';
 import SignUp from './SignUp';
 import { ModelOpenContext } from "../../lib/authContext";
@@ -15,29 +15,11 @@ const AskAQueForm = () => {
     setModel({ open: false, modelNo: 0 });
   };
 
-  const handleBackDropClick = (e) => {
-    // console.log(parentRef.current, e.target);
-    if (parentRef.current === e.target) {
-      handleCrossClick();
-    }
-  };
 
-  const parentRef = useRef(null);
-
-  useEffect(() => {
-    if (model.open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "scroll";
-    }
-  });
 
 
     return (
-
-        <div
-      className={ model.open?styles.auth_wrapper:styles.display_none} ref={parentRef} onClick={handleBackDropClick}>
-        { model.modelNo===1? (
+ 
       <div className={styles.auth_cont}>
         <div className={styles.auth_cont_p2}>
             <SignUp handleCrossClick={handleCrossClick} user={auth && auth.isLogin ? user : false}/>
@@ -69,11 +51,7 @@ const AskAQueForm = () => {
           </div>
         </div>
       </div>
-        ):(
-          ""
-        )
-      }
-    </div>
+    
     )
 }
 

@@ -101,7 +101,7 @@ export default function Navbar() {
           <Link href="/user">
             <a>
               {user && user.name
-                ? user.name.charAt(0).toUpperCase() + user.name.slice(1)
+                ?  user.name.split(' ')[0]
                 : ""}
             </a>
           </Link>
