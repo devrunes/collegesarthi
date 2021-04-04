@@ -1,6 +1,6 @@
 import React ,{useState,useEffect}from 'react'
 import Image from "next/image";
-import styles from './Signup.module.css';
+import styles from './AskAQueForm.module.css';
 import axios from 'axios'
 import * as yup from "yup";
 

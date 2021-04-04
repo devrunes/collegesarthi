@@ -1,10 +1,10 @@
 import React ,{useContext}from 'react'
-import styles from './askAQueForm.module.css';
-import SignUp from './SignUp';
+import styles from './askAQueFormContainer.module.css';
+import AskAQueForm from './AskAQueForm';
 import { ModelOpenContext } from "../../lib/authContext";
 import Image from 'next/image';
 import { useAuth } from "../../lib/auth";
-const AskAQueForm = () => {
+const AskAQueFormContainer = () => {
 
   const [model,setModel]=useContext(ModelOpenContext);
 
@@ -22,7 +22,7 @@ const AskAQueForm = () => {
  
       <div className={styles.auth_cont}>
         <div className={styles.auth_cont_p2}>
-            <SignUp handleCrossClick={handleCrossClick} user={auth && auth.isLogin ? user : false}/>
+            <AskAQueForm handleCrossClick={handleCrossClick} user={auth && auth.isLogin ? user : false}/>
         </div>
         <div  className={styles.auth_cont_p1}>
           <h2>why Join Us?</h2>
@@ -55,4 +55,4 @@ const AskAQueForm = () => {
     )
 }
 
-export default AskAQueForm
+export default AskAQueFormContainer;

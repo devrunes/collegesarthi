@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useEffect } from "react";
 import styles from "./model.module.css";
 import { ModelOpenContext } from "../../lib/authContext";
-import AskAQueForm  from '../AskQuetionComponents/AskAQueForm';
+import  AskAQueFormContainer from '../AskQuetionComponents/AskAQueFormContainer';
 const Model = () => {
   const [model, setModel] = useContext(ModelOpenContext);
 
@@ -34,7 +34,7 @@ const Model = () => {
       ref={parentRef}
     >
       {model.modelNo === 1 ? (
-        <AskAQueForm/>
+        <AskAQueFormContainer/>
       ) : (
         ""
       )}
