@@ -9,7 +9,7 @@ const SignUp = ({handleCrossClick,user}) => {
     const [name,setName]=useState('');
     const [email,setEmail]=useState('');
     const [course,setCourse]=useState('');
-    const [number,setNumber]=useState("0");
+    const [number,setNumber]=useState("");
     const [message, setMessage] = useState("");
     const [question,setQuestion]=useState("");
     const [error, setError] = useState("");
