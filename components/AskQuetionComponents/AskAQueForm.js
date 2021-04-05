@@ -1,36 +1,33 @@
-import React ,{useState,useEffect}from 'react'
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import styles from './AskAQueForm.module.css';
-import axios from 'axios'
+import styles from "./AskAQueForm.module.css";
+import axios from "axios";
 import * as yup from "yup";
 
-const SignUp = ({handleCrossClick,user}) => {
+const SignUp = ({ handleCrossClick, user }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [course, setCourse] = useState("");
+  const [number, setNumber] = useState("");
+  const [message, setMessage] = useState("");
+  const [question, setQuestion] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-    const [name,setName]=useState('');
-    const [email,setEmail]=useState('');
-    const [course,setCourse]=useState('');
-    const [number,setNumber]=useState("");
-    const [message, setMessage] = useState("");
-    const [question,setQuestion]=useState("");
-    const [error, setError] = useState("");
-    const [isLoading,setIsLoading]=useState(false)
-    // console.log(user&&user)
-
-   //validate user
-   const validationSubscriberInput = async () => {
-    // console.log(name, course, email, number,question);
+  //validate user
+  const validationSubscriberInput = async () => {
     let errors = {};
-    
-      if (question === "") {
-        errors.question = "Question is Empty";
-      }
+
+    if (question === "") {
+      errors.question = "Question is Empty";
+    }
 
     let schema = yup.object().shape({
       name: yup.string().required(),
       number: yup.number().required().positive().integer(),
       email: yup.string().email().required(),
       course: yup.string().required(),
-      question:yup.string()
+      question: yup.string(),
     });
     let intNumber = parseInt(number ? number : 0);
     try {
@@ -42,13 +39,10 @@ const SignUp = ({handleCrossClick,user}) => {
         isValid: !Object.keys(errors).length > 0,
         errors,
       };
-      // console.log(validationResult);
     } catch (err) {
-      // console.log(err.inner, err.path, "err");
       err.inner.forEach((error) => {
         errors[error.path] = error.message;
       });
-      // console.log(errors);
       return {
         isValid: false,
         errors,
@@ -66,7 +60,7 @@ const SignUp = ({handleCrossClick,user}) => {
       if (!isValid) {
         setError(errors);
       } else {
-        setIsLoading(true)
+        setIsLoading(true);
         const subscribeUser = await axios.post("/api/subscribeUser", {
           email,
           name,
@@ -74,21 +68,19 @@ const SignUp = ({handleCrossClick,user}) => {
           number,
           question,
         });
-        setIsLoading(false)
+        setIsLoading(false);
         setMessage(subscribeUser.data.message);
-        console.log('user data after post request',subscribeUser.data);
       }
     } catch (err) {
       setError(err);
       // console.log(err);
     }
-    
   };
 
   useEffect(() => {
     if (user) {
       setEmail(user && user.email ? user.email : "");
-      setName(user && user.name? user.name : "");
+      setName(user && user.name ? user.name : "");
       setNumber(user && user.number ? user.number : "");
     }
 
@@ -96,15 +88,13 @@ const SignUp = ({handleCrossClick,user}) => {
       setEmail("");
       setName("");
       setNumber("");
-      
     };
   }, [user]);
 
-
-    return (
-        <div className={styles.signup_cont}>
+  return (
+    <div className={styles.signup_cont}>
       <div className={styles.signup_head}>
-      <svg
+        <svg
           width="74"
           height="72"
           viewBox="0 0 94 92"
@@ -118,8 +108,8 @@ const SignUp = ({handleCrossClick,user}) => {
           />
         </svg>
         <div className={styles.head_wrapper}>
-        <h1 className={styles.h1_styles}>Ask A Question</h1>
-        <h2>You ask we Answer</h2>
+          <h1 className={styles.h1_styles}>Ask A Question</h1>
+          <h2>You ask we Answer</h2>
         </div>
       </div>
       <div className={styles.signup_form}>
@@ -138,11 +128,11 @@ const SignUp = ({handleCrossClick,user}) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-              {error.name && error.name !== "" ? (
-            <p className={styles.authError}>{error.name}</p>
-          ) : (
-            <></>
-          )}
+            {error.name && error.name !== "" ? (
+              <p className={styles.authError}>{error.name}</p>
+            ) : (
+              <></>
+            )}
           </div>
           <div className={styles.signup_form_sec}>
             <div className={styles.signup_imgsec}>
@@ -158,14 +148,12 @@ const SignUp = ({handleCrossClick,user}) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-           {error.email && error.email !== "" ? (
-            <p className={styles.authError}>{error.email}</p>
-          ) : (
-            <></>
-          )}
+            {error.email && error.email !== "" ? (
+              <p className={styles.authError}>{error.email}</p>
+            ) : (
+              <></>
+            )}
           </div>
-          
-
         </div>
         <div className={styles.signup_form_right}>
           <div className={styles.signup_form_sec}>
@@ -183,67 +171,69 @@ const SignUp = ({handleCrossClick,user}) => {
               onChange={(e) => setNumber(e.target.value)}
             />
             {error.number && error.number !== "" ? (
-            <p className={styles.authError}>{error.number}</p>
-          ) : (
-            <></>
-          )}
+              <p className={styles.authError}>{error.number}</p>
+            ) : (
+              <></>
+            )}
           </div>
           <div className={styles.signup_form_right}>
-          <div className={styles.signup_form_sec}>
-            <div className={styles.signup_imgsec}>
-              <div className={styles.signup_img}>
-                <Image src="/course.svg" alt="em" layout="fill" />
+            <div className={styles.signup_form_sec}>
+              <div className={styles.signup_imgsec}>
+                <div className={styles.signup_img}>
+                  <Image src="/course.svg" alt="em" layout="fill" />
+                </div>
+                <p>Course</p>
               </div>
-              <p>Course</p>
+              {/* <input type="course" name="course" id="course" /> */}
+              <select
+                name="Course"
+                className={styles.formSelectInput}
+                value={course}
+                onChange={(e) => setCourse(e.target.value)}
+              >
+                <option value="">Select One...</option>
+                <option value="BTech">BTech</option>
+                <option value="MBA">MBA</option>
+                <option value="BSc">BSc</option>
+                <option value="BBA">BBA</option>
+                <option value="MSc">MSc</option>
+              </select>
+              {error.course && error.course !== "" ? (
+                <p className={styles.authError}>{error.course}</p>
+              ) : (
+                <></>
+              )}
             </div>
-            {/* <input type="course" name="course" id="course" /> */}
-            <select
-              name="Course"
-              className={styles.formSelectInput}
-              value={course}
-              onChange={(e) => setCourse(e.target.value)}
-            >
-              <option value="">Select One...</option>
-              <option value="BTech">BTech</option>
-              <option value="MBA">MBA</option>
-              <option value="BSc">BSc</option>
-              <option value="BBA">BBA</option>
-              <option value="MSc">MSc</option>
-            </select>
-            {error.course && error.course !== "" ? (
-            <p className={styles.authError}>{error.course}</p>
-          ) : (
-            <></>
-          )}
-            </div>
-            </div>
+          </div>
         </div>
       </div>
-       <div className={styles.signup_text_area}>
-            <textarea 
-            placeholder="Write your description" 
-            id="question" 
-            name="question"
-            value={question}
-            onChange={(e)=>setQuestion(e.target.value)}
-            />
-             {error.question && error.question !== "" ? (
-            <p className={styles.authError}>{error.question}</p>
-          ) : (
-            <></>
-          )}
-       </div>
+      <div className={styles.signup_text_area}>
+        <textarea
+          placeholder="Write your description"
+          id="question"
+          name="question"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+        />
+        {error.question && error.question !== "" ? (
+          <p className={styles.authError}>{error.question}</p>
+        ) : (
+          <></>
+        )}
+      </div>
       <div className={styles.signup_button_cont}>
-        <button className={styles.signup_button}  onClick={onSubscribeUser}>
+        <button className={styles.signup_button} onClick={onSubscribeUser}>
           Signup
         </button>
-       { message&&<div className={styles.msgStyle}>{message}</div>}
+        {message && <div className={styles.msgStyle}>{message}</div>}
         <p className={styles.linkSup}>
           Already Registered? Click Here to Login!
         </p>
-    
       </div>
-      <div className={styles.auth_crossButton}  onClick={()=>handleCrossClick()}>
+      <div
+        className={styles.auth_crossButton}
+        onClick={() => handleCrossClick()}
+      >
         <svg
           // width="40"
           // height="40"
@@ -259,7 +249,7 @@ const SignUp = ({handleCrossClick,user}) => {
         </svg>
       </div>
     </div>
-    )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
