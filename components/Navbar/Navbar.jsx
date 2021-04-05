@@ -63,7 +63,7 @@ export default function Navbar() {
           <a>
             <div className={styles.nav_logoImage}>
               <img
-                src="/logoMain.png"
+                src="/logoMain.svg"
                 alt="college logo "
                 className={styles.nav_logo_image}
               />
