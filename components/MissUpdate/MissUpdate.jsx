@@ -85,8 +85,9 @@ export default function MissUpdate(props) {
     } catch (err) {
       setError(err);
       // console.log(err);
-    }
+    } 
   };
+
   useEffect(() => {
     if (user) {
       setEmail(user && user.email ? user.email : "");
@@ -106,6 +107,8 @@ export default function MissUpdate(props) {
       setModelData({});
     };
   }, [user, modelData]);
+
+  
   return (
     <section
       className={styles.missUpdateSection}
