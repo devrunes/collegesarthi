@@ -12,7 +12,7 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [number, setNumber] = useState("0");
+  const [number, setNumber] = useState("");
   const [course, setCourse] = useState("");
   const [city, setCity] = useState("");
 
@@ -32,7 +32,7 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
       city: yup.string().required(),
     });
 
-    let intNumber = parseInt(number);
+    let intNumber = parseInt(number ? number : 0);
     try {
       const validationResult = await schema.validate(
         { name, number: intNumber, email, password, course, city },
