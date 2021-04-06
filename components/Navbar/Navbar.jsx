@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
+import {useRouter} from 'next/router'
 import { AuthOpenContext } from "../../lib/authContext";
 import { useAuth } from "../../lib/auth";
 import styles from "./Navbar.module.css";
@@ -26,6 +27,25 @@ export default function Navbar() {
   let authButRef = useRef(null);
   let userNameRef = useRef(null);
   // let testRef = useRef(null);
+
+  const {asPath} =useRouter();
+
+  useEffect(()=>{
+    setTimeout(()=>{
+       if(!auth?.isLogin){
+         setAuthOpen(!authOpen)
+       }
+    },5000)
+  },[]);
+
+ useEffect(()=>{
+   if(auth &&!auth.isLogin){
+    setTimeout(()=>{
+      setAuthOpen(!authOpen);
+    },5000)
+   }
+  
+ },[asPath]);
 
   const handleAuthClick = () => {
     setAuthOpen(!authOpen);

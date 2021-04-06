@@ -26,7 +26,6 @@ const ArticleComponent = (props) => {
       setData(doc);
     }
   }, [props.doc]);
-  console.log(data)
   const handleAuthClick = () => {
     setAuthOpen(!authOpen);
   };
