@@ -1,9 +1,13 @@
 import React, { useContext, useRef, useEffect } from "react";
 import styles from "./model.module.css";
 import { ModelOpenContext } from "../../lib/authContext";
-import  AskAQueFormContainer from '../AskQuetionComponents/AskAQueFormContainer';
+import AskAQueFormContainer from "../AskQuetionComponents/AskAQueFormContainer";
+import MissUpdate from "../MissUpdate/MissUpdate";
+import { useAuth } from "../../lib/auth";
+
 const Model = () => {
   const [model, setModel] = useContext(ModelOpenContext);
+  const { auth, user } = useAuth();
 
   const handleCrossClick = () => {
     setModel({ open: false, modelNo: 0 });
@@ -12,12 +16,10 @@ const Model = () => {
   const parentRef = useRef(null);
 
   const handleBackDropClick = (e) => {
-    // console.log(parentRef.current, e.target);
     if (parentRef.current === e.target) {
       handleCrossClick();
     }
   };
-  //   console.debug(auth.isLogin ? user : false);
 
   useEffect(() => {
     if (model.open) {
@@ -33,11 +35,23 @@ const Model = () => {
       onClick={handleBackDropClick}
       ref={parentRef}
     >
-      {model.modelNo === 1 ? (
-        <AskAQueFormContainer/>
+      {model.modelNo === 0 ? (
+        <MissUpdate
+          modelData={model.modelData}
+          user={auth && auth.isLogin ? user : false}
+          themeColor="#1C8549"
+          heading={
+            model.modelData && model.modelData.collegeName
+              ? model.modelData.collegeName
+              : "Provide Details"
+          }
+          headingSup="We will reach back to you later"
+          buttonText="Submit"
+        />
       ) : (
         ""
       )}
+      {model.modelNo === 1 ? <AskAQueFormContainer /> : ""}
       <div className={styles.model_crossButton} onClick={handleCrossClick}>
         <svg
           id="auth_crossButton"

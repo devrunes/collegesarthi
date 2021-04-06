@@ -3,10 +3,11 @@ import styles from "./NotificationButton.module.css";
 import { useAuth } from "../../lib/auth";
 import { AuthOpenContext, ModelOpenContext } from "../../lib/authContext";
 
-export default function NotificationButton() {
+export default function NotificationButton(props) {
   const { auth } = useAuth();
   const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
   const [model, setModel] = useContext(ModelOpenContext);
+  console.log(props, "samplPapers")
 
   const handleAuthClick = () => {
     setAuthOpen(!authOpen);
@@ -82,6 +83,7 @@ export default function NotificationButton() {
           Get Updates
         </button>
       )}
+      <a href={props.samplePapers}>
       <button className={styles.ButtonG}>
         <div className={styles.SVG}>
           <svg
@@ -101,6 +103,7 @@ export default function NotificationButton() {
         </div>
         Sample Papers
       </button>
+      </a>
     </div>
   );
 }

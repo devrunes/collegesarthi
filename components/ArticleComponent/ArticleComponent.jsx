@@ -26,6 +26,7 @@ const ArticleComponent = (props) => {
       setData(doc);
     }
   }, [props.doc]);
+
   const handleAuthClick = () => {
     setAuthOpen(!authOpen);
   };
@@ -45,7 +46,7 @@ const ArticleComponent = (props) => {
         <meta name="title" content={data.title} />
         <meta name="robots" content="index,follow" />
         <meta name="googlebot" content="index,follow" />
-        <link rel="canonical" href={`www.collegesarthi.com${query}`} />
+        <link rel="canonical" href={`www.collegesarathi.com${query}`} />
       </Head>
       <div>
         {loading ? (
@@ -94,7 +95,7 @@ const ArticleComponent = (props) => {
                 <SubHeadingsExam data={data.subheadings} query={query} />
               </div>
               <div className={styles.ArticleContent}>
-                <ArticleContent data={data.content} />
+                <ArticleContent data={data.content} papers={data.samplePapers} />
               </div>
               <div className={styles.Notifications}>
                 <Notifications notis={data.notifications} papers={data.samplePapers}/>

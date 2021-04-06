@@ -59,6 +59,17 @@ export default function ReviewComponent({
       }
       return;
     }
+    if (currentStep === 10) {
+      const res = await axios.post("/api/review", {
+        reviewId,
+        currentStep,
+        payload: { ...reviewValues },
+      });
+      setIsCompleted(true);
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
+    }
     if (ans.length === 0) {
       setAnsError("This is a required field");
     } else {
@@ -246,8 +257,8 @@ export default function ReviewComponent({
                 handleReviewComponentChange(e.target.value, fieldKey, "course")
               }
             >
-              <option value="JIIT">JIIT</option>
-              <option value="IITD">IITD</option>
+              <option value="MBA">MBA</option>
+              <option value="MTECH">MTECH</option>
             </select>
           </div>
           <div className={styles.actionBtnWrapper}>
