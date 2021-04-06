@@ -7,7 +7,6 @@ export default function Notifications({notis, papers}) {
   const handleAskAQuestionClick = () => {
     setModel({ open: true, modelNo: 1, modelData: {} });
   };
-  console.log(papers)
   return (
     <div>
       <button
