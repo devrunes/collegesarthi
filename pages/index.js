@@ -25,7 +25,7 @@ export default function Home({ collegeData, examData }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>CollegeSarthi</title>
+        <title>CollegeSarathi</title>
       </Head>
 
       <main className={styles.main}>

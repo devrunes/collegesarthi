@@ -46,7 +46,7 @@ const ArticleComponent = (props) => {
         <meta name="title" content={data.title} />
         <meta name="robots" content="index,follow" />
         <meta name="googlebot" content="index,follow" />
-        <link rel="canonical" href={`www.collegesarthi.com${query}`} />
+        <link rel="canonical" href={`www.collegesarathi.com${query}`} />
       </Head>
       <div>
         {loading ? (
