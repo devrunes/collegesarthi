@@ -30,21 +30,32 @@ export default function Navbar() {
   // let testRef = useRef(null);
 
   const {asPath} =useRouter();
-
+  const writeAReviewPath= asPath==='/write-a-review';
+  useEffect(()=>{
+    if(writeAReviewPath && !auth?.isLogin){
+      setAuthOpen(true)
+    }
+  },[asPath,auth?.isLogin])
+  
+  console.log(auth)
   useEffect(()=>{
     setTimeout(()=>{
-       if(!auth?.isLogin){
-         setAuthOpen(!authOpen)
+       if(auth===Object || auth==={} || auth===null){
+         setAuthOpen(true)
        }
+       else if(auth?.isLogin===true){
+        setAuthOpen(false)
+      }
     },5000)
-  },[]);
+  },[auth]);
 
  useEffect(()=>{
-   if(auth &&!auth.isLogin){
+   if(auth &&!auth.isLogin &&!writeAReviewPath){
     setTimeout(()=>{
-      setAuthOpen(!authOpen);
+      setAuthOpen(true);
     },5000)
    }
+   
   
  },[asPath]);
 

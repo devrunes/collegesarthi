@@ -232,6 +232,6 @@ export default function Review() {
       )}
     </div>
   ) : (
-    <div>Please Login To continue</div>
+    <div></div>
   );
 }

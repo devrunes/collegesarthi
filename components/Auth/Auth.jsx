@@ -3,7 +3,7 @@ import styles from "./Auth.module.css";
 import Image from "next/image";
 import Login from "./Login/Login";
 import Signup from "./Signup/Signup";
-
+import {useRouter} from 'next/router'
 const Auth = ({ handleCross }) => {
   const [current, setCurrent] = useState(1);
   const p1Ref = useRef(null);
@@ -30,23 +30,28 @@ const Auth = ({ handleCross }) => {
       p1Ref.current.style.color = "white";
     }
   }, [current]);
+  
+  //geting current url
+  const {asPath} =useRouter();
+  const writeAReviewPath= asPath==='/write-a-review'; //checking current url is equals to '/write-review'
+
   return (
     <div
       ref={parentRef}
       className={styles.auth_wrapper}
-      onClick={handleBackDropClick}
+      onClick={!writeAReviewPath?handleBackDropClick:()=>{}}
     >
       <div className={styles.auth_cont}>
         <div className={styles.auth_cont_p2}>
           {current === 0 ? (
             <Login
               screenSwitchHandler={handleCurChange}
-              handleCrossClick={handleCross}
+              handleCrossClick={!writeAReviewPath?handleCross:()=>{}}
             />
           ) : (
             <Signup
               screenSwitchHandler={handleCurChange}
-              handleCrossClick={handleCross}
+              handleCrossClick={!writeAReviewPath?handleCross:()=>{}}
             />
           )}
         </div>
