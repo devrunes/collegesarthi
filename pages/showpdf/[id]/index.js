@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 
 const DynamicComponentWithNoSSR = dynamic(
-  () => import("../components/PdfViewer/PdfViewer"),
+  () => import("../../../components/PdfViewer/PdfViewer"),
   {
     ssr: false,
   }
