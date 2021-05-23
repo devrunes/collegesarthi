@@ -25,7 +25,7 @@ const EccComponent = ({ data }) => {
     <div className={styles.ecc_wrapper}>
       <Head>
         <title>
-          CollegeSarthi {query.type ? `- ${query.type.toUpperCase()}` : ""}
+          CollegeSarathi {query.type ? `- ${query.type.toUpperCase()}` : ""}
         </title>
       </Head>
       <div className={styles.ecc_topNav}>
