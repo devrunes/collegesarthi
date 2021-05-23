@@ -34,9 +34,11 @@
 }
 .NotificationListData {
   font-size: 1.1em;
-  font-weight: 300;
+  font-weight: 400;
+  border-left: 3px solid #f2f2f2;
+  border-bottom: 3px solid #f2f2f2;
   line-height: 1.3em;
 }
-.NotificationListData > ol > li {
-  padding: 1vw 0vw;
+.NotificationListData > ul > li {
+  padding: .7vw 0vw;
 }

@@ -6,7 +6,7 @@ import NotificationButton from "../NotificationButtons/NotificationButton";
 import Photo from "../Photo/Photo";
 
 export default function ArticleContent(props) {
-  const { data } = props;
+  const { data, papers } = props;
   // console.log(data);
   useEffect(() => {
     if (data && location.hash) {
@@ -35,6 +35,7 @@ export default function ArticleContent(props) {
           ContentListContainer: styles.ContentListContainer,
           ContentListLink: styles.ContentListLink,
           TableContainer: styles.TableContainer,
+          paperUrl: papers,
         }}
         components={{ Link, NotificationButton, Photo }}
         jsx={data}

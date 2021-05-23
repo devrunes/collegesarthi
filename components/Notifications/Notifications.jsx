@@ -7,7 +7,6 @@ export default function Notifications({notis, papers}) {
   const handleAskAQuestionClick = () => {
     setModel({ open: true, modelNo: 1, modelData: {} });
   };
-  console.log(papers)
   return (
     <div>
       <button
@@ -69,13 +68,13 @@ export default function Notifications({notis, papers}) {
           </div>
         </div>
         <div className={styles.NotificationListData}>
-          <ol>
+          <ul>
             {
               notis.map(note => (
               <li>{note}</li>
               ))
             }
-          </ol>
+          </ul>
         </div>
       </div>
     </div>

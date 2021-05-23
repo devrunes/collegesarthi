@@ -1,56 +1,48 @@
-import React, { useState, useContext } from "react";
-import styles from "./Signup.module.css";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import styles from "./AskAQueForm.module.css";
+import axios from "axios";
 import * as yup from "yup";
-import { useAuth } from "../../../lib/auth";
-import { AuthOpenContext } from "../../../lib/authContext";
 
-const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
-  const { signupWithEmailAndPassword } = useAuth();
-  const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const SignUp = ({ handleCrossClick, user }) => {
   const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [course, setCourse] = useState("");
-  const [city, setCity] = useState("");
+  const [number, setNumber] = useState("");
+  const [message, setMessage] = useState("");
+  const [question, setQuestion] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [error, setError] = useState({});
-
-  const validationSignupInput = async () => {
+  //validate user
+  const validationSubscriberInput = async () => {
     let errors = {};
+
+    if (question === "") {
+      errors.question = "Question is Empty";
+    }
+
     let schema = yup.object().shape({
       name: yup.string().required(),
       number: yup.number().required().positive().integer(),
       email: yup.string().email().required(),
-      password: yup
-        .string()
-        .required()
-        .min(8, "Password must be atleast 8 characters long"),
       course: yup.string().required(),
-      city: yup.string().required(),
+      question: yup.string(),
     });
-
     let intNumber = parseInt(number ? number : 0);
     try {
       const validationResult = await schema.validate(
-        { name, number: intNumber, email, password, course, city },
+        { name, number: intNumber, email, course },
         { abortEarly: false }
       );
-
       return {
-        isValid: true,
-        errors: {},
+        isValid: !Object.keys(errors).length > 0,
+        errors,
       };
     } catch (err) {
       err.inner.forEach((error) => {
         errors[error.path] = error.message;
       });
-
-      if (!errors.number && number.length !== 10) {
-        errors.number = "Number must be 10 digit long";
-      }
       return {
         isValid: false,
         errors,
@@ -58,35 +50,67 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
     }
   };
 
-  const handleSignup = async () => {
-    try {
-      setError({});
-      const { errors, isValid } = await validationSignupInput();
+  //user signup
 
+  const onSubscribeUser = async () => {
+    setError({});
+    const { isValid, errors } = await validationSubscriberInput();
+
+    try {
       if (!isValid) {
         setError(errors);
       } else {
-        const result = await signupWithEmailAndPassword(
+        setIsLoading(true);
+        const subscribeUser = await axios.post("/api/subscribeUser", {
           email,
-          password,
           name,
           course,
-          city,
-          number
-        );
-        setAuthOpen(!authOpen);
+          number,
+          question,
+        });
+        setIsLoading(false);
+        setMessage(subscribeUser.data.message);
       }
     } catch (err) {
+      setError(err);
       // console.log(err);
-      setError({ auth: err.message });
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      setEmail(user && user.email ? user.email : "");
+      setName(user && user.name ? user.name : "");
+      setNumber(user && user.number ? user.number : "");
+    }
+
+    return () => {
+      setEmail("");
+      setName("");
+      setNumber("");
+    };
+  }, [user]);
 
   return (
     <div className={styles.signup_cont}>
       <div className={styles.signup_head}>
-        <h2>Sign Up</h2>
-        <p>Join us and elevate</p>
+        <svg
+          width="74"
+          height="72"
+          viewBox="0 0 94 92"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className={styles.MissUpdateSVG}
+        >
+          <path
+            d="M26.3741 8.03984L19.7008 1.3665C8.50079 9.90651 1.12745 23.0665 0.474121 37.9998H9.80746C10.138 32.0816 11.7993 26.3142 14.6676 21.127C17.536 15.9398 21.5374 11.4664 26.3741 8.03984ZM84.1941 37.9998H93.5275C92.8275 23.0665 85.4541 9.90651 74.3008 1.3665L67.6741 8.03984C72.4901 11.4832 76.4737 15.9616 79.3325 21.146C82.1912 26.3304 83.8524 32.0894 84.1941 37.9998ZM75.0008 40.3332C75.0008 26.0065 67.3475 14.0132 54.0008 10.8398V7.6665C54.0008 3.79317 50.8741 0.666504 47.0008 0.666504C43.1275 0.666504 40.0008 3.79317 40.0008 7.6665V10.8398C26.6075 14.0132 19.0008 25.9598 19.0008 40.3332V63.6665L9.66746 72.9998V77.6665H84.3341V72.9998L75.0008 63.6665V40.3332ZM47.0008 91.6665C47.6541 91.6665 48.2608 91.6199 48.8675 91.4799C51.9008 90.8265 54.3741 88.7732 55.5875 85.9732C56.0541 84.8532 56.2875 83.6399 56.2875 82.3332H37.6208C37.6675 87.4665 41.8208 91.6665 47.0008 91.6665Z"
+            fill="#333366"
+          />
+        </svg>
+        <div className={styles.head_wrapper}>
+          <h1 className={styles.h1_styles}>Ask A Question</h1>
+          <h2>You ask we Answer</h2>
+        </div>
       </div>
       <div className={styles.signup_form}>
         <div className={styles.signup_form_left}>
@@ -99,8 +123,8 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
             </div>
             <input
               type="text"
-              name="name"
-              id="name"
+              name="Name"
+              id="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -119,41 +143,13 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
             </div>
             <input
               type="email"
-              name="email"
-              id="email"
+              name="Email"
+              id="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             {error.email && error.email !== "" ? (
               <p className={styles.authError}>{error.email}</p>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div className={styles.signup_form_sec}>
-            <div className={styles.signup_imgsec}>
-              <div className={styles.signup_img}>
-                <Image src="/course.svg" alt="em" layout="fill" />
-              </div>
-              <p>Course</p>
-            </div>
-            {/* <input type="course" name="course" id="course" /> */}
-            <select
-              name="course"
-              // ref={register}
-              className={styles.formSelectInput}
-              value={course}
-              onChange={(e) => setCourse(e.target.value)}
-            >
-              <option value="">Select One...</option>
-              <option value="BTech">BTech</option>
-              <option value="MBA">MBA</option>
-              <option value="BSc">BSc</option>
-              <option value="BBA">BBA</option>
-              <option value="MSc">MSc</option>
-            </select>
-            {error.course && error.course !== "" ? (
-              <p className={styles.authError}>{error.course}</p>
             ) : (
               <></>
             )}
@@ -169,8 +165,8 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
             </div>
             <input
               type="text"
-              name="number"
-              id="number"
+              name="Mobile"
+              id="Mobile"
               value={number}
               onChange={(e) => setNumber(e.target.value)}
             />
@@ -180,62 +176,64 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
               <></>
             )}
           </div>
-          <div className={styles.signup_form_sec}>
-            <div className={styles.signup_imgsec}>
-              <div className={styles.signup_img}>
-                <Image src="/user.svg" alt="em" layout="fill" />
+          <div className={styles.signup_form_right}>
+            <div className={styles.signup_form_sec}>
+              <div className={styles.signup_imgsec}>
+                <div className={styles.signup_img}>
+                  <Image src="/course.svg" alt="em" layout="fill" />
+                </div>
+                <p>Course</p>
               </div>
-              <p>Password</p>
+              {/* <input type="course" name="course" id="course" /> */}
+              <select
+                name="Course"
+                className={styles.formSelectInput}
+                value={course}
+                onChange={(e) => setCourse(e.target.value)}
+              >
+                <option value="">Select One...</option>
+                <option value="BTech">BTech</option>
+                <option value="MBA">MBA</option>
+                <option value="BSc">BSc</option>
+                <option value="BBA">BBA</option>
+                <option value="MSc">MSc</option>
+              </select>
+              {error.course && error.course !== "" ? (
+                <p className={styles.authError}>{error.course}</p>
+              ) : (
+                <></>
+              )}
             </div>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {error.password && error.password !== "" ? (
-              <p className={styles.authError}>{error.password}</p>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div className={styles.signup_form_sec}>
-            <div className={styles.signup_imgsec}>
-              <div className={styles.signup_img}>
-                <Image src="/locationPin.svg" alt="em" layout="fill" />
-              </div>
-              <p>City</p>
-            </div>
-            <input
-              type="city"
-              name="city"
-              id="city"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
-            {error.city && error.city !== "" ? (
-              <p className={styles.authError}>{error.city}</p>
-            ) : (
-              <></>
-            )}
           </div>
         </div>
       </div>
-      <div className={styles.signup_button_cont}>
-        <button className={styles.signup_button} onClick={handleSignup}>
-          Signup
-        </button>
-        <p onClick={screenSwitchHandler} className={styles.linkSup}>
-          Already Registered? Click Here to Login!
-        </p>
-        {error.auth && error.auth !== "" ? (
-          <p className={styles.authError}>{error.auth}</p>
+      <div className={styles.signup_text_area}>
+        <textarea
+          placeholder="Write your description"
+          id="question"
+          name="question"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+        />
+        {error.question && error.question !== "" ? (
+          <p className={styles.authError}>{error.question}</p>
         ) : (
           <></>
         )}
       </div>
-      <div className={styles.auth_crossButton} onClick={handleCrossClick}>
+      <div className={styles.signup_button_cont}>
+        <button className={styles.signup_button} onClick={onSubscribeUser}>
+          Signup
+        </button>
+        {message && <div className={styles.msgStyle}>{message}</div>}
+        <p className={styles.linkSup}>
+          Already Registered? Click Here to Login!
+        </p>
+      </div>
+      <div
+        className={styles.auth_crossButton}
+        onClick={() => handleCrossClick()}
+      >
         <svg
           // width="40"
           // height="40"
@@ -253,4 +251,5 @@ const Signup = ({ screenSwitchHandler, handleCrossClick }) => {
     </div>
   );
 };
-export default Signup;
+
+export default SignUp;
