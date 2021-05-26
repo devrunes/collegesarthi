@@ -8,6 +8,7 @@ import SubHeadingsExam from "../SubHeadingsExam/SubHeadingsExam";
 import ArticleContent from "../ArticleContent/ArticleContent";
 import Notifications from "../Notifications/Notifications";
 import Head from "next/head";
+import Footer from '../Footer/Footer';
 import { AuthOpenContext } from "../../lib/authContext";
 
 const ArticleComponent = (props) => {
@@ -104,6 +105,7 @@ const ArticleComponent = (props) => {
           </div>
         )}
       </div>
+      <Footer/>
     </div>
   );
 };
