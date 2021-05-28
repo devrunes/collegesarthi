@@ -50,13 +50,14 @@ export default function Navbar() {
   },[auth]);
 
  useEffect(()=>{
-   if(auth &&!auth.isLogin &&!writeAReviewPath){
-    setTimeout(()=>{
+     if(auth &&!auth.isLogin &&!writeAReviewPath){
+   const timeoutId=setTimeout(()=>{
       setAuthOpen(true);
     },5000)
-   }
-   
-  
+    return ()=>{
+      clearTimeout(timeoutId);
+    }
+  }
  },[asPath]);
 
   const handleAuthClick = () => {
