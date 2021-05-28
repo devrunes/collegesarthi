@@ -53,7 +53,6 @@ export default function Navbar() {
      if(auth &&!auth.isLogin &&!writeAReviewPath){
    const timeoutId=setTimeout(()=>{
       setAuthOpen(true);
-      console.log('popup due to path changed')
     },5000)
     return ()=>{
       clearTimeout(timeoutId);
