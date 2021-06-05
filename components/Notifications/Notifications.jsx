@@ -1,11 +1,18 @@
 import React, { useContext } from "react";
 import styles from "./Notifications.module.css";
-import { ModelOpenContext } from "../../lib/authContext";
-
+import { ModelOpenContext ,AuthOpenContext} from "../../lib/authContext";
+import { useAuth } from "../../lib/auth";
 export default function Notifications({notis, papers}) {
+  const { auth } = useAuth();
   const [model, setModel] = useContext(ModelOpenContext);
+  const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
   const handleAskAQuestionClick = () => {
+    if((Object.entries(auth).length <= 0 && auth.constructor === Object) || auth===undefined){
+      setAuthOpen(!authOpen)
+    }
+    else{
     setModel({ open: true, modelNo: 1, modelData: {} });
+    }
   };
   return (
     <div>

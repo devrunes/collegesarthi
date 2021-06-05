@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import Image from "next/image";
 import styles from "./AskAQueForm.module.css";
+import { ModelOpenContext } from "../../lib/authContext";
 import axios from "axios";
 import * as yup from "yup";
 
@@ -13,7 +14,7 @@ const SignUp = ({ handleCrossClick, user }) => {
   const [question, setQuestion] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const [model, setModel] = useContext(ModelOpenContext);
   //validate user
   const validationSubscriberInput = async () => {
     let errors = {};
@@ -70,6 +71,10 @@ const SignUp = ({ handleCrossClick, user }) => {
         });
         setIsLoading(false);
         setMessage(subscribeUser.data.message);
+        setTimeout(() => {
+          setModel({ open:false, modelNo: 1, modelData: {} });
+          setMessage('');
+        },2000);
       }
     } catch (err) {
       setError(err);
@@ -223,12 +228,9 @@ const SignUp = ({ handleCrossClick, user }) => {
       </div>
       <div className={styles.signup_button_cont}>
         <button className={styles.signup_button} onClick={onSubscribeUser}>
-          Signup
+          Submit
         </button>
         {message && <div className={styles.msgStyle}>{message}</div>}
-        <p className={styles.linkSup}>
-          Already Registered? Click Here to Login!
-        </p>
       </div>
       <div
         className={styles.auth_crossButton}
