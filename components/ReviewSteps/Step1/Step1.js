@@ -88,7 +88,7 @@ export default function Step1({
                 value={reviewValues.examScore}
                 onChange={(e) => handleOnChange(e, "examScore")}
               />
-              <p className={styles.errorMsg}>{errors.examScore?.message}</p>
+              <p className={styles.errorMsg}>{errors.examScore&&"Please enter valid number"}</p>
             </div>
             <div>
               <label>Rank</label>
@@ -100,7 +100,7 @@ export default function Step1({
                 value={reviewValues.examRank}
                 onChange={(e) => handleOnChange(e, "examRank")}
               />
-              <p className={styles.errorMsg}>{errors.examRank?.message}</p>
+              <p className={styles.errorMsg}>{errors.examScore&&"Please enter valid number"}</p>
             </div>
           </div>
         </div>
