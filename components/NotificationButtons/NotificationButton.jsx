@@ -7,13 +7,18 @@ export default function NotificationButton(props) {
   const { auth } = useAuth();
   const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
   const [model, setModel] = useContext(ModelOpenContext);
-  console.log(props, "samplPapers")
-
+  
   const handleAuthClick = () => {
     setAuthOpen(!authOpen);
   };
   const handleAskAQuestionClick = () => {
+  
+    if((Object.entries(auth).length <= 0 && auth.constructor === Object) || auth===undefined){
+      setAuthOpen(!authOpen)
+    }
+    else{
     setModel({ open: true, modelNo: 1, modelData: {} });
+    }
   };
   return (
     <div className={styles.ButtonContainer}>
