@@ -10,7 +10,6 @@ export default function PdfViewer() {
      const [fileData,setFileData]=useState();
      const router = useRouter();
      const {id}=router.query
-     console.log(id)
   // function onDocumentLoadSuccess({ numPages }) {
   //   setNumPages(numPages);
   // }

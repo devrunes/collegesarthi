@@ -1,14 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
 import styles from "./EccComponent.module.css";
 import Lobby from "./Lobby/Lobby";
+import Footer from "../Footer/Footer";
 
 const EccComponent = ({ data }) => {
   const router = useRouter();
   const query = router.query;
   const links = ["exams", "colleges"];
+
+  const [stream, course, state, city] = query.filters || [
+    "all-stream",
+    "all-courses",
+    "all-india",
+    "",
+  ];
+
   useEffect(() => {
     // console.log(query);
     if (query.type) {
@@ -40,7 +49,25 @@ const EccComponent = ({ data }) => {
         </Link> */}
       </div>
       {/* <div>{query.type}</div> */}
+      <h1 className={styles.heading}>
+        {stream !== "all-stream" || state != "all-india"
+          ? `Top ${
+              course && course != "all-courses"
+                ? course
+                : stream != "all-stream"
+                ? stream
+                : ""
+            } Colleges ${
+              city && city !== ""
+                ? `in ${city}`
+                : state && state !== "all-india"
+                ? `in ${state}`
+                : ""
+            }`
+          : ""}
+      </h1>
       <Lobby query={query} data={data} />
+      <Footer />
     </div>
   );
 };

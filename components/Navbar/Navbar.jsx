@@ -37,7 +37,6 @@ export default function Navbar() {
     }
   },[asPath,auth?.isLogin])
   
-  console.log(auth)
   useEffect(()=>{
     setTimeout(()=>{
        if(auth===Object || auth==={} || auth===null){

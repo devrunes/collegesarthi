@@ -27,7 +27,7 @@
 .lobbyFilterWrapper {
   display: none;
   background: #fff;
-  padding: 2em;
+  padding: 2em 2em 3em;
 }
 .lobbyFilTop {
   display: flex;
@@ -52,10 +52,15 @@
   padding: 1em 3em;
   align-items: center;
   font-size: 1.3vw;
+  margin: .5em 0;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
 }
-.lobbyDropdownWrapper:nth-child(even) > .lobbyDropdownType {
+/* .lobbyDropdownWrapper:nth-child(even) > .lobbyDropdownType {
   background-color: rgba(51, 51, 51, 0.118);
-}
+} */
 .lobbyFilArr {
   position: relative;
   height: 13px;
@@ -163,7 +168,7 @@
 @media only screen and (min-width: 584px) {
   .lobbyFilterWrapper {
     display: block;
-    padding: 1em;
+    padding: 1em 1em 3em;
   }
   .lobbyMobileFilter {
     display: none;
@@ -204,7 +209,7 @@
 }
 @media only screen and (min-width: 1100px) {
   .lobbyFilterWrapper {
-    padding: 1em 1.2em;
+    padding: 1em 1.2em 3em;
   }
   .lobbyWrapper {
     font-size: 1.2em;

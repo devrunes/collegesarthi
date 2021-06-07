@@ -35,6 +35,7 @@ export async function getServerSideProps(context) {
   const queryList = Object.keys(filters);
 
   queryList.forEach((item) => {
+    // console.log(item, filters[item]);
     if (filters[item] !== "")
       ECCRef = ECCRef.where(
         `filters.${filters[item].toLowerCase()}`,
@@ -62,13 +63,13 @@ export async function getServerSideProps(context) {
     }
   });
 
-  if (query.type === "colleges") {
-    data.sort(
-      (a, b) =>
-        a.ranks[filters.stream.toLowerCase()] -
-        b.ranks[filters.stream.toLowerCase()]
-    );
-  }
+  // if (query.type === "colleges") {
+  //   data.sort(
+  //     (a, b) =>
+  //       a.ranks[filters.stream.toLowerCase()] -
+  //       b.ranks[filters.stream.toLowerCase()]
+  //   );
+  // }
 
   return {
     props: { data, query: context.query },

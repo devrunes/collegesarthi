@@ -23,6 +23,11 @@
   justify-content: space-between;
   padding: 0.5em 1em;
 }
+
+.clgCard_main_left {
+  min-width: 60%;
+}
+
 .clgCard_main_name {
   width: 100%;
   padding: 0 1em 0 0;

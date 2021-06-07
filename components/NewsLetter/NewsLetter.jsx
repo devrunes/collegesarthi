@@ -49,7 +49,7 @@ export default function NewsLetter() {
   return (
     <div className={styles.newsletter}>
       <div className={styles.topbar}>
-        <img src="newsletter.svg" alt="subscribe to newsletter" />
+        <img src="/newsletter.svg" alt="subscribe to newsletter" />
         <div className={styles.headingWrapper}>
           <div className={styles.heading}>Subscribe to our newsletter</div>
           <div className={styles.benefitsWrapper}>
@@ -89,13 +89,13 @@ export default function NewsLetter() {
         </div>
         <div className={styles.inputWrapper}>
           <input
-            type="number"
+            type="text"
             name="number"
             placeholder="Mobile Number"
             className={styles.input}
-            value={number}
+            value={number.toString()==='0' ||  number.toString()==='NaN' ?"":number.toString()}
             onChange={(e) => {
-              setNumber(e.target.value);
+              setNumber(parseInt(e.target.value));
             }}
           />
           <p className={styles.error}>{numberError}</p>

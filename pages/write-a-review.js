@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "../styles/write-a-review.module.scss";
 import axios from "axios";
 import Step0 from "../components/ReviewSteps/Step0/Step0";
@@ -7,8 +7,11 @@ import Step2 from "../components/ReviewSteps/Step2/Step2";
 import ReviewComponent from "../components/ReviewComponent/ReviewComponent";
 import { useRouter } from "next/router";
 import { useAuth } from "../lib/auth";
+import { AuthOpenContext } from "../lib/authContext";
 
 export default function Review() {
+  const [authOpen, setAuthOpen] = useContext(AuthOpenContext);
+
   const [currentStep, setCurrentStep] = useState(0);
   const [headerValue, setHeaderValue] = useState("Write a Review");
   const [reviewId, setReviewId] = useState("");
@@ -54,6 +57,10 @@ export default function Review() {
       setReviewId(router.query.reviewId);
       fetchReview(router.query.reviewId);
     }
+
+    return () => {
+      setAuthOpen(false);
+    };
   }, []);
 
   const handleOnChange = (e, fieldName) => {

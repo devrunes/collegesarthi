@@ -1,3 +1,10 @@
+.heading {
+  padding: 1.5% 3%;
+  text-align: center;
+  font-size: 1.7em;
+  color: #333366;
+}
+
 .ecc_wrapper {
   height: 100%;
   background-color: #f2f2f2;
@@ -15,6 +22,15 @@
 }
 .ecc_active {
   border-bottom: 5px solid black;
+}
+
+@media only screen and (min-width: 584px) {
+  .heading {
+    padding: 1% 3%;
+    text-align: left;
+    font-size: revert;
+    color: #333366;
+  }
 }
 @media only screen and (min-width: 900px) {
   .ecc_topNav {

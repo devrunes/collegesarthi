@@ -39,10 +39,17 @@ const ArticleComponent = (props) => {
         <title>{data.title}</title>
         {/* {data.ldscripts} */}
         {/* {map} */}
-        {/* <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: data.ldscripts }}
-        /> */}
+        {data.ldscripts !== undefined &&
+          data.ldscripts.map((scr) => {
+            return (
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: JSON.parse(scr),
+                }}
+              />
+            );
+          })}
         <meta name="desc" content={data.metaDesc} />
         <meta name="title" content={data.title} />
         <meta name="robots" content="index,follow" />
@@ -96,10 +103,16 @@ const ArticleComponent = (props) => {
                 <SubHeadingsExam data={data.subheadings} query={query} />
               </div>
               <div className={styles.ArticleContent}>
-                <ArticleContent data={data.content} papers={data.samplePapers} />
+                <ArticleContent
+                  data={data.content}
+                  papers={data.samplePapers}
+                />
               </div>
               <div className={styles.Notifications}>
-                <Notifications notis={data.notifications} papers={data.samplePapers}/>
+                <Notifications
+                  notis={data.notifications}
+                  papers={data.samplePapers}
+                />
               </div>
             </div>
           </div>

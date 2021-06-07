@@ -39,7 +39,7 @@ const Model = () => {
         <MissUpdate
           modelData={model.modelData}
           user={auth && auth.isLogin ? user : false}
-          themeColor="#1C8549"
+          themeColor="#333366"
           heading={
             model.modelData && model.modelData.collegeName
               ? model.modelData.collegeName

@@ -13,7 +13,6 @@ export default function user() {
     return <div>You need to Login</div>;
   }
 
-  console.log("user.reviews", user.reviews);
 
   return (
     <div className={styles.userWrapper}>
