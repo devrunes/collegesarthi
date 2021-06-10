@@ -1,5 +1,6 @@
 .hs_cont {
-  background: url("/bg4.png");
+  /* background: url("/bg4.png"); */
+  background: -webkit-image-set( url("/bg4_25.png") .5x,url('/bg4_2_50.png') 1x, url('/bg4_1_75.png') 1.5x, url('/bg4.png')2x);
   height: 40vh;
   background-size: 100% 100%;
 }
